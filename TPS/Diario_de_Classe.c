@@ -212,10 +212,40 @@ void Inserir_Aluno(prof *professor)
 
 void Lancar_Notas(prof *professor)
 {
+    int matricula;
+    scanf("%d ", &matricula);
+
+    char codigo[12];
+    fgets(codigo, 12, stdin);
+    codigo[strlen(codigo) - 1] = '\0';
+
+    int turma = Achar_turma(professor, codigo);
+    int aluno = Achar_aluno(professor, turma, matricula);
+
+    for (int i = 0; i < 3; i++)
+    {
+        scanf("%d", &professor->turmas[turma].alunos[aluno].notas[i]);
+    }
 }
 
 void Informacoes_da_Turma(prof *professor)
 {
+    char codigo[12];
+    fgets(codigo, 12, stdin);
+    codigo[strlen(codigo) - 1] = '\0';
+
+    int turma = Achar_turma(professor, codigo);
+
+    printf("Informacoes da turma %s - ", professor->turmas[turma].codigo);
+    printf("%s:\n", professor->turmas[turma].nome);
+
+    printf("%d alunos\n", professor->turmas[turma].quantidade_alunos);
+
+    for (int i = 0; i < professor->turmas[turma].quantidade_alunos; i++)
+    {
+        printf("Aluno: %s\n", professor->turmas[turma].alunos[i].nome);
+        printf("Matricula: %d\n", professor->turmas[turma].alunos[i].matricula);
+    }
 }
 
 void Situacao_dos_Alunos(prof *professor)
