@@ -73,8 +73,15 @@ void Ler_input(FILE *file, prof *professor)
     }*/
 }
 
-void Imprimir_menu(prof *professor)
+void Imprimir_menu()
 {
+    printf("1 - Informacoes do Professor\n");
+    printf("2 - Informacoes do Aluno\n");
+    printf("3 - Inserir Aluno\n");
+    printf("4 - Lancar Notas\n");
+    printf("5 - Informacoes da Turma\n");
+    printf("6 - Situacao dos Alunos\n");
+    printf("7 - Exportar Dados");
 }
 
 void Exibir_prof()
@@ -137,8 +144,7 @@ int main(int argc, char **argv)
 
     Ler_input(input, &professor);
 
-    // TODO: fazer imprimir_menu
-    Imprimir_menu(&professor);
+    Imprimir_menu();
 
     fclose(input);
     // fclose(output);
