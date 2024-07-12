@@ -183,26 +183,31 @@ void Informacoes_do_Aluno(prof *professor)
 
     char conceito = Conceito(Nota_final);
     printf("Conceito %c\n", conceito);
-
-    /*
-    if (conceito == 'F')
-    {
-        printf("Conceito F - Reprovado\n");
-        return;
-    }
-
-    if (conceito == 'E')
-    {
-        printf("Conceito E - Exame Especial\n");
-        return;
-    }
-
-    printf("Conceito %c - Aprovado", conceito);
-    */
 }
 
 void Inserir_Aluno(prof *professor)
 {
+    char nome[110];
+    fgets(nome, 110, stdin);
+    nome[strlen(nome) - 1] = '\0';
+
+    int matricula;
+    scanf("%d ", &matricula);
+
+    char codigo[12];
+    fgets(nome, 12, stdin);
+    nome[strlen(nome) - 1] = '\0';
+
+    int turma = Achar_turma(professor, codigo);
+
+    int qt_alunos = professor->turmas[turma].quantidade_alunos;
+
+    strcpy(professor->turmas[turma].alunos[qt_alunos].nome, nome);
+    professor->turmas[turma].alunos[qt_alunos].matricula = matricula;
+
+    printf("%s\n", professor->turmas[turma].alunos[qt_alunos].nome);
+    printf("%d\n", professor->turmas[turma].alunos[qt_alunos].matricula);
+    professor->turmas[turma].quantidade_alunos++;
 }
 
 void Lancar_Notas(prof *professor)
