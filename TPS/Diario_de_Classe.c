@@ -16,6 +16,7 @@ typedef struct
     char codigo[10];
     char nome[100];
 
+    int quantidade_alunos;
     aluno alunos[6];
 
 } turma;
@@ -25,6 +26,7 @@ typedef struct
     char nome[100];
     unsigned int registro;
 
+    int quantidade_turmas;
     turma turmas[2];
 
 } prof;
@@ -34,33 +36,33 @@ void Ler_input(FILE *file, prof *professor)
     fgets(professor->nome, 100, file);
     fscanf(file, "%d ", &professor->registro);
 
-    int turmas;
-    fscanf(file, "%d ", &turmas);
+    fscanf(file, "%d ", &professor->quantidade_turmas);
 
-    for (int i = 0; i < turmas; i++)
+    for (int i = 0; i < professor->quantidade_turmas; i++)
     {
         fgets(professor->turmas[i].nome, 100, file);
         fgets(professor->turmas[i].codigo, 100, file);
     }
 
-    int alunos;
-
-    for (int i = 0; i < turmas; i++)
+    for (int i = 0; i < professor->quantidade_turmas; i++)
     {
-        fscanf(file, "%d ", &alunos);
-        for (int j = 0; j < alunos; j++)
+        fscanf(file, "%d ", &professor->turmas[i].quantidade_alunos);
+        for (int j = 0; j < professor->turmas[i].quantidade_alunos; j++)
         {
             fgets(professor->turmas[i].alunos[j].nome, 100, file);
             fscanf(file, "%d ", &professor->turmas[i].alunos[j].matricula);
         }
     }
 
-    /*TODO: Deletar o seguinte antes de enviar
- *
+    // TODO: Deletar o seguinte antes de enviar
+    ///*
     printf("%s", professor->nome);
-    printf("%d", professor->registro);
+    printf("%d\n", professor->registro);
+    printf("%d\n", professor->quantidade_turmas);
+    printf("%d\n", professor->turmas[0].quantidade_alunos);
+    printf("%d\n", professor->turmas[1].quantidade_alunos);
 
-    for (int i = 0; i < turmas; i++)
+    for (int i = 0; i < professor->quantidade_turmas; i++)
     {
         printf("%s", professor->turmas[i].nome);
         printf("%s", professor->turmas[i].codigo);
@@ -70,7 +72,7 @@ void Ler_input(FILE *file, prof *professor)
         printf("%d\n", professor->turmas[i].alunos[1].matricula);
         printf("%s", professor->turmas[i].alunos[2].nome);
         printf("%d\n", professor->turmas[i].alunos[2].matricula);
-    }*/
+    } //*/
 }
 
 void Imprimir_menu()
@@ -146,45 +148,45 @@ int main(int argc, char **argv)
 
     Ler_input(input, &professor);
     Imprimir_menu();
+    /*
+        int comando;
 
-    int comando;
-
-    do
-    {
-        scanf("%d", &comando);
-
-        switch (comando)
+        do
         {
-        case 1:
-            Informacoes_do_Professor(&professor);
-            break;
+            scanf("%d", &comando);
 
-        case 2:
-            Informacoes_do_Aluno(&professor);
-            break;
+            switch (comando)
+            {
+            case 1:
+                Informacoes_do_Professor(&professor);
+                break;
 
-        case 3:
-            Inserir_Aluno(&professor);
-            break;
+            case 2:
+                Informacoes_do_Aluno(&professor);
+                break;
 
-        case 4:
-            Lancar_Notas(&professor);
-            break;
+            case 3:
+                Inserir_Aluno(&professor);
+                break;
 
-        case 5:
-            Informacoes_da_Turma(&professor);
-            break;
+            case 4:
+                Lancar_Notas(&professor);
+                break;
 
-        case 6:
-            Situacao_dos_Alunos(&professor);
-            break;
+            case 5:
+                Informacoes_da_Turma(&professor);
+                break;
 
-        case 7:
-            Exportar_Dados(&professor);
-            break;
-        }
+            case 6:
+                Situacao_dos_Alunos(&professor);
+                break;
 
-    } while (comando != 7);
+            case 7:
+                Exportar_Dados(&professor);
+                break;
+            }
+
+        } while (comando != 7);*/
 
     fclose(input);
     // fclose(output);
