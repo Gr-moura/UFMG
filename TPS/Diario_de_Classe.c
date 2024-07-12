@@ -250,6 +250,40 @@ void Informacoes_da_Turma(prof *professor)
 
 void Situacao_dos_Alunos(prof *professor)
 {
+    char codigo[12];
+    fgets(codigo, 12, stdin);
+    codigo[strlen(codigo) - 1] = '\0';
+
+    int turma = Achar_turma(professor, codigo);
+
+    printf("Situacao na turma %s - ", professor->turmas[turma].codigo);
+    printf("%s:\n", professor->turmas[turma].nome);
+
+    int Nota_final;
+
+    for (int i = 0; i < professor->turmas[turma].quantidade_alunos; i++)
+    {
+        printf("Aluno: %s\n", professor->turmas[turma].alunos[i].nome);
+        printf("Matricula: %d\n", professor->turmas[turma].alunos[i].matricula);
+
+        Nota_final = (professor->turmas[turma].alunos[i].notas[0] + professor->turmas[turma].alunos[i].notas[1] +
+                      professor->turmas[turma].alunos[i].notas[2]) /
+                     3;
+
+        printf("Nota Final: %d - ", Nota_final);
+
+        char conceito = Conceito(Nota_final);
+        printf("Conceito %c\n", conceito);
+
+        if (conceito == 'F')
+            printf("Situacao: Reprovado");
+
+        else if (conceito == 'E')
+            printf("Exame Especial");
+
+        else
+            printf("Situacao: Aprovado");
+    }
 }
 
 void Exportar_Dados(prof *professor)
