@@ -31,12 +31,38 @@ typedef struct
 
 void ler_input(FILE *file, prof *professor)
 {
-    char buffer[200];
+    fgets(professor->nome, 100, file);
+    fscanf(file, "%d ", &professor->registro);
 
-    fgets(buffer, 200, file);
-    sscanf(buffer, "%s", professor->nome);
+    int turmas;
+    fscanf(file, "%d ", &turmas);
+
+    for (int i = 0; i < turmas; i++)
+    {
+        fgets(professor->turmas[i].nome, 100, file);
+        fgets(professor->turmas[i].codigo, 100, file);
+    }
+
+    int alunos;
+
+    for (int i = 0; i < turmas; i++)
+    {
+        fscanf(file, "%d ", &alunos);
+        for (int j = 0; j < alunos; j++)
+        {
+            fgets(professor->turmas[i].alunos[j].nome, 100, file);
+            fscanf(file, "%d ", &professor->turmas[i].alunos[j].matricula);
+        }
+    }
 
     printf("%s", professor->nome);
+    printf("%d", professor->registro);
+
+    for (int i = 0; i < turmas; i++)
+    {
+        printf("%s", professor->turmas[i].nome);
+        printf("%s", professor->turmas[i].codigo);
+    }
 }
 
 void Exibir_prof()
@@ -69,31 +95,35 @@ void Exportar()
 
 int main(int argc, char **argv)
 {
-    if (argc < 3)
+    /*if (argc < 3)
     {
         printf("Está faltando coisa!");
         return 0;
-    }
+    }*/
 
-    FILE *input = fopen(argv[1], "r");
+    // FILE *input = fopen(argv[1], "r");
+
+    FILE *input = fopen("input.txt", "r");
     if (input == NULL)
     {
         perror("Error");
         return EXIT_FAILURE;
     }
 
-    FILE *output = fopen(argv[2], "w");
+    /*FILE *output = fopen(argv[2], "w");
     if (output == NULL)
     {
         fclose(input);
 
         perror("Error");
         return EXIT_FAILURE;
-    }
+    }*/
 
     prof professor;
 
     ler_input(input, &professor);
 
+    fclose(input);
+    // fclose(output);
     return EXIT_SUCCESS;
 }
