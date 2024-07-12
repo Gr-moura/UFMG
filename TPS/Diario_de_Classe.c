@@ -29,31 +29,41 @@ typedef struct
 
 } prof;
 
-int Exibir_prof()
+void ler_input(FILE *file, prof *professor)
+{
+    char buffer[200];
+
+    fgets(buffer, 200, file);
+    sscanf(buffer, "%s", professor->nome);
+
+    printf("%s", professor->nome);
+}
+
+void Exibir_prof()
 {
 }
 
-int Exibir_aluno()
+void Exibir_aluno()
 {
 }
 
-int Inserir_aluno()
+void Inserir_aluno()
 {
 }
 
-int Lancar_notas()
+void Lancar_notas()
 {
 }
 
-int Exibir_turma()
+void Exibir_turma()
 {
 }
 
-int Exibir_situacao()
+void Exibir_situacao()
 {
 }
 
-int Exportar()
+void Exportar()
 {
 }
 
@@ -80,6 +90,10 @@ int main(int argc, char **argv)
         perror("Error");
         return EXIT_FAILURE;
     }
+
+    prof professor;
+
+    ler_input(input, &professor);
 
     return EXIT_SUCCESS;
 }
