@@ -34,6 +34,8 @@ typedef struct
 void Ler_input(FILE *file, prof *professor)
 {
     fgets(professor->nome, 100, file);
+    professor->nome[strlen(professor->nome) - 1] = '\0';
+
     fscanf(file, "%d ", &professor->registro);
 
     fscanf(file, "%d ", &professor->quantidade_turmas);
@@ -41,7 +43,10 @@ void Ler_input(FILE *file, prof *professor)
     for (int i = 0; i < professor->quantidade_turmas; i++)
     {
         fgets(professor->turmas[i].nome, 100, file);
+        professor->turmas[i].nome[strlen(professor->turmas[i].nome) - 1] = '\0';
+
         fgets(professor->turmas[i].codigo, 100, file);
+        professor->turmas[i].codigo[strlen(professor->turmas[i].codigo) - 1] = '\0';
     }
 
     for (int i = 0; i < professor->quantidade_turmas; i++)
@@ -55,7 +60,8 @@ void Ler_input(FILE *file, prof *professor)
     }
 
     // TODO: Deletar o seguinte antes de enviar
-    ///*
+
+    /*
     printf("%s", professor->nome);
     printf("%d\n", professor->registro);
     printf("%d\n", professor->quantidade_turmas);
@@ -72,7 +78,7 @@ void Ler_input(FILE *file, prof *professor)
         printf("%d\n", professor->turmas[i].alunos[1].matricula);
         printf("%s", professor->turmas[i].alunos[2].nome);
         printf("%d\n", professor->turmas[i].alunos[2].matricula);
-    } //*/
+    } */
 }
 
 void Imprimir_menu()
@@ -83,13 +89,19 @@ void Imprimir_menu()
     printf("4 - Lancar Notas\n");
     printf("5 - Informacoes da Turma\n");
     printf("6 - Situacao dos Alunos\n");
-    printf("7 - Exportar Dados");
+    printf("7 - Exportar Dados\n");
 }
 
 void Informacoes_do_Professor(prof *professor)
 {
-    printf("Professor %s", professor->nome);
+    printf("Professor %s\n", professor->nome);
     printf("Registro numero %d\n", professor->registro);
+
+    for (int i = 0; i < professor->quantidade_turmas; i++)
+    {
+        printf("Turma %s - %s, %d alunos\n", professor->turmas[i].codigo, professor->turmas[i].nome,
+               professor->turmas[i].quantidade_alunos);
+    }
 }
 
 void Informacoes_do_Aluno(prof *professor)
@@ -148,45 +160,45 @@ int main(int argc, char **argv)
 
     Ler_input(input, &professor);
     Imprimir_menu();
-    /*
-        int comando;
 
-        do
+    int comando;
+
+    do
+    {
+        scanf("%d", &comando);
+
+        switch (comando)
         {
-            scanf("%d", &comando);
+        case 1:
+            Informacoes_do_Professor(&professor);
+            break;
 
-            switch (comando)
-            {
-            case 1:
-                Informacoes_do_Professor(&professor);
-                break;
+        case 2:
+            Informacoes_do_Aluno(&professor);
+            break;
 
-            case 2:
-                Informacoes_do_Aluno(&professor);
-                break;
+        case 3:
+            Inserir_Aluno(&professor);
+            break;
 
-            case 3:
-                Inserir_Aluno(&professor);
-                break;
+        case 4:
+            Lancar_Notas(&professor);
+            break;
 
-            case 4:
-                Lancar_Notas(&professor);
-                break;
+        case 5:
+            Informacoes_da_Turma(&professor);
+            break;
 
-            case 5:
-                Informacoes_da_Turma(&professor);
-                break;
+        case 6:
+            Situacao_dos_Alunos(&professor);
+            break;
 
-            case 6:
-                Situacao_dos_Alunos(&professor);
-                break;
+        case 7:
+            Exportar_Dados(&professor);
+            break;
+        }
 
-            case 7:
-                Exportar_Dados(&professor);
-                break;
-            }
-
-        } while (comando != 7);*/
+    } while (comando != 7);
 
     fclose(input);
     // fclose(output);
