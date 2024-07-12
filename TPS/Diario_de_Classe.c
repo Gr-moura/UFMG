@@ -84,31 +84,33 @@ void Imprimir_menu()
     printf("7 - Exportar Dados");
 }
 
-void Exibir_prof()
+void Informacoes_do_Professor(prof *professor)
+{
+    printf("Professor %s", professor->nome);
+    printf("Registro numero %d\n", professor->registro);
+}
+
+void Informacoes_do_Aluno(prof *professor)
 {
 }
 
-void Exibir_aluno()
+void Inserir_Aluno(prof *professor)
 {
 }
 
-void Inserir_aluno()
+void Lancar_Notas(prof *professor)
 {
 }
 
-void Lancar_notas()
+void Informacoes_da_Turma(prof *professor)
 {
 }
 
-void Exibir_turma()
+void Situacao_dos_Alunos(prof *professor)
 {
 }
 
-void Exibir_situacao()
-{
-}
-
-void Exportar()
+void Exportar_Dados(prof *professor)
 {
 }
 
@@ -143,8 +145,46 @@ int main(int argc, char **argv)
     prof professor;
 
     Ler_input(input, &professor);
-
     Imprimir_menu();
+
+    int comando;
+
+    do
+    {
+        scanf("%d", &comando);
+
+        switch (comando)
+        {
+        case 1:
+            Informacoes_do_Professor(&professor);
+            break;
+
+        case 2:
+            Informacoes_do_Aluno(&professor);
+            break;
+
+        case 3:
+            Inserir_Aluno(&professor);
+            break;
+
+        case 4:
+            Lancar_Notas(&professor);
+            break;
+
+        case 5:
+            Informacoes_da_Turma(&professor);
+            break;
+
+        case 6:
+            Situacao_dos_Alunos(&professor);
+            break;
+
+        case 7:
+            Exportar_Dados(&professor);
+            break;
+        }
+
+    } while (comando != 7);
 
     fclose(input);
     // fclose(output);
