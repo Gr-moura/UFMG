@@ -29,7 +29,7 @@ typedef struct
 
 } prof;
 
-void ler_input(FILE *file, prof *professor)
+void Ler_input(FILE *file, prof *professor)
 {
     fgets(professor->nome, 100, file);
     fscanf(file, "%d ", &professor->registro);
@@ -55,6 +55,8 @@ void ler_input(FILE *file, prof *professor)
         }
     }
 
+    /*TODO: Deletar o seguinte antes de enviar
+ *
     printf("%s", professor->nome);
     printf("%d", professor->registro);
 
@@ -62,7 +64,17 @@ void ler_input(FILE *file, prof *professor)
     {
         printf("%s", professor->turmas[i].nome);
         printf("%s", professor->turmas[i].codigo);
-    }
+        printf("%s", professor->turmas[i].alunos[0].nome);
+        printf("%d\n", professor->turmas[i].alunos[0].matricula);
+        printf("%s", professor->turmas[i].alunos[1].nome);
+        printf("%d\n", professor->turmas[i].alunos[1].matricula);
+        printf("%s", professor->turmas[i].alunos[2].nome);
+        printf("%d\n", professor->turmas[i].alunos[2].matricula);
+    }*/
+}
+
+void Imprimir_menu(prof *professor)
+{
 }
 
 void Exibir_prof()
@@ -95,6 +107,8 @@ void Exportar()
 
 int main(int argc, char **argv)
 {
+    // TODO: retirar o que esta comentado
+    //
     /*if (argc < 3)
     {
         printf("Está faltando coisa!");
@@ -121,7 +135,10 @@ int main(int argc, char **argv)
 
     prof professor;
 
-    ler_input(input, &professor);
+    Ler_input(input, &professor);
+
+    // TODO: fazer imprimir_menu
+    Imprimir_menu(&professor);
 
     fclose(input);
     // fclose(output);
