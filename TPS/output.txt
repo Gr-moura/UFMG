@@ -1,0 +1,28 @@
+DADOS EXPORTADOS
+Professor Albert Einstein - Registro 1801
+Turma ED I - ESTRUTURAS DE DADOS I
+Aluno: Igor Vinicius
+Matricula: 2401
+Nota Final: 100 - Conceito A - Aprovado
+Aluno: Joaquim Silva
+Matricula: 2402
+Nota Final: 21 - Conceito F - Reprovado
+Aluno: Vitor Santos Silva Andrade
+Matricula: 2403
+Nota Final: 60 - Conceito D - Aprovado
+Aluno: Luciano Neves
+Matricula: 2404
+Nota Final: 74 - Conceito C - Aprovado
+Turma ALG I - ALGORITMOS I
+Aluno: Andrezinho
+Matricula: 2405
+Nota Final: 0 - Conceito F - Reprovado
+Aluno: Matheus Pereira
+Matricula: 2406
+Nota Final: 0 - Conceito F - Reprovado
+Aluno: Joao Silva
+Matricula: 2407
+Nota Final: 0 - Conceito F - Reprovado
+Aluno: Novaldo Alunaldo
+Matricula: 2409
+Nota Final: 0 - Conceito F - Reprovado
