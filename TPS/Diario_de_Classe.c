@@ -4,7 +4,7 @@
 
 typedef struct
 {
-    char nome[100];
+    char nome[110];
     unsigned int matricula;
 
     int notas[3];
@@ -13,8 +13,8 @@ typedef struct
 
 typedef struct
 {
-    char codigo[10];
-    char nome[100];
+    char codigo[12];
+    char nome[110];
 
     int quantidade_alunos;
     aluno alunos[6];
@@ -23,7 +23,7 @@ typedef struct
 
 typedef struct
 {
-    char nome[100];
+    char nome[110];
     unsigned int registro;
 
     int quantidade_turmas;
@@ -33,29 +33,38 @@ typedef struct
 
 void Ler_input(FILE *file, prof *professor)
 {
-    fgets(professor->nome, 100, file);
+    fgets(professor->nome, 110, file);
     professor->nome[strlen(professor->nome) - 1] = '\0';
 
     fscanf(file, "%d ", &professor->registro);
 
     fscanf(file, "%d ", &professor->quantidade_turmas);
 
+    // Nome e código de cada turma
     for (int i = 0; i < professor->quantidade_turmas; i++)
     {
-        fgets(professor->turmas[i].nome, 100, file);
+        fgets(professor->turmas[i].nome, 110, file);
         professor->turmas[i].nome[strlen(professor->turmas[i].nome) - 1] = '\0';
 
-        fgets(professor->turmas[i].codigo, 100, file);
+        fgets(professor->turmas[i].codigo, 12, file);
         professor->turmas[i].codigo[strlen(professor->turmas[i].codigo) - 1] = '\0';
     }
 
     for (int i = 0; i < professor->quantidade_turmas; i++)
     {
         fscanf(file, "%d ", &professor->turmas[i].quantidade_alunos);
+
         for (int j = 0; j < professor->turmas[i].quantidade_alunos; j++)
         {
-            fgets(professor->turmas[i].alunos[j].nome, 100, file);
+            fgets(professor->turmas[i].alunos[j].nome, 110, file);
+            professor->turmas[i].alunos[j].nome[strlen(professor->turmas[i].alunos[j].nome) - 1] = '\0';
+
             fscanf(file, "%d ", &professor->turmas[i].alunos[j].matricula);
+
+            for (int k = 0; k < 3; k++)
+            {
+                professor->turmas[i].alunos[j].notas[k] = 0;
+            }
         }
     }
 
@@ -99,13 +108,97 @@ void Informacoes_do_Professor(prof *professor)
 
     for (int i = 0; i < professor->quantidade_turmas; i++)
     {
-        printf("Turma %s - %s, %d alunos\n", professor->turmas[i].codigo, professor->turmas[i].nome,
+        printf("Turma %d: %s - %s, %d alunos\n", i + 1, professor->turmas[i].codigo, professor->turmas[i].nome,
                professor->turmas[i].quantidade_alunos);
     }
 }
 
+char Conceito(int nota)
+{
+    if (nota < 40)
+        return 'F';
+
+    if (nota < 59)
+        return 'E';
+
+    if (nota < 69)
+        return 'D';
+
+    if (nota < 79)
+        return 'C';
+
+    if (nota < 89)
+        return 'B';
+
+    return 'A';
+}
+
+int Achar_turma(prof *professor, char *buscar_codigo)
+{
+    for (int i = 0; i < professor->quantidade_turmas; i++)
+    {
+        if (!strcmp(professor->turmas[i].codigo, buscar_codigo))
+            return i;
+    }
+
+    return -1;
+}
+
+int Achar_aluno(prof *professor, int turma, int buscar_matricula)
+{
+    for (int i = 0; i < professor->turmas[turma].quantidade_alunos; i++)
+    {
+        if (professor->turmas[turma].alunos[i].matricula == buscar_matricula)
+            return i;
+    }
+
+    return -1;
+}
+
 void Informacoes_do_Aluno(prof *professor)
 {
+    int matricula;
+    scanf("%d ", &matricula);
+
+    char codigo[12];
+    fgets(codigo, 12, stdin);
+    codigo[strlen(codigo) - 1] = '\0';
+
+    int turma = Achar_turma(professor, codigo);
+    int aluno = Achar_aluno(professor, turma, matricula);
+
+    printf("Aluno: %s\n", professor->turmas[turma].alunos[aluno].nome);
+    printf("Matricula: %d\n", professor->turmas[turma].alunos[aluno].matricula);
+
+    printf("Prova 1: %d / ", professor->turmas[turma].alunos[aluno].notas[0]);
+    printf("Prova 2: %d / ", professor->turmas[turma].alunos[aluno].notas[1]);
+    printf("Prova 3: %d\n", professor->turmas[turma].alunos[aluno].notas[2]);
+
+    int Nota_final =
+        (professor->turmas[turma].alunos[aluno].notas[0] + professor->turmas[turma].alunos[aluno].notas[1] +
+         professor->turmas[turma].alunos[aluno].notas[2]) /
+        3;
+
+    printf("Nota Final: %d - ", Nota_final);
+
+    char conceito = Conceito(Nota_final);
+    printf("Conceito %c\n", conceito);
+
+    /*
+    if (conceito == 'F')
+    {
+        printf("Conceito F - Reprovado\n");
+        return;
+    }
+
+    if (conceito == 'E')
+    {
+        printf("Conceito E - Exame Especial\n");
+        return;
+    }
+
+    printf("Conceito %c - Aprovado", conceito);
+    */
 }
 
 void Inserir_Aluno(prof *professor)
