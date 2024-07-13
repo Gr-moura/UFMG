@@ -128,12 +128,21 @@ void Informacoes_do_Professor(prof *professor)
 
 int Achar_turma(prof *professor, char *buscar_codigo)
 {
+    char buffer1[100];
+    char buffer2[100];
+
+    strcpy(buffer1, buscar_codigo);
+
     for (int i = 0; i < professor->quantidade_turmas; i++)
     {
-        if (compare(professor->turmas[i].codigo, buscar_codigo))
+        strcpy(buffer2, professor->turmas[i].codigo);
+
+        if (compare(buffer1, buffer2))
             return i;
     }
 
+    printf("\nErro: Turma não encontrada!\n");
+    printf("Turma procurada: %s\n", buscar_codigo);
     return -1;
 }
 
@@ -145,6 +154,8 @@ int Achar_aluno(prof *professor, int turma, int buscar_matricula)
             return i;
     }
 
+    printf("\nErro: Aluno não encontrado!\n");
+    printf("Aluno procurado: %d\n", buscar_matricula);
     return -1;
 }
 
