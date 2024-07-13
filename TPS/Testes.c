@@ -147,8 +147,8 @@ int Achar_turma(prof *professor, char *buscar_codigo)
     for (int i = 0; i < professor->quantidade_turmas; i++)
     {
         strcpy(buffer2, professor->turmas[i].codigo);
-        // printf("\nBuffer 1: %s\nBuffer 2: %s\n", buffer1, buffer2);
-        //  printf("\nTurma testada: %s\n", professor->turmas[i].codigo);
+        printf("\nBuffer 1: %s\nBuffer 2: %s\n", buffer1, buffer2);
+        // printf("\nTurma testada: %s\n", professor->turmas[i].codigo);
 
         if (compare(buffer1, buffer2))
             return i;
@@ -385,6 +385,9 @@ int main(int argc, char **argv)
     {
         scanf("%d", &comando);
         getchar();
+
+        if (comando == 5)
+            break;
 
         switch (comando)
         {
