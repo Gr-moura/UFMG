@@ -1,0 +1,27 @@
+Alan Turing
+1912001
+2
+ENGENHARIA DE SOFTWARE I
+ES I
+ENGENHARIA DE SOFTWARE II
+ES II
+5
+Wilton Pereira
+1912105
+Anderson Damasceno
+1912106
+Renata Silveira
+1912107
+Patrick de Paula
+1912108
+Luiza Ferreira
+1912109
+4
+Joana Vaz
+1912101
+Guilherme Sampaio
+1912102
+Marta
+1912103
+Fred Silva
+1912104
