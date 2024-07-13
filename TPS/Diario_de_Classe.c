@@ -110,24 +110,6 @@ void Informacoes_do_Professor(prof *professor)
         printf("Turma %d: %s - %s, %d alunos\n", i + 1, professor->turmas[i].codigo, professor->turmas[i].nome,
                professor->turmas[i].quantidade_alunos);
     }
-
-    // TODO: Deletar o seguinte antes de enviar
-
-    ///*
-    printf("%s\n", professor->nome);
-    printf("%d\n", professor->registro);
-
-    for (int i = 0; i < professor->quantidade_turmas; i++)
-    {
-        printf("%s\n", professor->turmas[i].nome);
-        printf("%s\n", professor->turmas[i].codigo);
-
-        for (int j = 0; j < professor->turmas[i].quantidade_alunos; j++)
-        {
-            printf("%s\n", professor->turmas[i].alunos[j].nome);
-            printf("%d\n", professor->turmas[i].alunos[j].matricula);
-        }
-    } //*/
 }
 
 int Achar_turma(prof *professor, char *buscar_codigo)
@@ -276,18 +258,51 @@ void Situacao_dos_Alunos(prof *professor)
         printf("Conceito %c\n", conceito);
 
         if (conceito == 'F')
-            printf("Situacao: Reprovado");
+            printf("Situacao: Reprovado\n");
 
         else if (conceito == 'E')
-            printf("Exame Especial");
+            printf("Situacao: Exame Especial\n");
 
         else
-            printf("Situacao: Aprovado");
+            printf("Situacao: Aprovado\n");
     }
 }
 
-void Exportar_Dados(prof *professor)
+void Exportar_Dados(prof *professor, FILE *file)
 {
+    fprintf(file, "DADOS EXPORTADOS\n");
+    fprintf(file, "Professor %s - Registro %d\n", professor->nome, professor->registro);
+
+    int Nota_final;
+    for (int i = 0; i < professor->quantidade_turmas; i++)
+    {
+        fprintf(file, "Turma %s - ", professor->turmas[i].codigo);
+        fprintf(file, "%s\n", professor->turmas[i].nome);
+
+        for (int j = 0; j < professor->turmas[i].quantidade_alunos; j++)
+        {
+            fprintf(file, "Aluno: %s\n", professor->turmas[i].alunos[j].nome);
+            fprintf(file, "Matricula: %d\n", professor->turmas[i].alunos[j].matricula);
+
+            Nota_final = (professor->turmas[i].alunos[j].notas[0] + professor->turmas[i].alunos[j].notas[1] +
+                          professor->turmas[i].alunos[j].notas[2]) /
+                         3;
+
+            fprintf(file, "Nota Final: %d - ", Nota_final);
+
+            char conceito = Conceito(Nota_final);
+            fprintf(file, "Conceito %c - ", conceito);
+
+            if (conceito == 'F')
+                fprintf(file, "Reprovado\n");
+
+            else if (conceito == 'E')
+                fprintf(file, "Exame Especial\n");
+
+            else
+                fprintf(file, "Aprovado\n");
+        }
+    }
 }
 
 int main(int argc, char **argv)
@@ -309,14 +324,15 @@ int main(int argc, char **argv)
         return EXIT_FAILURE;
     }
 
-    /*FILE *output = fopen(argv[2], "w");
+    // FILE *output = fopen(argv[2], "w");
+    FILE *output = fopen("output.txt", "w");
     if (output == NULL)
     {
         fclose(input);
 
         perror("Error");
         return EXIT_FAILURE;
-    }*/
+    }
 
     prof professor;
 
@@ -357,13 +373,14 @@ int main(int argc, char **argv)
             break;
 
         case 7:
-            Exportar_Dados(&professor);
+            Exportar_Dados(&professor, output);
             break;
         }
 
     } while (comando != 7);
 
     fclose(input);
-    // fclose(output);
+    fclose(output);
+
     return EXIT_SUCCESS;
 }
