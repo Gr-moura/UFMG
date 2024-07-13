@@ -129,6 +129,7 @@ int Achar_turma(prof *professor, char *buscar_codigo)
     {
         // printf("\nTurma testada: %s\n", professor->turmas[i].codigo);
 
+        // TODO: adicionar o !
         if (strcmp((professor->turmas[i].codigo), (buscar_codigo)))
             return i;
     }
