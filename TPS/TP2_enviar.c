@@ -31,6 +31,18 @@ typedef struct
 
 } prof;
 
+int copy(char *str1, char *str2)
+{
+    int i = 0;
+    while ((str1[i] >= 'a' && str1[i] <= 'z') || (str1[i] >= 'A' && str1[i] <= 'Z') || str1[i] == '.')
+    {
+        str2[i] = str1[i];
+        i++;
+    }
+
+    return 1;
+}
+
 int compare(char *str1, char *str2)
 {
     int i = 0, len = strlen(str1);
@@ -295,7 +307,7 @@ void Situacao_dos_Alunos(prof *professor)
 
 void Exportar_Dados(prof *professor, FILE *file)
 {
-    fprintf(file, "DADOS EXPORTADOS\n");
+    fputs("DADOS EXPORTADOS\n\n\n\n", file);
     fprintf(file, "Professor %s - Registro %d\n", professor->nome, professor->registro);
 
     int Nota_final;
@@ -345,7 +357,15 @@ int main(int argc, char **argv)
         return EXIT_FAILURE;
     }
 
-    FILE *output = fopen(argv[2], "w");
+    int a = 0;
+
+    int length = strlen(argv[2]);
+    char fpath[length + 1];
+    copy(argv[2], fpath);
+
+    fpath[length] = '\0';
+
+    FILE *output = fopen(fpath, "w");
     if (output == NULL)
     {
         fclose(input);
