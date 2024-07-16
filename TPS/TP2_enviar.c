@@ -31,18 +31,6 @@ typedef struct
 
 } prof;
 
-int copy(char *str1, char *str2)
-{
-    int i = 0;
-    while ((str1[i] >= 'a' && str1[i] <= 'z') || (str1[i] >= 'A' && str1[i] <= 'Z') || str1[i] == '.')
-    {
-        str2[i] = str1[i];
-        i++;
-    }
-
-    return 1;
-}
-
 int compare(char *str1, char *str2)
 {
     int i = 0, len = strlen(str1);
@@ -305,8 +293,9 @@ void Situacao_dos_Alunos(prof *professor)
     }
 }
 
-void Exportar_Dados(prof *professor, FILE *file)
+void Exportar_Dados(prof *professor, char *s)
 {
+    FILE *file = fopen(s, "w");
     fputs("DADOS EXPORTADOS\n\n\n\n", file);
     fprintf(file, "Professor %s - Registro %d\n", professor->nome, professor->registro);
 
@@ -340,6 +329,7 @@ void Exportar_Dados(prof *professor, FILE *file)
                 fprintf(file, "Aprovado\n");
         }
     }
+    fclose(file);
 }
 
 int main(int argc, char **argv)
@@ -353,23 +343,6 @@ int main(int argc, char **argv)
     FILE *input = fopen(argv[1], "r");
     if (input == NULL)
     {
-        perror("Error");
-        return EXIT_FAILURE;
-    }
-
-    int a = 0;
-
-    int length = strlen(argv[2]);
-    char fpath[length + 1];
-    copy(argv[2], fpath);
-
-    fpath[length] = '\0';
-
-    FILE *output = fopen(fpath, "w");
-    if (output == NULL)
-    {
-        fclose(input);
-
         perror("Error");
         return EXIT_FAILURE;
     }
@@ -413,14 +386,12 @@ int main(int argc, char **argv)
             break;
 
         case 7:
-            Exportar_Dados(&professor, output);
+            fclose(input);
+            Exportar_Dados(&professor, argv[2]);
             break;
         }
 
     } while (comando != 7);
-
-    fclose(input);
-    fclose(output);
 
     return EXIT_SUCCESS;
 }

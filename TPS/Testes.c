@@ -293,9 +293,10 @@ void Situacao_dos_Alunos(prof *professor)
     }
 }
 
-void Exportar_Dados(prof *professor, FILE *file)
+void Exportar_Dados(prof *professor, char *s)
 {
-    fprintf(file, "DADOS EXPORTADOS\n");
+    FILE *file = fopen(s, "w");
+    fputs("DADOS EXPORTADOS\n\n\n\n", file);
     fprintf(file, "Professor %s - Registro %d\n", professor->nome, professor->registro);
 
     int Nota_final;
@@ -328,6 +329,7 @@ void Exportar_Dados(prof *professor, FILE *file)
                 fprintf(file, "Aprovado\n");
         }
     }
+    fclose(file);
 }
 
 int main(int argc, char **argv)
@@ -341,15 +343,6 @@ int main(int argc, char **argv)
     FILE *input = fopen(argv[1], "r");
     if (input == NULL)
     {
-        perror("Error");
-        return EXIT_FAILURE;
-    }
-
-    FILE *output = fopen(argv[2], "w");
-    if (output == NULL)
-    {
-        fclose(input);
-
         perror("Error");
         return EXIT_FAILURE;
     }
@@ -393,14 +386,12 @@ int main(int argc, char **argv)
             break;
 
         case 7:
-            Exportar_Dados(&professor, output);
+            fclose(input);
+            Exportar_Dados(&professor, argv[2]);
             break;
         }
 
     } while (comando != 7);
-
-    fclose(input);
-    fclose(output);
 
     return EXIT_SUCCESS;
 }
