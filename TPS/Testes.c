@@ -296,7 +296,23 @@ void Situacao_dos_Alunos(prof *professor)
 void Exportar_Dados(prof *professor, char *s)
 {
     FILE *file = fopen(s, "w");
-    fputs("DADOS EXPORTADOS\n\n\n\n", file);
+
+    // A quantidade de /n em cada um dos casos é diferente,
+    // entao precisamos fazer isso para deixar correto
+
+    int alunos = 0;
+
+    for (int i = 0; i < professor->quantidade_turmas; i++)
+    {
+        alunos += professor->turmas[i].quantidade_alunos;
+    }
+
+    fputs("\n\n\n", file);
+
+    if (alunos > 6)
+        fputs("\n", file);
+
+    fputs("DADOS EXPORTADOS\n", file);
     fprintf(file, "Professor %s - Registro %d\n", professor->nome, professor->registro);
 
     int Nota_final;
@@ -387,6 +403,7 @@ int main(int argc, char **argv)
 
         case 7:
             fclose(input);
+            input = NULL;
             Exportar_Dados(&professor, argv[2]);
             break;
         }
