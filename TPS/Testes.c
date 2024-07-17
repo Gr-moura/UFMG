@@ -129,7 +129,7 @@ int Achar_turma(prof_t *professor, char *buscar_codigo)
 
     printf("\nErro: Turma não encontrada!\n");
     printf("Turma procurada: %s\n", buscar_codigo);
-    return -1;
+    return EXIT_FAILURE;
 }
 
 int Achar_aluno(prof_t *professor, int turma, int buscar_matricula)
@@ -142,7 +142,7 @@ int Achar_aluno(prof_t *professor, int turma, int buscar_matricula)
 
     printf("\nErro: Aluno não encontrado!\n");
     printf("Aluno procurado: %d\n", buscar_matricula);
-    return -1;
+    return EXIT_FAILURE;
 }
 
 void Informacoes_do_Aluno(prof_t *professor)
@@ -366,9 +366,8 @@ int main(int argc, char **argv)
             break;
 
         case 7:
-            fclose(input);
             getchar();
-
+            fclose(input);
             Exportar_Dados(&professor, argv[2]);
             break;
         }

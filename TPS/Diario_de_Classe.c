@@ -29,9 +29,9 @@ typedef struct
     int quantidade_turmas;
     turma turmas[2];
 
-} prof;
+} prof_t;
 
-void Ler_input(FILE *file, prof *professor)
+void Ler_input(FILE *file, prof_t *professor)
 {
     fgets(professor->nome, 110, file);
     professor->nome[strlen(professor->nome) - 1] = '\0';
@@ -100,7 +100,7 @@ void Imprimir_menu()
     printf("7 - Exportar Dados\n");
 }
 
-void Informacoes_do_Professor(prof *professor)
+void Informacoes_do_Professor(prof_t *professor)
 {
     printf("Professor %s\n", professor->nome);
     printf("Registro numero %d\n", professor->registro);
@@ -112,7 +112,7 @@ void Informacoes_do_Professor(prof *professor)
     }
 }
 
-int Achar_turma(prof *professor, char *buscar_codigo)
+int Achar_turma(prof_t *professor, char *buscar_codigo)
 {
     for (int i = 0; i < professor->quantidade_turmas; i++)
     {
@@ -123,7 +123,7 @@ int Achar_turma(prof *professor, char *buscar_codigo)
     return -1;
 }
 
-int Achar_aluno(prof *professor, int turma, int buscar_matricula)
+int Achar_aluno(prof_t *professor, int turma, int buscar_matricula)
 {
     for (int i = 0; i < professor->turmas[turma].quantidade_alunos; i++)
     {
@@ -134,7 +134,7 @@ int Achar_aluno(prof *professor, int turma, int buscar_matricula)
     return -1;
 }
 
-void Informacoes_do_Aluno(prof *professor)
+void Informacoes_do_Aluno(prof_t *professor)
 {
     int matricula;
     scanf("%d ", &matricula);
@@ -164,7 +164,7 @@ void Informacoes_do_Aluno(prof *professor)
     printf("Conceito %c\n", conceito);
 }
 
-void Inserir_Aluno(prof *professor)
+void Inserir_Aluno(prof_t *professor)
 {
     char nome[110];
     fgets(nome, 110, stdin);
@@ -192,7 +192,7 @@ void Inserir_Aluno(prof *professor)
     professor->turmas[turma].quantidade_alunos++;
 }
 
-void Lancar_Notas(prof *professor)
+void Lancar_Notas(prof_t *professor)
 {
     int matricula;
     scanf("%d ", &matricula);
@@ -210,7 +210,7 @@ void Lancar_Notas(prof *professor)
     }
 }
 
-void Informacoes_da_Turma(prof *professor)
+void Informacoes_da_Turma(prof_t *professor)
 {
     char codigo[12];
     fgets(codigo, 12, stdin);
@@ -230,7 +230,7 @@ void Informacoes_da_Turma(prof *professor)
     }
 }
 
-void Situacao_dos_Alunos(prof *professor)
+void Situacao_dos_Alunos(prof_t *professor)
 {
     char codigo[12];
     fgets(codigo, 12, stdin);
@@ -268,7 +268,7 @@ void Situacao_dos_Alunos(prof *professor)
     }
 }
 
-void Exportar_Dados(prof *professor, FILE *file)
+void Exportar_Dados(prof_t *professor, FILE *file)
 {
     fprintf(file, "DADOS EXPORTADOS\n");
     fprintf(file, "Professor %s - Registro %d\n", professor->nome, professor->registro);
@@ -334,7 +334,7 @@ int main(int argc, char **argv)
         return EXIT_FAILURE;
     }
 
-    prof professor;
+    prof_t professor;
 
     Ler_input(input, &professor);
     Imprimir_menu();
