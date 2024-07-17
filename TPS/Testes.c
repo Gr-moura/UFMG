@@ -35,7 +35,7 @@ void consertar(char *variavel)
 {
     for (int i = 0;; i++)
     {
-        if (variavel[i] == '\n' || variavel[i] == 13 || variavel[i] = '\0')
+        if (variavel[i] == '\n' || variavel[i] == 13 || variavel[i] == '\0')
         {
             variavel[i] = '\0';
             return;
