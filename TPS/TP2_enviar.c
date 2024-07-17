@@ -312,27 +312,37 @@ void Exportar_Dados(prof *professor, char *s)
     if (alunos > 6)
         fputs("\n", file);
 
-    fputs("DADOS EXPORTADOS\n", file);
-    fprintf(file, "Professor %s - Registro %d\n", professor->nome, professor->registro);
-
-    int Nota_final;
     for (int i = 0; i < professor->quantidade_turmas; i++)
     {
-        fprintf(file, "Turma %s - ", professor->turmas[i].codigo);
-        fprintf(file, "%s\n", professor->turmas[i].nome);
-
         for (int j = 0; j < professor->turmas[i].quantidade_alunos; j++)
         {
             fprintf(file, "Aluno: %s\n", professor->turmas[i].alunos[j].nome);
-            fprintf(file, "Matricula: %d\n", professor->turmas[i].alunos[j].matricula);
+        }
+    }
 
+    fputs("DADOS EXPORTADOS\n", file);
+    for (int i = 0; i < professor->quantidade_turmas; i++)
+    {
+        for (int j = 0; j < professor->turmas[i].quantidade_alunos; j++)
+        {
+            fprintf(file, "Matricula: %d\n", professor->turmas[i].alunos[j].matricula);
+        }
+    }
+
+    int Nota_final;
+    char conceito;
+
+    for (int i = 0; i < professor->quantidade_turmas; i++)
+    {
+        for (int j = 0; j < professor->turmas[i].quantidade_alunos; j++)
+        {
             Nota_final = (professor->turmas[i].alunos[j].notas[0] + professor->turmas[i].alunos[j].notas[1] +
                           professor->turmas[i].alunos[j].notas[2]) /
                          3;
 
             fprintf(file, "Nota Final: %d - ", Nota_final);
 
-            char conceito = Conceito(Nota_final);
+            conceito = Conceito(Nota_final);
             fprintf(file, "Conceito %c - ", conceito);
 
             if (conceito == 'F')
@@ -345,6 +355,14 @@ void Exportar_Dados(prof *professor, char *s)
                 fprintf(file, "Aprovado\n");
         }
     }
+
+    fprintf(file, "Professor %s - Registro %d\n", professor->nome, professor->registro);
+
+    for (int i = 0; i < professor->quantidade_turmas; i++)
+    {
+        fprintf(file, "Turma %s - %s\n", professor->turmas[i].codigo, professor->turmas[i].nome);
+    }
+
     fclose(file);
 }
 

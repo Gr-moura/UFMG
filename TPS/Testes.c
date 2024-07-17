@@ -31,6 +31,17 @@ typedef struct
 
 } prof;
 
+void consertar(char *variavel)
+{
+    for (int i = 0;; i++)
+    {
+        if (variavel[i] == '\n' || variavel[i] == 13 || variavel[i] = '\0')
+        {
+            variavel[i] = '\0';
+            return;
+        }
+    }
+}
 int compare(char *str1, char *str2)
 {
     int i = 0, len = strlen(str1);
@@ -45,10 +56,22 @@ int compare(char *str1, char *str2)
     return 1;
 }
 
+void fprintf_string(char *s, FILE *file)
+{
+    for (int i = 0; s[i] != '\0'; i++)
+        fprintf(file, "%c", s[i]);
+}
+
 void Ler_input(FILE *file, prof *professor)
 {
-    fgets(professor->nome, 100, file);
-    professor->nome[strlen(professor->nome) - 1] = '\0';
+    char nome[100];
+    char codigo[10];
+
+    fgets(nome, 100, file);
+
+    nome[strlen(nome) - 1] = '\0';
+
+    strcpy(professor->nome, nome);
 
     fscanf(file, "%d ", &professor->registro);
 
@@ -57,11 +80,15 @@ void Ler_input(FILE *file, prof *professor)
     // Nome e código de cada turma
     for (int i = 0; i < professor->quantidade_turmas; i++)
     {
-        fgets(professor->turmas[i].nome, 100, file);
-        professor->turmas[i].nome[strlen(professor->turmas[i].nome) - 1] = '\0';
+        fgets(nome, 100, file);
+        nome[strlen(nome) - 1] = '\0';
 
-        fgets(professor->turmas[i].codigo, 10, file);
-        professor->turmas[i].codigo[strlen(professor->turmas[i].codigo) - 1] = '\0';
+        strcpy(professor->turmas[i].nome, nome);
+
+        fgets(nome, 10, file);
+        nome[strlen(nome) - 1] = '\0';
+
+        strcpy(professor->turmas[i].codigo, nome);
     }
 
     for (int i = 0; i < professor->quantidade_turmas; i++)
@@ -70,8 +97,10 @@ void Ler_input(FILE *file, prof *professor)
 
         for (int j = 0; j < professor->turmas[i].quantidade_alunos; j++)
         {
-            fgets(professor->turmas[i].alunos[j].nome, 100, file);
-            professor->turmas[i].alunos[j].nome[strlen(professor->turmas[i].alunos[j].nome) - 1] = '\0';
+            fgets(nome, 100, file);
+            nome[strlen(nome) - 1] = '\0';
+
+            strcpy(professor->turmas[i].alunos[j].nome, nome);
 
             fscanf(file, "%d ", &professor->turmas[i].alunos[j].matricula);
 
@@ -297,55 +326,9 @@ void Exportar_Dados(prof *professor, char *s)
 {
     FILE *file = fopen(s, "w");
 
-    // A quantidade de /n em cada um dos casos é diferente,
-    // entao precisamos fazer isso para deixar correto
+    fprintf()
 
-    int alunos = 0;
-
-    for (int i = 0; i < professor->quantidade_turmas; i++)
-    {
-        alunos += professor->turmas[i].quantidade_alunos;
-    }
-
-    fputs("\n\n\n", file);
-
-    if (alunos > 6)
-        fputs("\n", file);
-
-    fputs("DADOS EXPORTADOS\n", file);
-    fprintf(file, "Professor %s - Registro %d\n", professor->nome, professor->registro);
-
-    int Nota_final;
-    for (int i = 0; i < professor->quantidade_turmas; i++)
-    {
-        fprintf(file, "Turma %s - ", professor->turmas[i].codigo);
-        fprintf(file, "%s\n", professor->turmas[i].nome);
-
-        for (int j = 0; j < professor->turmas[i].quantidade_alunos; j++)
-        {
-            fprintf(file, "Aluno: %s\n", professor->turmas[i].alunos[j].nome);
-            fprintf(file, "Matricula: %d\n", professor->turmas[i].alunos[j].matricula);
-
-            Nota_final = (professor->turmas[i].alunos[j].notas[0] + professor->turmas[i].alunos[j].notas[1] +
-                          professor->turmas[i].alunos[j].notas[2]) /
-                         3;
-
-            fprintf(file, "Nota Final: %d - ", Nota_final);
-
-            char conceito = Conceito(Nota_final);
-            fprintf(file, "Conceito %c - ", conceito);
-
-            if (conceito == 'F')
-                fprintf(file, "Reprovado\n");
-
-            else if (conceito == 'E')
-                fprintf(file, "Exame Especial\n");
-
-            else
-                fprintf(file, "Aprovado\n");
-        }
-    }
-    fclose(file);
+        fclose(file);
 }
 
 int main(int argc, char **argv)
