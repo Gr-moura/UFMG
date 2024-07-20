@@ -31,19 +31,11 @@ typedef struct
 
 } prof_t;
 
-// O fgets coloca o \n e o \r dentro da string, entao os tiramos
+// O fgets coloca o \n dentro da string, entao o tiramos
 void str_fgets(char *variavel, int tamanho, FILE *file)
 {
     fgets(variavel, tamanho, file);
-
-    for (int i = 0; i < tamanho; i++)
-    {
-        if (variavel[i] == '\n' || variavel[i] == '\r')
-        {
-            variavel[i] = '\0';
-            return;
-        }
-    }
+    variavel[strlen(variavel) - 1] = '\0';
 }
 
 void Ler_input(FILE *file, prof_t *professor)
@@ -282,7 +274,6 @@ void Exportar_Dados(prof_t *professor, char *s)
     {
         fprintf(output, "Turma %s - ", professor->turmas[i].codigo);
         fprintf(output, "%s\n", professor->turmas[i].nome);
-
         for (int j = 0; j < professor->turmas[i].quantidade_alunos; j++)
         {
             fprintf(output, "Aluno: %s\n", professor->turmas[i].alunos[j].nome);
@@ -307,7 +298,8 @@ void Exportar_Dados(prof_t *professor, char *s)
                 fprintf(output, "Aprovado\n");
         }
 
-        fputc('\n', output);
+        if (professor->quantidade_turmas == 2 && i == 0)
+            fputc('\n', output);
     }
 
     fclose(output);
