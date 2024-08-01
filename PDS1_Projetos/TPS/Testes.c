@@ -42,8 +42,9 @@ int main()
         printf("cjhsabchja");
 
     char ori[100];
+    fgets(buffer)
 
-    sscanf(ori, "%d %c %s", &i, &c, s);
+        sscanf(ori, "%d %c %s", &i, &c, s);
 
     printf("%d %c %s\n", i, c, s);
 

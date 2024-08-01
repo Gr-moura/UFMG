@@ -24,6 +24,15 @@ typedef struct reg
 
 } noh_t;
 
+void Imprimir_Menu()
+{
+    printf("1 - Procurar por ID\n");
+    printf("2 - Procurar por Departamento\n");
+    printf("3 - Inserir Produto\n");
+    printf("4 - Filtrar por Preco\n");
+    printf("5 - Sair\n");
+}
+
 void Printar_noh(const noh_t *noh)
 {
     printf("(%s) %s - R$ %.2lf\n", noh->produto.departamento, noh->produto.nome, noh->produto.preco);
@@ -95,45 +104,130 @@ void Liberdade(noh_t *raiz)
     free(raiz);
 }
 
-int Procurar_por_ID(const noh_t *raiz, const int ID)
+noh_t *Encontrar_ID(noh_t *raiz, const int ID)
 {
+    noh_t *Encontrado;
+
     if (ID == raiz->produto.ID)
-    {
-        Printar_noh(raiz);
-        return true;
-    }
+        return raiz;
 
     if (ID < raiz->produto.ID)
     {
         if (raiz->esq == NULL)
-            return false;
+            return NULL;
 
-        if ((Procurar_por_ID(raiz->esq, ID)) == true)
-            return true;
+        if ((Encontrado = Encontrar_ID(raiz->esq, ID)) != NULL)
+            return Encontrado;
     }
 
     if (ID > raiz->produto.ID)
     {
         if (raiz->dir == NULL)
-            return false;
+            return NULL;
 
-        if (Procurar_por_ID(raiz->dir, ID) == true)
-            return true;
+        if ((Encontrado = Encontrar_ID(raiz->dir, ID)) != NULL)
+            return Encontrado;
     }
 
     return false;
 }
 
-void Procurar_por_Departamento()
+void Procurar_por_ID(noh_t *raiz)
 {
+    char buffer[MAX_BUFFER];
+    fgets(buffer, MAX_BUFFER, stdin);
+
+    int ID;
+    sscanf(buffer, "%d", &ID);
+
+    noh_t *Encontrado;
+
+    if ((Encontrado = Encontrar_ID(raiz, ID)) != NULL)
+        Printar_noh(Encontrado);
+
+    else
+        printf("Produto nao encontrado!\n");
 }
 
-void Inserir_Produto()
+int Produtos_Departamento(noh_t *raiz, const char *Departamento)
 {
+    int Produtos = 0;
+
+    if (raiz->esq != NULL)
+        Produtos += Produtos_Departamento(raiz->esq, Departamento);
+
+    if (!strcmp(raiz->produto.departamento, Departamento))
+    {
+        Printar_noh(raiz);
+        Produtos++;
+    }
+
+    if (raiz->dir != NULL)
+        Produtos += Produtos_Departamento(raiz->dir, Departamento);
+
+    return Produtos;
 }
 
-void Filtrar_Produtos_por_Preco()
+void Procurar_por_Departamento(noh_t *raiz)
 {
+    char buffer[MAX_BUFFER];
+    fgets(buffer, MAX_BUFFER, stdin);
+
+    char Departamento[50];
+    sscanf(buffer, "%s", Departamento);
+
+    if (Produtos_Departamento(raiz, Departamento) == 0)
+        printf("Departamento vazio!");
+}
+
+void Inserir_Produto(noh_t *raiz)
+{
+    int ID;
+
+    char buffer[MAX_BUFFER];
+    fgets(buffer, MAX_BUFFER, stdin);
+
+    sscanf(buffer, "%u", &ID);
+
+    noh_t *Novo = Achar_espaco(raiz, ID);
+    Inicializar_Noh(Novo, buffer);
+}
+
+void Adicionar_no_Vetor(noh_t **vet, int tamanho, noh_t *add)
+{
+    vet = realloc(vet, (tamanho + 1) * sizeof(noh_t *));
+    vet[tamanho] = add;
+}
+
+noh_t **Procurar_Preco(noh_t *raiz, double preco)
+{
+
+    if (raiz->esq != NULL)
+        Procurar_Preco(raiz->esq, preco);
+
+    if ((int)(raiz->produto.preco * 100) < (int)(preco * 100))
+    {
+        Printar_noh(raiz);
+    }
+
+    if (raiz->dir != NULL)
+        Procurar_Preco(raiz->dir, preco);
+}
+
+void Filtrar_Produtos_por_Preco(noh_t *raiz)
+{
+    noh_t **vet = calloc(1, sizeof(noh_t *));
+
+    double preco;
+
+    char buffer[MAX_BUFFER];
+    fgets(buffer, MAX_BUFFER, stdin);
+
+    sscanf(buffer, "%lf", &preco);
+
+    vet = Procurar_Preco(raiz, preco);
+
+    // qsort(vet, )
 }
 
 int main(int argc, char **argv)
@@ -154,16 +248,34 @@ int main(int argc, char **argv)
 
     noh_t *raiz = Ler_input(file);
 
+    Imprimir_Menu();
+
     char buffer[MAX_BUFFER];
     int comando = 0;
     while (comando != 5)
     {
         fgets(buffer, MAX_BUFFER, stdin);
         sscanf(buffer, "%d", &comando);
-    }
 
-    for (int i = 0; i < 100; i++)
-        Procurar_por_ID(raiz, i);
+        switch (comando)
+        {
+            /* case 1:
+                 Procurar_por_ID(raiz);
+                 break;
+
+             case 2:
+                 Procurar_por_Departamento(raiz);
+                 break;
+
+             case 3:
+                 Inserir_Produto(raiz);
+                 break;*/
+
+        case 4:
+            Filtrar_Produtos_por_Preco(raiz);
+            break;
+        }
+    }
 
     Liberdade(raiz);
 
