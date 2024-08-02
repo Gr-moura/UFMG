@@ -193,30 +193,31 @@ void Inserir_Produto(noh_t *raiz)
     Inicializar_Noh(Novo, buffer);
 }
 
-void Adicionar_no_Vetor(noh_t **vet, int tamanho, noh_t *add)
+void Adicionar_no_Vetor(noh_t ***vet, int *tamanho, noh_t *add)
 {
-    vet = realloc(vet, (tamanho + 1) * sizeof(noh_t *));
-    vet[tamanho] = add;
+    *vet = realloc(*vet, (*tamanho + 1) * sizeof(noh_t *));
+    (*vet)[*tamanho] = add;
+    (*tamanho)++;
 }
 
-noh_t **Procurar_Preco(noh_t *raiz, double preco)
+void Procurar_Preco(noh_t *raiz, double preco, noh_t ***vet, int *tamanho)
 {
-
     if (raiz->esq != NULL)
-        Procurar_Preco(raiz->esq, preco);
+        Procurar_Preco(raiz->esq, preco, vet, tamanho);
 
-    if ((int)(raiz->produto.preco * 100) < (int)(preco * 100))
+    if ((int)(raiz->produto.preco * 100) <= (int)(preco * 100))
     {
-        Printar_noh(raiz);
+        Adicionar_no_Vetor(vet, tamanho, raiz);
     }
 
     if (raiz->dir != NULL)
-        Procurar_Preco(raiz->dir, preco);
+        Procurar_Preco(raiz->dir, preco, vet, tamanho);
 }
 
 void Filtrar_Produtos_por_Preco(noh_t *raiz)
 {
-    noh_t **vet = calloc(1, sizeof(noh_t *));
+    noh_t **vet = NULL;
+    int tamanho = 0;
 
     double preco;
 
@@ -225,9 +226,14 @@ void Filtrar_Produtos_por_Preco(noh_t *raiz)
 
     sscanf(buffer, "%lf", &preco);
 
-    vet = Procurar_Preco(raiz, preco);
+    Procurar_Preco(raiz, preco, &vet, &tamanho);
 
-    // qsort(vet, )
+    qsort(vet, tamanho, sizeof(noh_t *), compare);
+
+    for (int i = 0; i < tamanho; i++)
+    {
+        Printar_noh(vet[0]);
+    }
 }
 
 int main(int argc, char **argv)
