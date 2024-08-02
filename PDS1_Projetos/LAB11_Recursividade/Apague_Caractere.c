@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <string.h>
 
-void tirar(char *str, char c, int tamanho, char placeholder)
+void quantos(char *str, char c, int tamanho, char placeholder)
 {
     if (tamanho > 1)
-        tirar(str, c, tamanho - 1, placeholder);
+        quantos(str, c, tamanho - 1, placeholder);
 
     if (str[tamanho - 1] == c)
         str[tamanho - 1] = placeholder;
@@ -34,7 +34,7 @@ int main()
 
     char placeholder = '%';
 
-    tirar(str, caractere, strlen(str), placeholder);
+    quantos(str, caractere, strlen(str), placeholder);
     printar(str, placeholder);
 
     return 0;

@@ -104,29 +104,29 @@ void Liberdade(noh_t *raiz)
     free(raiz);
 }
 
-noh_t *Encontrar_ID(noh_t *raiz, const int ID)
+int Encontrar_ID(noh_t *raiz, const int ID)
 {
-    noh_t *Encontrado;
+    Printar_noh(raiz);
 
     if (ID == raiz->produto.ID)
-        return raiz;
+        return true;
 
     if (ID < raiz->produto.ID)
     {
         if (raiz->esq == NULL)
-            return NULL;
+            return false;
 
-        if ((Encontrado = Encontrar_ID(raiz->esq, ID)) != NULL)
-            return Encontrado;
+        if (Encontrar_ID(raiz->esq, ID) == true)
+            return true;
     }
 
     if (ID > raiz->produto.ID)
     {
         if (raiz->dir == NULL)
-            return NULL;
+            return false;
 
-        if ((Encontrado = Encontrar_ID(raiz->dir, ID)) != NULL)
-            return Encontrado;
+        if (Encontrar_ID(raiz->dir, ID) == true)
+            return true;
     }
 
     return false;
@@ -140,12 +140,7 @@ void Procurar_por_ID(noh_t *raiz)
     int ID;
     sscanf(buffer, "%d", &ID);
 
-    noh_t *Encontrado;
-
-    if ((Encontrado = Encontrar_ID(raiz, ID)) != NULL)
-        Printar_noh(Encontrado);
-
-    else
+    if (Encontrar_ID(raiz, ID) == false)
         printf("Produto nao encontrado!\n");
 }
 
@@ -177,7 +172,7 @@ void Procurar_por_Departamento(noh_t *raiz)
     sscanf(buffer, "%s", Departamento);
 
     if (Produtos_Departamento(raiz, Departamento) == 0)
-        printf("Departamento vazio!");
+        printf("Departamento vazio!\n");
 }
 
 void Inserir_Produto(noh_t *raiz)
@@ -191,6 +186,22 @@ void Inserir_Produto(noh_t *raiz)
 
     noh_t *Novo = Achar_espaco(raiz, ID);
     Inicializar_Noh(Novo, buffer);
+}
+
+int compare(const void *a, const void *b)
+{
+    // Converte os ponteiros genŽricos para ponteiros para ponteiros do tipo noh_t
+    const noh_t *no_a = *(const noh_t **)a;
+    const noh_t *no_b = *(const noh_t **)b;
+
+    // Compara os preos dos produtos
+    if (no_a->produto.preco < no_b->produto.preco)
+        return -1;
+
+    if (no_a->produto.preco > no_b->produto.preco)
+        return 1;
+
+    return 0;
 }
 
 void Adicionar_no_Vetor(noh_t ***vet, int *tamanho, noh_t *add)
@@ -231,9 +242,12 @@ void Filtrar_Produtos_por_Preco(noh_t *raiz)
     qsort(vet, tamanho, sizeof(noh_t *), compare);
 
     for (int i = 0; i < tamanho; i++)
-    {
-        Printar_noh(vet[0]);
-    }
+        Printar_noh(vet[i]);
+
+    if (tamanho == 0)
+        printf("Sem resultados para o filtro!");
+
+    free(vet);
 }
 
 int main(int argc, char **argv)
@@ -265,17 +279,17 @@ int main(int argc, char **argv)
 
         switch (comando)
         {
-            /* case 1:
-                 Procurar_por_ID(raiz);
-                 break;
+        case 1:
+            Procurar_por_ID(raiz);
+            break;
 
-             case 2:
-                 Procurar_por_Departamento(raiz);
-                 break;
+        case 2:
+            Procurar_por_Departamento(raiz);
+            break;
 
-             case 3:
-                 Inserir_Produto(raiz);
-                 break;*/
+        case 3:
+            Inserir_Produto(raiz);
+            break;
 
         case 4:
             Filtrar_Produtos_por_Preco(raiz);
