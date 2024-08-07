@@ -67,7 +67,7 @@ noh_t *Achar_espaco(noh_t *raiz, const int ID)
 
 void Inicializar_Noh(noh_t *Novo_noh, const char *buffer)
 {
-    sscanf(buffer, "%u %s %s %lf", &Novo_noh->produto.ID, Novo_noh->produto.nome, Novo_noh->produto.departamento,
+    sscanf(buffer, "%u %49s %49s %lf", &Novo_noh->produto.ID, Novo_noh->produto.nome, Novo_noh->produto.departamento,
            &Novo_noh->produto.preco);
 }
 
@@ -168,7 +168,7 @@ void Procurar_por_Departamento(noh_t *raiz)
     fgets(buffer, MAX_BUFFER, stdin);
 
     char Departamento[50];
-    sscanf(buffer, "%s", Departamento);
+    sscanf(buffer, "%49s", Departamento);
 
     if (Produtos_Departamento(raiz, Departamento) == 0)
         printf("Departamento vazio!\n");

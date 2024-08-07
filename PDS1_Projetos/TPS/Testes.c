@@ -59,7 +59,7 @@ int main()
 
     char ori[100];
 
-    sscanf(ori, "%d %c %s", &i, &c, s);
+    sscanf(ori, "%d %c %49s", &i, &c, s);
 
     printf("%d %c %s\n", i, c, s);
 
