@@ -65,7 +65,7 @@ noh_t *Achar_espaco(noh_t *raiz, const int ID)
     return NULL;
 }
 
-void Inicializar_Noh(noh_t *Novo_noh, char *buffer)
+void Inicializar_Noh(noh_t *Novo_noh, const char *buffer)
 {
     sscanf(buffer, "%u %s %s %lf", &Novo_noh->produto.ID, Novo_noh->produto.nome, Novo_noh->produto.departamento,
            &Novo_noh->produto.preco);
@@ -81,12 +81,11 @@ noh_t *Ler_input(FILE *input)
     fgets(buffer, MAX_BUFFER, input);
     Inicializar_Noh(raiz, buffer);
 
-    noh_t *Novo;
     while (fgets(buffer, MAX_BUFFER, input) != NULL)
     {
         sscanf(buffer, "%u", &ID);
 
-        Novo = Achar_espaco(raiz, ID);
+        noh_t *Novo = Achar_espaco(raiz, ID);
         Inicializar_Noh(Novo, buffer);
     }
 
@@ -177,7 +176,7 @@ void Procurar_por_Departamento(noh_t *raiz)
 
 void Inserir_Produto(noh_t *raiz)
 {
-    int ID;
+    unsigned int ID;
 
     char buffer[MAX_BUFFER];
     fgets(buffer, MAX_BUFFER, stdin);

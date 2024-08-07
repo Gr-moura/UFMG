@@ -25,8 +25,24 @@ typedef struct reg
 
 } noh_t;
 
+void foo(int x)
+{
+    int buf[10];
+
+    if (x == 1000)
+        buf[x] = 0;
+}
+
 int main()
 {
+    int a[100];
+
+    int x = 200;
+
+    scanf("%d", &x);
+
+    if (x == 100)
+        a[x] = 1;
 
     printf("Noh_t * = %lu\n", sizeof(noh_t *));
     printf("Int * = %lu\n", sizeof(int *));
@@ -42,9 +58,8 @@ int main()
         printf("cjhsabchja");
 
     char ori[100];
-    fgets(buffer)
 
-        sscanf(ori, "%d %c %s", &i, &c, s);
+    sscanf(ori, "%d %c %s", &i, &c, s);
 
     printf("%d %c %s\n", i, c, s);
 
