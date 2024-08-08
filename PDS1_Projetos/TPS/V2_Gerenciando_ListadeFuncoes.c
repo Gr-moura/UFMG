@@ -249,11 +249,15 @@ void Filtrar_Produtos_por_Preco(noh_t *raiz)
     free(vet);
 }
 
+typedef void (*functype)(noh_t *);
+
 int main(int argc, char **argv)
 {
+    functype comandos[] = {Procurar_por_ID, Procurar_por_Departamento, Inserir_Produto, Filtrar_Produtos_por_Preco};
+
     if (argc < 2)
     {
-        printf("Está faltando o arquivo de input");
+        printf("Esta faltando o arquivo de input");
         return EXIT_FAILURE;
     }
 
@@ -276,24 +280,10 @@ int main(int argc, char **argv)
         fgets(buffer, MAX_BUFFER, stdin);
         sscanf(buffer, "%d", &comando);
 
-        switch (comando)
-        {
-        case 1:
-            Procurar_por_ID(raiz);
+        if (comando == 5)
             break;
 
-        case 2:
-            Procurar_por_Departamento(raiz);
-            break;
-
-        case 3:
-            Inserir_Produto(raiz);
-            break;
-
-        case 4:
-            Filtrar_Produtos_por_Preco(raiz);
-            break;
-        }
+        comandos[comando - 1](raiz);
     }
 
     Liberdade(raiz);

@@ -1,69 +1,41 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
-typedef struct
+typedef void (*functype)();
+typedef int (*functype2)(int, int);
+
+int add(int a, int b)
 {
-    int ID;
-} oi;
+    return a + b;
+}
 
-typedef struct
+int add2(int a, int b)
 {
-    unsigned int ID;
-    char nome[50];
-    char departamento[50];
-    double preco;
+    return a + b;
+}
 
-} Produto_t;
-
-typedef struct reg
+void fun2()
 {
-    Produto_t produto;
+    printf("8\n");
+}
 
-    struct reg *esq;
-    struct reg *dir;
-
-} noh_t;
-
-void foo(int x)
+void fun()
 {
-    int buf[10];
-
-    if (x == 1000)
-        buf[x] = 0;
+    static int dafdafa;
+    printf("%d", dafdafa + 1);
 }
 
 int main()
 {
-    int a[100];
+    functype array[] = {fun, fun2};
 
-    int x = 200;
+    functype2 array2[] = {add, add2};
 
-    scanf("%d", &x);
+    array[1]();
 
-    if (x == 100)
-        a[x] = 1;
+    printf("%d", array2[1](3, 4));
 
-    printf("Noh_t * = %lu\n", sizeof(noh_t *));
-    printf("Int * = %lu\n", sizeof(int *));
-    printf("Void * = %lu\n", sizeof(void *));
-    printf("Void = %lu\n", sizeof(void));
-
-    noh_t *la = calloc(1, sizeof(noh_t));
-
-    int i;
-    char c, s[50];
-
-    if (la->esq == NULL)
-        printf("cjhsabchja");
-
-    char ori[100];
-
-    sscanf(ori, "%d %c %49s", &i, &c, s);
-
-    printf("%d %c %s\n", i, c, s);
-
-    free(la);
+    printf("\n%p\n", array);
+    printf("\n%p\n", &array);
 
     return 0;
 }
