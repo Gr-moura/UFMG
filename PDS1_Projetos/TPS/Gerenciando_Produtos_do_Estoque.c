@@ -253,7 +253,7 @@ int main(int argc, char **argv)
 {
     if (argc < 2)
     {
-        printf("Está faltando o arquivo de input");
+        printf("Esta faltando o arquivo de input");
         return EXIT_FAILURE;
     }
 

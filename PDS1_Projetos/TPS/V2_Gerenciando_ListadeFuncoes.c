@@ -253,7 +253,7 @@ typedef void (*functype)(noh_t *);
 
 int main(int argc, char **argv)
 {
-    functype comandos[] = {Procurar_por_ID, Procurar_por_Departamento, Inserir_Produto, Filtrar_Produtos_por_Preco};
+    functype funcoes[] = {Procurar_por_ID, Procurar_por_Departamento, Inserir_Produto, Filtrar_Produtos_por_Preco};
 
     if (argc < 2)
     {
@@ -283,7 +283,7 @@ int main(int argc, char **argv)
         if (comando == 5)
             break;
 
-        comandos[comando - 1](raiz);
+        funcoes[comando - 1](raiz);
     }
 
     Liberdade(raiz);
