@@ -189,7 +189,7 @@ void Inserir_Produto(noh_t *raiz)
     Inicializar_Noh(Novo, buffer);
 }
 
-int compare(const void *a, const void *b)
+int Comparar(const void *a, const void *b)
 {
     // Converte os ponteiros genericos para ponteiros para ponteiros do tipo noh_t
     const noh_t *no_a = *(const noh_t **)a;
@@ -240,7 +240,8 @@ void Filtrar_Produtos_por_Preco(noh_t *raiz)
 
     Procurar_Preco(raiz, preco, &vet, &tamanho);
 
-    qsort(vet, tamanho, sizeof(noh_t *), compare);
+    // Ordenar o vetor vet
+    qsort(vet, tamanho, sizeof(noh_t *), Comparar);
 
     for (int i = 0; i < tamanho; i++)
         Printar_noh(vet[i]);
