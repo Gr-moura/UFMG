@@ -89,6 +89,8 @@ noh_t *Ler_input(FILE *input)
         Inicializar_Noh(Novo, buffer);
     }
 
+    fclose(input);
+
     return raiz;
 }
 

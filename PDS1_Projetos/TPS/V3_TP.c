@@ -253,9 +253,27 @@ void Filtrar_Produtos_por_Preco(noh_t *raiz)
 
 typedef void (*functype)(noh_t *);
 
-int main(int argc, char **argv)
+void Executar_Menu(noh_t *raiz)
 {
     functype funcoes[] = {Procurar_por_ID, Procurar_por_Departamento, Inserir_Produto, Filtrar_Produtos_por_Preco};
+
+    char buffer[MAX_BUFFER];
+
+    int comando = 0;
+    while (comando != 5)
+    {
+        fgets(buffer, MAX_BUFFER, stdin);
+        sscanf(buffer, "%d", &comando);
+
+        if (comando == 5)
+            break;
+
+        funcoes[comando - 1](raiz);
+    }
+}
+
+int main(int argc, char **argv)
+{
 
     if (argc < 2)
     {
@@ -275,18 +293,7 @@ int main(int argc, char **argv)
 
     Imprimir_Menu();
 
-    char buffer[MAX_BUFFER];
-    int comando = 0;
-    while (comando != 5)
-    {
-        fgets(buffer, MAX_BUFFER, stdin);
-        sscanf(buffer, "%d", &comando);
-
-        if (comando == 5)
-            break;
-
-        funcoes[comando - 1](raiz);
-    }
+    Executar_Menu(raiz);
 
     Liberdade(raiz);
 
