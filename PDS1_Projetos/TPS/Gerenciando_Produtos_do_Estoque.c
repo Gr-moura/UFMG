@@ -9,8 +9,8 @@
 typedef struct
 {
     unsigned int ID;
-    char nome[50];
-    char departamento[50];
+    char nome[51];
+    char departamento[51];
     double preco;
 
 } Produto_t;
@@ -24,6 +24,7 @@ typedef struct reg
 
 } noh_t;
 
+// Funcao para imprimir o menu de opcoes
 void Imprimir_Menu()
 {
     printf("1 - Procurar por ID\n");
@@ -33,11 +34,13 @@ void Imprimir_Menu()
     printf("5 - Sair\n");
 }
 
+// Funcao para imprimir um no da arvore
 void Printar_noh(const noh_t *noh)
 {
     printf("(%s) %s - R$ %.2lf\n", noh->produto.departamento, noh->produto.nome, noh->produto.preco);
 }
 
+// Funcao para encontrar o local adequado para inserir um novo no na arvore
 noh_t *Achar_espaco(noh_t *raiz, const int ID)
 {
     noh_t *Espaco_encontrado;
@@ -65,12 +68,14 @@ noh_t *Achar_espaco(noh_t *raiz, const int ID)
     return NULL;
 }
 
+// Funcao para inicializar um no com os dados de um buffer
 void Inicializar_Noh(noh_t *Novo_noh, const char *buffer)
 {
-    sscanf(buffer, "%u %49s %49s %lf", &Novo_noh->produto.ID, Novo_noh->produto.nome, Novo_noh->produto.departamento,
+    sscanf(buffer, "%u %50s %50s %lf", &Novo_noh->produto.ID, Novo_noh->produto.nome, Novo_noh->produto.departamento,
            &Novo_noh->produto.preco);
 }
 
+// Funcao para ler os dados de entrada e criar a arvore binaria
 noh_t *Ler_input(FILE *input)
 {
     char buffer[MAX_BUFFER];
@@ -94,6 +99,7 @@ noh_t *Ler_input(FILE *input)
     return raiz;
 }
 
+// Funcao para liberar a memoria da arvore
 void Liberdade(noh_t *raiz)
 {
     if (raiz->esq != NULL)
@@ -105,6 +111,7 @@ void Liberdade(noh_t *raiz)
     free(raiz);
 }
 
+// Funcao para encontrar um certo ID na arvore
 int Encontrar_ID(noh_t *raiz, const int ID)
 {
     Printar_noh(raiz);
@@ -133,6 +140,7 @@ int Encontrar_ID(noh_t *raiz, const int ID)
     return false;
 }
 
+// Funcao para gerenciar a procura por ID, a partir da interface do usuario
 void Procurar_por_ID(noh_t *raiz)
 {
     char buffer[MAX_BUFFER];
@@ -145,6 +153,7 @@ void Procurar_por_ID(noh_t *raiz)
         printf("Produto nao encontrado!\n");
 }
 
+// Funcao para contar e imprimir os produtos de um determinado departamento
 int Produtos_Departamento(noh_t *raiz, const char *Departamento)
 {
     int Produtos = 0;
@@ -164,18 +173,20 @@ int Produtos_Departamento(noh_t *raiz, const char *Departamento)
     return Produtos;
 }
 
+// Funcao para gerenciar a procura por departamento, a partir da interface do usuario
 void Procurar_por_Departamento(noh_t *raiz)
 {
     char buffer[MAX_BUFFER];
     fgets(buffer, MAX_BUFFER, stdin);
 
-    char Departamento[50];
-    sscanf(buffer, "%49s", Departamento);
+    char Departamento[51];
+    sscanf(buffer, "%50s", Departamento);
 
     if (Produtos_Departamento(raiz, Departamento) == 0)
         printf("Departamento vazio!\n");
 }
 
+// Funcao para inserir um novo produto na arvore
 void Inserir_Produto(noh_t *raiz)
 {
     unsigned int ID;
@@ -189,7 +200,8 @@ void Inserir_Produto(noh_t *raiz)
     Inicializar_Noh(Novo, buffer);
 }
 
-int compare(const void *a, const void *b)
+// Funcao de comparacao para ordenar os produtos pelo preco
+int Comparar(const void *a, const void *b)
 {
     // Converte os ponteiros genericos para ponteiros para ponteiros do tipo noh_t
     const noh_t *no_a = *(const noh_t **)a;
@@ -205,6 +217,7 @@ int compare(const void *a, const void *b)
     return 0;
 }
 
+// Funcao para adicionar um no ao vetor
 void Adicionar_no_Vetor(noh_t ***vet, int *tamanho, noh_t *add)
 {
     *vet = realloc(*vet, (*tamanho + 1) * sizeof(noh_t *));
@@ -212,6 +225,7 @@ void Adicionar_no_Vetor(noh_t ***vet, int *tamanho, noh_t *add)
     (*tamanho)++;
 }
 
+// Funcao para procurar produtos abaixo de um certo preco na arvore
 void Procurar_Preco(noh_t *raiz, double preco, noh_t ***vet, int *tamanho)
 {
     if (raiz->esq != NULL)
@@ -226,6 +240,7 @@ void Procurar_Preco(noh_t *raiz, double preco, noh_t ***vet, int *tamanho)
         Procurar_Preco(raiz->dir, preco, vet, tamanho);
 }
 
+// Funcao para gerenciar o filtro de produtos por preco
 void Filtrar_Produtos_por_Preco(noh_t *raiz)
 {
     noh_t **vet = NULL;
@@ -240,7 +255,8 @@ void Filtrar_Produtos_por_Preco(noh_t *raiz)
 
     Procurar_Preco(raiz, preco, &vet, &tamanho);
 
-    qsort(vet, tamanho, sizeof(noh_t *), compare);
+    // Ordenar o vetor vet
+    qsort(vet, tamanho, sizeof(noh_t *), Comparar);
 
     for (int i = 0; i < tamanho; i++)
         Printar_noh(vet[i]);
@@ -251,8 +267,31 @@ void Filtrar_Produtos_por_Preco(noh_t *raiz)
     free(vet);
 }
 
+typedef void (*functype)(noh_t *);
+
+// Funcao para executar o menu e chamar as funcoes correspondentes
+void Executar_Menu(noh_t *raiz)
+{
+    functype funcoes[] = {Procurar_por_ID, Procurar_por_Departamento, Inserir_Produto, Filtrar_Produtos_por_Preco};
+
+    char buffer[MAX_BUFFER];
+
+    int comando = 0;
+    while (comando != 5)
+    {
+        fgets(buffer, MAX_BUFFER, stdin);
+        sscanf(buffer, "%d", &comando);
+
+        if (comando == 5)
+            break;
+
+        funcoes[comando - 1](raiz);
+    }
+}
+
 int main(int argc, char **argv)
 {
+
     if (argc < 2)
     {
         printf("Esta faltando o arquivo de input");
@@ -271,32 +310,7 @@ int main(int argc, char **argv)
 
     Imprimir_Menu();
 
-    char buffer[MAX_BUFFER];
-    int comando = 0;
-    while (comando != 5)
-    {
-        fgets(buffer, MAX_BUFFER, stdin);
-        sscanf(buffer, "%d", &comando);
-
-        switch (comando)
-        {
-        case 1:
-            Procurar_por_ID(raiz);
-            break;
-
-        case 2:
-            Procurar_por_Departamento(raiz);
-            break;
-
-        case 3:
-            Inserir_Produto(raiz);
-            break;
-
-        case 4:
-            Filtrar_Produtos_por_Preco(raiz);
-            break;
-        }
-    }
+    Executar_Menu(raiz);
 
     Liberdade(raiz);
 
