@@ -9,7 +9,7 @@ Empresa::Empresa()
     }
 }
 
-Onibus* Empresa::adicionar_onibus(const string &placaNovoOnibus, const int maxCapacidadeNovoOnibus)
+Onibus *Empresa::adicionar_onibus(const string &placaNovoOnibus, const int maxCapacidadeNovoOnibus)
 {
     if (this->numOnibus == 20)
     {
@@ -28,7 +28,7 @@ Onibus* Empresa::adicionar_onibus(const string &placaNovoOnibus, const int maxCa
     return this->frota[this->numOnibus - 1];
 }
 
-Onibus* Empresa::busca_onibus(const string& placaProcurada)
+Onibus *Empresa::busca_onibus(const string &placaProcurada)
 {
     for (int onibusAtual = 0; onibusAtual < this->numOnibus; onibusAtual++)
     {
