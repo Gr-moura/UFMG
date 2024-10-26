@@ -10,7 +10,7 @@ struct Onibus
     int maxCapacidade;
     int atualLotacao;
 
-    Onibus(const string placa, const int maxCapacidade);
+    Onibus(const string &placa, const int maxCapacidade);
 
     void subir_passageiros(int qtSubiram);
     void descer_passageiros(int qtDesceram);

@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-Onibus::Onibus(string placa, int maxCapacidade)
+Onibus::Onibus(const string &placa, int maxCapacidade)
 {
     this->placa = placa;
     this->maxCapacidade = maxCapacidade;
