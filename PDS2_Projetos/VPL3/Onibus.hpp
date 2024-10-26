@@ -12,9 +12,9 @@ struct Onibus
 
     Onibus(const string &placa, const int maxCapacidade);
 
-    void subir_passageiros(int qtSubiram);
-    void descer_passageiros(int qtDesceram);
-    void transfere_passageiros(Onibus *outroOnibus, int qtPessoasTrocadas);
+    void subir_passageiros(const int qtSubiram);
+    void descer_passageiros(const int qtDesceram);
+    void transfere_passageiros(Onibus *outroOnibus, const int qtPessoasTrocadas);
     void imprimir_estado();
 };
 
