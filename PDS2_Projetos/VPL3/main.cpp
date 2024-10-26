@@ -3,28 +3,32 @@
 #include <iostream>
 using namespace std;
 
-void verificarEspacoParaTroca(const Onibus &onibus1, const Onibus &onibus2, const int qtPessoasTrocadas)
+bool verificarEspacoParaTroca(const Onibus &onibus1, const Onibus &onibus2, const int qtPessoasTrocadas)
 {
     if (onibus1.atualLotacao - qtPessoasTrocadas < 0)
     {
         cout << "ERRO : transferencia cancelada" << endl;
-        return;
+        return 1;
     }
 
     if (onibus2.atualLotacao + qtPessoasTrocadas > onibus2.maxCapacidade)
     {
         cout << "ERRO : transferencia cancelada" << endl;
-        return;
+        return 1;
     }
+
+    return 0;
 }
 
-void verificarExistencia(const Onibus *onibus)
+bool verificarExistencia(const Onibus *onibus)
 {
     if (onibus == nullptr)
     {
         cout << "ERRO : onibus inexistente" << endl;
-        return;
+        return 1;
     }
+
+    return 0;
 }
 
 void cadastrarOnibus(Empresa &Empresa)
@@ -49,7 +53,9 @@ void subiramNoOnibus(Empresa &Empresa)
     cin >> placa >> qtSubiram;
 
     Onibus *onibus = Empresa.busca_onibus(placa);
-    verificarExistencia(onibus);
+
+    if (verificarExistencia(onibus))
+        return;
 
     if (onibus->atualLotacao + qtSubiram > onibus->maxCapacidade)
     {
@@ -69,7 +75,9 @@ void desceramDoOnibus(Empresa &Empresa)
     cin >> placa >> qtDesceram;
 
     Onibus *onibus = Empresa.busca_onibus(placa);
-    verificarExistencia(onibus);
+
+    if (verificarExistencia(onibus))
+        return;
 
     if (onibus->atualLotacao - qtDesceram < 0)
     {
@@ -89,12 +97,17 @@ void transferenciaDePassageiros(Empresa &Empresa)
     cin >> placa1 >> placa2 >> qtPessoasTrocadas;
 
     Onibus *onibus1 = Empresa.busca_onibus(placa1);
-    verificarExistencia(onibus1);
+
+    if (verificarExistencia(onibus1))
+        return;
 
     Onibus *onibus2 = Empresa.busca_onibus(placa2);
-    verificarExistencia(onibus2);
 
-    verificarEspacoParaTroca(*onibus1, *onibus2, qtPessoasTrocadas);
+    if (verificarExistencia(onibus2))
+        return;
+
+    if (verificarEspacoParaTroca(*onibus1, *onibus2, qtPessoasTrocadas))
+        return;
 
     onibus1->transfere_passageiros(onibus2, qtPessoasTrocadas);
     cout << "transferencia de passageiros efetuada" << endl;
