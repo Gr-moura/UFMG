@@ -59,7 +59,6 @@ void subiramNoOnibus(Empresa &Empresa)
 
     if (onibus->atualLotacao + qtSubiram > onibus->maxCapacidade)
     {
-        onibus->atualLotacao = onibus->maxCapacidade;
         cout << "ERRO : onibus lotado" << endl;
         return;
     }
@@ -81,7 +80,6 @@ void desceramDoOnibus(Empresa &Empresa)
 
     if (onibus->atualLotacao - qtDesceram < 0)
     {
-        onibus->atualLotacao = 0;
         cout << "ERRO : faltam passageiros" << endl;
         return;
     }
