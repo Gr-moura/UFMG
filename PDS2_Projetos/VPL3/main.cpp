@@ -31,7 +31,7 @@ bool verificarExistencia(const Onibus *onibus)
     return 0;
 }
 
-void cadastrarOnibus(Empresa &Empresa)
+void CadastrarOnibus(Empresa &Empresa)
 {
     string placa;
     int maxCapacidade;
@@ -46,7 +46,7 @@ void cadastrarOnibus(Empresa &Empresa)
     cout << "novo onibus cadastrado" << endl;
 }
 
-void subiramNoOnibus(Empresa &Empresa)
+void SubiramNoOnibus(Empresa &Empresa)
 {
     string placa;
     int qtSubiram;
@@ -67,7 +67,7 @@ void subiramNoOnibus(Empresa &Empresa)
     cout << "passageiros subiram com sucesso" << endl;
 }
 
-void desceramDoOnibus(Empresa &Empresa)
+void DesceramDoOnibus(Empresa &Empresa)
 {
     string placa;
     int qtDesceram;
@@ -88,7 +88,7 @@ void desceramDoOnibus(Empresa &Empresa)
     cout << "passageiros desceram com sucesso" << endl;
 }
 
-void transferenciaDePassageiros(Empresa &Empresa)
+void TransferenciaDePassageiros(Empresa &Empresa)
 {
     string placa1, placa2;
     int qtPessoasTrocadas;
@@ -111,9 +111,12 @@ void transferenciaDePassageiros(Empresa &Empresa)
     cout << "transferencia de passageiros efetuada" << endl;
 }
 
-void ImprimirEstado(Empresa &Empresa)
+void Free(Empresa &Empresa)
 {
-    Empresa.imprimir_estado();
+    for (int i = 0; i < Empresa.numOnibus; i++)
+    {
+        delete Empresa.frota[i];
+    }
 }
 
 int main()
@@ -127,30 +130,31 @@ int main()
 
         if (comando == 'F')
         {
+            Free(Empresa);
             break;
         }
 
         switch (comando)
         {
         case 'C':
-            cadastrarOnibus(Empresa);
+            CadastrarOnibus(Empresa);
 
             break;
 
         case 'S':
-            subiramNoOnibus(Empresa);
+            SubiramNoOnibus(Empresa);
             break;
 
         case 'D':
-            desceramDoOnibus(Empresa);
+            DesceramDoOnibus(Empresa);
             break;
 
         case 'T':
-            transferenciaDePassageiros(Empresa);
+            TransferenciaDePassageiros(Empresa);
             break;
 
         case 'I':
-            ImprimirEstado(Empresa);
+            Empresa.imprimir_estado();
             break;
         }
     }
