@@ -1,16 +1,18 @@
 #ifndef EMPRESA_H
 #define EMPRESA_H
 
+#include "Onibus.hpp"
+
 struct Empresa
 {
-    int numOnibus;
-    vector<Onibus> onibus;
+    int numOnibus;    
+    Onibus* frota[20];
 
-    Empresa(const string nome);
+    Empresa();
 
-    void adicionar_onibus(const string placa, const int maxCapacidade);
-    void remover_onibus(const string placa);
-    void imprimir_frota();
+    Onibus* adicionar_onibus(const string& placaNovoOnibus, const int maxCapacidadeNovoOnibus);
+    Onibus* busca_onibus(const string& placa);
+    void imprimir_estado();
 };
 
 #endif
