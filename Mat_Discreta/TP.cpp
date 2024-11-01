@@ -6,6 +6,7 @@ using namespace std;
 #define Y 1
 
 const string koch = "F++FF--F+F";
+const string correto = "F-F++FF--F+F";
 
 const string hilbert[2] = {"-YF+XFX+FY-", "+XF-YFY-FX+"};
 
