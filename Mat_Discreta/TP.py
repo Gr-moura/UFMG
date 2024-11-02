@@ -69,7 +69,7 @@ def UM(a):
     if (a == 1):
         t.speed(0)  # Fastest speed
         t.penup()
-        t.goto(0, 0)  # Start in the middle of the left side
+        t.goto(-300, -300)  # Start in the middle of the left side
         t.setheading(0)  # Point the turtle to the right (0 degrees)
         t.pendown()
         t.hideturtle()
@@ -102,11 +102,11 @@ def UM(a):
             elif command == 'Y':
                 dois(t, ordem - 1, 0, 1)
 
-axioma = "X"
-ang = 90
+axioma = "F"
+ang = 60
 ordem = 6
-regra = "F+F-F-FFF+F+F-F"
+regra = "F-F++FF--F+F"
 hilbert = ["-YF+XFX+FY-", "+XF-YFY-FX+"]
-UM(2)
+UM(1)
 # Run the Tkinter main loop
 root.mainloop()

@@ -1,5 +1,4 @@
-#include "Headers.h"
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
 #define X 0
