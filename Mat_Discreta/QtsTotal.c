@@ -97,7 +97,7 @@ int main()
 
     // Floco_de_Neve_Onda_Senoidal_1_de_Von_Koch(2, 0);
     Preenchimento_de_Espaco_de_Hilbert(2, 0, X);
-    printf("\n%d %d %d", Signos, Fs, Signos - Fs);
+    printf("\nSignos: %d\nSegmentos: %d\nResto: %d\n", Signos, Fs, Signos - Fs);
 
     return 0;
 }
