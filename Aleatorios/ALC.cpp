@@ -30,23 +30,25 @@ int main()
         if (mat[i][i] == 0)
             continue;
 
-        if (i + x < n)
-        {
-            mat[i + x][i + x] -= mat[i][i + x] * mat[i + x][i] / mat[i][i];
-            b[i + x] -= b[i] * mat[i + x][i] / mat[i][i];
-            mat[i + x][i] = 0;
-        }
+        if (i + x >= n)
+            continue;
 
-        if (i + 2 * (x - 1) < n)
-            mat[i + x][i + 2 * (x - 1)] -= mat[i][i + 2 * (x - 1)] * mat[i + x][i] / mat[i][i];
+        double mult = mat[i + x][i] / mat[i][i];
+
+        mat[i + x][i + x] -= mat[i][i + x] * mult;
+        b[i + x] -= b[i] * mult;
+        mat[i + x][i] = 0;
+
+        if (i + 2 * x < n)
+            mat[i + x][i + 2 * x] -= mat[i][i + 2 * x] * mult;
     }
+
+    cout << "----------------------\n";
 
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < n; j++)
-        {
             cout << " " << mat[i][j];
-        }
 
         cout << " " << b[i] << endl;
     }
@@ -56,21 +58,22 @@ int main()
         if (mat[i][i] == 0)
             continue;
 
-        if (i - x >= 0)
-        {
-            mat[i - x][i - x] -= mat[i][i - x] * mat[i - x][i] / mat[i][i];
-            b[i - x] -= b[i] * mat[i - x][i] / mat[i][i];
-            mat[i - x][i] = 0;
-        }
+        if (i - x < 0)
+            continue;
+
+        double mult = mat[i - x][i] / mat[i][i];
+
+        mat[i - x][i - x] -= mat[i][i - x] * mult;
+        b[i - x] -= b[i] * mult;
+        mat[i - x][i] = 0;
     }
+
     cout << "----------------------\n";
 
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < n; j++)
-        {
             cout << " " << mat[i][j];
-        }
 
         cout << " " << b[i] << endl;
     }
@@ -78,10 +81,7 @@ int main()
     cout << "----------------------\n";
 
     for (int i = 0; i < n; i++)
-    {
-
         cout << " " << b[i] / mat[i][i] << endl;
-    }
 
     return 0;
 }
