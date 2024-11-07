@@ -4,23 +4,22 @@ using namespace std;
 
 int main()
 {
-    int n = 1, x;
+    int n, x;
     cin >> n >> x;
-
-    // Em cada diagonal nao principal, existem n - x + 1 elementos
+    x--;
 
     vector<vector<double>> mat(n, vector<double>(n, 0));
     vector<double> b(n);
 
     for (int i = 0; i < n; i++)
     {
-        if (i - x + 1 >= 0)
-            cin >> mat[i][i - x + 1];
+        if (i - x >= 0)
+            cin >> mat[i][i - x];
 
         cin >> mat[i][i];
 
-        if (i + x - 1 < n)
-            cin >> mat[i][i + x - 1];
+        if (i + x < n)
+            cin >> mat[i][i + x];
     }
 
     for (int i = 0; i < n; i++)
@@ -31,15 +30,15 @@ int main()
         if (mat[i][i] == 0)
             continue;
 
-        if (i + x - 1 < n)
+        if (i + x < n)
         {
-            mat[i + x - 1][i + x - 1] -= mat[i][i + x - 1] * mat[i + x - 1][i] / mat[i][i];
-            b[i + x - 1] -= b[i] * mat[i + x - 1][i] / mat[i][i];
-            mat[i + x - 1][i] = 0;
+            mat[i + x][i + x] -= mat[i][i + x] * mat[i + x][i] / mat[i][i];
+            b[i + x] -= b[i] * mat[i + x][i] / mat[i][i];
+            mat[i + x][i] = 0;
         }
 
         if (i + 2 * (x - 1) < n)
-            mat[i + x - 1][i + 2 * (x - 1)] -= mat[i][i + 2 * (x - 1)] * mat[i + x - 1][i] / mat[i][i];
+            mat[i + x][i + 2 * (x - 1)] -= mat[i][i + 2 * (x - 1)] * mat[i + x][i] / mat[i][i];
     }
 
     for (int i = 0; i < n; i++)
@@ -57,11 +56,11 @@ int main()
         if (mat[i][i] == 0)
             continue;
 
-        if (i - x + 1 >= 0)
+        if (i - x >= 0)
         {
-            mat[i - x + 1][i - x + 1] -= mat[i][i - x + 1] * mat[i - x + 1][i] / mat[i][i];
-            b[i - x + 1] -= b[i] * mat[i - x + 1][i] / mat[i][i];
-            mat[i - x + 1][i] = 0;
+            mat[i - x][i - x] -= mat[i][i - x] * mat[i - x][i] / mat[i][i];
+            b[i - x] -= b[i] * mat[i - x][i] / mat[i][i];
+            mat[i - x][i] = 0;
         }
     }
     cout << "----------------------\n";
