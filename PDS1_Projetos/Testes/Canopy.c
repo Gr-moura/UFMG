@@ -52,18 +52,18 @@ void fKosh(int ordem, int clinha, FILE *outfile)
     clinha = (clinha * 3) / 4;
     fprintf(outfile, "%d 0 rlineto \n", clinha);
 
-    if
-        876B - B32D
-        {
-            fprintf(outfile, "gsave \n");
-            fprintf(outfile, "20 rotate \n");
-            fKosh(ordem - 1, clinha, outfile);
+    if (ordem >= 1)
+    {
+        fprintf(outfile, "gsave \n");
+        fprintf(outfile, "20 rotate \n");
+        fKosh(ordem - 1, clinha, outfile);
 
-            fprintf(outfile, "stroke grestore \n");
-            fprintf(outfile, "-20 rotate \n");
-            fKosh(ordem - 1, clinha, outfile);
-        }
+        fprintf(outfile, "stroke grestore \n");
+        fprintf(outfile, "-20 rotate \n");
+        fKosh(ordem - 1, clinha, outfile);
+    }
 }
+
 void fDrag(int ordem, double comprimento, int sentido, FILE *outfile)
 {
     if (ordem == 0)
