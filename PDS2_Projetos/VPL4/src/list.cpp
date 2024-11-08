@@ -2,22 +2,28 @@
 
 #include <iostream>
 
-void List::insertNode(int data) {
-    Node* aux = new Node;
+void List::insertNode(int data)
+{
+    Node *aux = new Node;
     aux->data = data;
     aux->next = nullptr;
-    if (head == nullptr) {
+    if (head == nullptr)
+    {
         head = aux;
         tail = aux;
-    } else {
+    }
+    else
+    {
         tail->next = aux;
         tail = aux;
     }
 }
 
-void List::display() {
-    Node* aux = head;
-    while (aux != nullptr) {
+void List::display()
+{
+    Node *aux = head;
+    while (aux != nullptr)
+    {
         cout << aux->data << " ";
         aux = aux->next;
     }
@@ -25,5 +31,23 @@ void List::display() {
 }
 
 // Você deverá implementar apenas esse método
-void List::inverte() {
+void List::inverte()
+{
+    if (head == nullptr) return; // Verifica se a lista está vazia
+
+    Node *anterior = nullptr;
+    Node *atual = head;
+    Node *proximo = nullptr;
+
+    while (atual != nullptr)
+    {
+        proximo = atual->next;
+        atual->next = anterior;
+        anterior = atual;
+        atual = proximo;
+    }
+
+    tail = head;
+    head = anterior;
 }
+
