@@ -5,6 +5,8 @@ INCLUDE_DIR = include
 OBJ_DIR = build
 bin = vpl_execution
 
+.PHONY: all clean test 
+
 all: $(bin) 
 
 $(bin): $(OBJ_DIR)/main.o $(OBJ_DIR)/list.o
@@ -19,6 +21,6 @@ $(OBJ_DIR)/list.o: $(SRC_DIR)/list.cpp $(INCLUDE_DIR)/list.hpp
 clean:
 	rm -f $(bin) $(OBJ_DIR)/*.o
 
-run: $(bin)
+test: $(bin)
 	./$(bin)
 

@@ -1,5 +1,6 @@
 *zzz
 *.o
+.ipynb*
 *main
 .DS_Store
 Livros/
