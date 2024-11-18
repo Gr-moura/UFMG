@@ -1,0 +1,34 @@
+# Use the official Ubuntu base image
+FROM ubuntu:latest
+
+# Update the package list and install any necessary packages
+
+# The build-essential package in Ubuntu is a meta-package that installs a collection of packages 
+# essential for building software. It includes:
+# gcc: The GNU C Compiler.
+# g++: The GNU C++ Compiler.
+# make: A utility for directing the build process.
+
+RUN apt-get update && \
+    apt-get install -y \
+    build-essential \
+    valgrind \
+    && apt-get clean
+
+# Set the working directory
+WORKDIR /app
+
+# Copy your project files into the container
+COPY . .
+
+# Compile your program (replace 'Testes.cpp' with your source file)
+RUN g++ -o bin/main Testes.cpp
+
+# Command to run Valgrind with all checks when the container is started
+CMD ["valgrind", "--tool=memcheck", "--leak-check=full", "--show-leak-kinds=all", "--track-origins=yes", "--verbose", "./bin/main"]
+
+# Build the Docker image
+# docker build -t valgrind-checker .
+
+# Run the Docker container
+# docker run valgrind-checker

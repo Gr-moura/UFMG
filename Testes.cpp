@@ -1,6 +1,6 @@
-
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 void quantos(char *str, char c, int tamanho, char placeholder)
 {
@@ -24,14 +24,11 @@ void printar(char *str, char placeholder)
 
 int main()
 {
-    char buffer[100], str[100];
-    char caractere;
+    int *a = (int *) malloc(sizeof(int));
+    char str[]=
+    "jcbhjsahbehfhajhfhadaskjdbashjdhasdahsj";
+    char caractere = 'a';
 
-    fgets(buffer, 100, stdin);
-    sscanf(buffer, "%s", str);
-
-    fgets(buffer, 100, stdin);
-    sscanf(buffer, "%c", &caractere);
 
     char placeholder = '%';
 
