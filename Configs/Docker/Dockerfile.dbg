@@ -2,7 +2,7 @@ FROM alpine:latest
 RUN apk update && apk add --no-cache gdb valgrind build-base
 
 # Build the image
-# docker build -t "debugging:1.0" -f Docker/dockerfile.dbg .
+# docker build -t "debugging:1.0" -f Configs/Docker/Dockerfile.dbg .
 
 
 # Run the image
