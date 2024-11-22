@@ -28,7 +28,7 @@ RUN g++ -o bin/main Testes.cpp
 CMD ["valgrind", "--tool=memcheck", "--leak-check=full", "--show-leak-kinds=all", "--track-origins=yes", "--verbose", "./bin/main"]
 
 # Build the Docker image
-# docker build -t valgrind-checker -f Configs/Docker/Dockerfile.base .
+# docker build -t "valgrind-checker" -f Configs/Docker/Dockerfile.base .
 
 # Run the Docker container
 # docker run --rm valgrind-checker
