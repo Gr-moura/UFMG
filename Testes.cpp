@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
+#include <string.h>
 
 void quantos(char *str, char c, int tamanho, char placeholder)
 {
@@ -16,6 +16,8 @@ void printar(char *str, char placeholder)
     for (int i = 0; str[i] != '\0'; i++)
     {
         if (str[i] != placeholder)
+
+
             printf("%c", str[i]);
     }
 
@@ -24,11 +26,9 @@ void printar(char *str, char placeholder)
 
 int main()
 {
-    int *a = (int *) malloc(sizeof(int));
-    char str[]=
-    "jcbhjsahbehfhajhfhadaskjdbashjdhasdahsj";
+    int *a = (int *)malloc(sizeof(int));
+    char str[] = "jcbhjsahbehfhajhfhadaskjdbashjdhasdahsj";
     char caractere = 'a';
-
 
     char placeholder = '%';
 
