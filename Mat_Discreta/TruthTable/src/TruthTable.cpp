@@ -34,27 +34,7 @@ void TruthTable::printPossibleValues()
     }
 }
 
-bool IMP(bool a, bool b)
-{
-    return ((!a) || b);
-}
-
-bool AND(bool a, bool b)
-{
-    return ((a) && (b));
-}
-
-bool OR(bool a, bool b)
-{
-    return ((a) || (b));
-}
-
-bool NOT(bool a)
-{
-    return (!(a));
-}
-
-const pair<int, int> TruthTable::evaluateFunctions(vector<bool> &values)
+const pair<bool, bool> TruthTable::evaluateFunctions(const vector<bool> &values)
 {
     int A = values[0], B = values[1], C = values[2], D = values[3], E = values[4], F = values[5], G = values[6],
         H = values[7], I = values[8], J = values[9], K = values[10], L = values[11], M = values[12], N = values[13],
@@ -76,7 +56,7 @@ bool TruthTable::compareFunctions()
 
     for (int i = 0; i < pow(2, numPropositions); i++)
     {
-        pair<int, int> results = evaluateFunctions(possibleValues[i]);
+        pair<bool, bool> results = evaluateFunctions(possibleValues[i]);
 
         resultsF1[i] = results.first;
         resultsF2[i] = results.second;

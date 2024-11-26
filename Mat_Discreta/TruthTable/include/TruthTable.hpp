@@ -8,6 +8,26 @@
 #include <vector>
 
 using namespace std;
+
+bool IMP(bool a, bool b)
+{
+    return ((!a) || b);
+}
+
+bool AND(bool a, bool b)
+{
+    return ((a) && (b));
+}
+
+bool OR(bool a, bool b)
+{
+    return ((a) || (b));
+}
+
+bool NOT(bool a)
+{
+    return (!(a));
+}
 class TruthTable
 {
   private:
@@ -16,11 +36,6 @@ class TruthTable
 
     void fillPossibleValues();
 
-    // bool IMP(bool a, bool b);
-    // bool AND(bool a, bool b);
-    // bool OR(bool a, bool b);
-    // bool NOT(bool a);
-
   public:
     TruthTable(int numPropositions);
 
@@ -28,7 +43,7 @@ class TruthTable
 
     bool compareFunctions();
 
-    const pair<int, int> evaluateFunctions(vector<bool> &values);
+    const pair<bool, bool> evaluateFunctions(const vector<bool> &values);
 };
 
 #endif
