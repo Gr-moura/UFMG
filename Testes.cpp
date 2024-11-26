@@ -17,7 +17,6 @@ void printar(char *str, char placeholder)
     {
         if (str[i] != placeholder)
 
-
             printf("%c", str[i]);
     }
 
