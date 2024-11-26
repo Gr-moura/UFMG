@@ -16,8 +16,6 @@ class TruthTable
 
     void fillPossibleValues();
 
-    bool evaluateFunction(const string &f);
-
     // bool IMP(bool a, bool b);
     // bool AND(bool a, bool b);
     // bool OR(bool a, bool b);
@@ -28,9 +26,9 @@ class TruthTable
 
     void printPossibleValues();
 
-    bool compareFunctions(const string &f1, const string &f2);
+    bool compareFunctions();
 
-    bool evaluateFunction(const string &original, vector<bool> values);
+    const pair<int, int> evaluateFunctions(vector<bool> &values);
 };
 
 #endif

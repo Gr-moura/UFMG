@@ -1,5 +1,4 @@
 #include "TruthTable.hpp"
-#include <iostream>
 
 void TruthTable::fillPossibleValues()
 {
@@ -37,7 +36,7 @@ void TruthTable::printPossibleValues()
 
 bool IMP(bool a, bool b)
 {
-    return (!(a) || (b));
+    return ((!a) || b);
 }
 
 bool AND(bool a, bool b)
@@ -55,31 +54,51 @@ bool NOT(bool a)
     return (!(a));
 }
 
-bool TruthTable::evaluateFunction(const string &original, vector<bool> values)
+const pair<int, int> TruthTable::evaluateFunctions(vector<bool> &values)
 {
-    string f = "IMP(AND(A, NOT(B)), OR(NOT(C), C))";
+    int A = values[0], B = values[1], C = values[2], D = values[3], E = values[4], F = values[5], G = values[6],
+        H = values[7], I = values[8], J = values[9], K = values[10], L = values[11], M = values[12], N = values[13],
+        O = values[14], P = values[15], Q = values[16], R = values[17], S = values[18], T = values[19], U = values[20],
+        V = values[21], W = values[22], X = values[23], Y = values[24], Z = values[25];
 
-    for (int i = 0; i + 1 < f.size(); i++)
-    {
-        if ((f[i] <= 'Z' && f[i] >= 'A') && (f[i + 1] == ',' or f[i + 1] == ')'))
-        {
-            f[i] = values[f[i] - 'A'] == 1 ? '1' : '0';
-        }
-    }
+    bool f1 = IMP(AND(A, NOT(B)), OR(NOT(C), C));
+    bool f2 = IMP(AND(A, NOT(B)), OR(NOT(C), C));
 
-    cout << eval(f);
+    return {f1, f2};
 }
 
-bool TruthTable::compareFunctions(const string &f4, const string &f5)
+bool TruthTable::compareFunctions()
 {
-    string f1 = "IMP(AND(A, NOT(B)), OR(NOT(C), C))";
-    string f2 = "IMP(AND(C, NOT(C)), OR(NOT(C), C))";
+    bool different = false;
 
     vector<bool> resultsF1(pow(2, numPropositions));
     vector<bool> resultsF2(pow(2, numPropositions));
 
     for (int i = 0; i < pow(2, numPropositions); i++)
     {
-        resultsF1[i] = evaluateFunction(f1, possibleValues[i]);
+        pair<int, int> results = evaluateFunctions(possibleValues[i]);
+
+        resultsF1[i] = results.first;
+        resultsF2[i] = results.second;
+
+        cout << results.first << " " << results.second << endl;
+
+        if (results.first != results.second)
+        {
+            cout << "Functions are not equivalent" << endl;
+
+            for (bool value : possibleValues[i])
+            {
+                cout << value << " ";
+            }
+
+            cout << endl << resultsF1[i] << " " << resultsF2[i] << "\n\n";
+            different = true;
+        }
+    }
+
+    if (!different)
+    {
+        cout << "Functions are equivalent" << endl;
     }
 }
