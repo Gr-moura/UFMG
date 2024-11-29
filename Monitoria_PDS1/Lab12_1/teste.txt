@@ -1,0 +1,33 @@
+<p dir="ltr" style="text-align: left;"><strong>Atividade: Contando Letras BIN</strong></p>
+<p dir="ltr" style="text-align: left;">Implemente um programa que conta quantas vezes a letra 'a' aparece em um arquivo <strong>binário</strong>. O nome do arquivo deve ser solicitado pelo programa.</p>
+<p dir="ltr" style="text-align: left;"></p>
+
+<p dir="ltr" style="text-align: left;">
+    <google-sheets-html-origin></google-sheets-html-origin>
+</p>
+<table xmlns="http://www.w3.org/1999/xhtml" cellspacing="0" cellpadding="4" dir="ltr" border="1" data-sheets-root="1" data-sheets-baot="1">
+    <colgroup>
+        <col width="300">
+        <col width="300">
+        <col width="300">
+    </colgroup>
+    <tbody>
+        <tr>
+            <td><strong>Entrada (entrada padrão) </strong></td>
+            <td><strong>Entrada (conteúdo do arquivo)</strong></td>
+            <td><strong>Saída</strong></td>
+        </tr>
+        <tr>
+            <td>Dijkstra.pdf</td>
+            <td>A fazenda é em Rio Piracicaba<br>Perto de Belo Horizonte</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>DFS.pdf</td>
+            <td>No caminho tinha uma pedra<br>Tinha uma pedra no meio do caminho</td>
+            <td>8</td>
+        </tr>
+    </tbody>
+</table><br>
+<p></p>
+<pre style="text-align: left;"></pre>
