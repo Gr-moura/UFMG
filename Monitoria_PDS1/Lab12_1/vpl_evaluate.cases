@@ -1,9 +1,0 @@
-case=Entrada Teste1
-
-input=Dijkstra.pdf
-output=5
-
-case=Entrada Teste2
-
-input=DFS.pdf
-output=8

@@ -1,0 +1,29 @@
+case=Entrada Teste1
+
+input=Dijkstra.bin
+output=5
+
+case=Entrada Teste2
+
+input=DFS.bin
+output=8
+
+case=Entrada Teste3
+
+input=BFS.bin
+output=80
+
+case=Entrada Teste4
+
+input=Bellman-Ford.bin
+output=41
+
+case=Entrada Teste5
+
+input=Prim.bin
+output=138
+
+case=Entrada Teste6
+
+input=A*.bin
+output=0
