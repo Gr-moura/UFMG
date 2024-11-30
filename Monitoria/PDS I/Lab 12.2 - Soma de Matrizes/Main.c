@@ -1,75 +1,59 @@
 #include <stdio.h>
 #include <stdlib.h>
-int ehnum(char c)
-{
-    if (c - '0' >= 0 && c - '0' <= 9)
-        return 1;
 
-    return 0;
+void multiply(long long int matA[5][5], long long int matB[5][5], long long int matC[5][5])
+{
+    for (int i = 0; i < 5; i++)
+    {
+        for (int j = 0; j < 5; j++)
+        {
+            matC[i][j] = 0;
+            for (int k = 0; k < 5; k++)
+            {
+                matC[i][j] += matA[i][k] * matB[k][j];
+            }
+        }
+    }
 }
 
-int main(int argc, char **argv)
+int main()
 {
-    /*
-     if (argc < 2)
-    {
-        printf("cadê o nome trouxão\n");
-        return EXIT_FAILURE;
-    }
-
-    FILE *file = fopen(argv[1], "rb");
-    */
-
     char nome[100];
     scanf("%s", nome);
 
-    FILE *file = fopen(nome, "rb");
+    FILE *file = fopen(nome, "r");
 
-    if (file == NULL)
+    long long int matA[5][5];
+    long long int matB[5][5];
+
+    for (int i = 0; i < 5; i++)
     {
-        perror("Error");
-        return EXIT_FAILURE;
-    }
-
-    long long soma[25] = {0};
-    long long a = 0;
-    long long temp;
-
-    char c;
-
-    while (fread(&c, sizeof(char), 1, file))
-    {
-        if (ehnum(c))
+        for (int j = 0; j < 5; j++)
         {
-            fseek(file, -1, SEEK_CUR);
-            temp = 0;
-
-            while (1)
-            {
-                fread(&c, sizeof(char), 1, file);
-
-                if (ehnum(c))
-                {
-                    temp = 10 * temp + c - '0';
-                }
-
-                else
-                    break;
-            }
-
-            soma[a] += temp;
-            a++;
-            a %= 25;
+            fscanf(file, "%lld", &matA[i][j]);
         }
     }
 
-    for (int i = 0; i < 25; i++)
+    for (int i = 0; i < 5; i++)
     {
-        if (i % 5 == 0 && i != 0)
-            printf("\n");
-
-        printf("%lld ", soma[i]);
+        for (int j = 0; j < 5; j++)
+        {
+            fscanf(file, "%lld", &matB[i][j]);
+        }
     }
+
+    long long matC[5][5];
+    multiply(matA, matB, matC);
+
+    for (int i = 0; i < 5; i++)
+    {
+        for (int j = 0; j < 5; j++)
+        {
+            printf("%lld ", matC[i][j]);
+        }
+        printf("\n");
+    }
+
     printf("\n");
 
     fclose(file);
