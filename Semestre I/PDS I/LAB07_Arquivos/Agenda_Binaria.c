@@ -124,6 +124,8 @@ int main(int argc, char **argv)
 
             printf("Registro %s %d %s alterado\n", agenda[pessoa_atual].nome, agenda[pessoa_atual].idade,
                    agenda[pessoa_atual].telefone);
+            sscanf(dados, "%s %d %s", agenda[pessoa_atual].nome, &agenda[pessoa_atual].idade,
+                   agenda[pessoa_atual].telefone);
         }
 
         else if (!strcmp(comando, "Exibir"))
