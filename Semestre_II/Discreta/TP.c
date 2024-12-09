@@ -21,7 +21,7 @@ void Floco_de_Neve_Onda_Senoidal_1_de_Von_Koch(int ordem, int atual)
         return;
     }
 
-    while (koch[atual]!='\0')
+    while (koch[atual] != '\0')
     {
         if (koch[atual] == 'F')
         {
@@ -79,8 +79,8 @@ int main()
 {
     // t(n) = R^n * T + nR(R^n - 1) / (R - 1)
 
-    Floco_de_Neve_Onda_Senoidal_1_de_Von_Koch(1, 0);
-    Preenchimento_de_Espaco_de_Hilbert(1, 0, X);
+    // Floco_de_Neve_Onda_Senoidal_1_de_Von_Koch(1, 0);
+    Preenchimento_de_Espaco_de_Hilbert(3, 0, X);
 
     return 0;
 }

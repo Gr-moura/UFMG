@@ -1,43 +1,38 @@
-#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
-int main()
+int main(int argc, char *argv[])
 {
-    int a;
-    scanf("%d", &a);
-    int v[a];
-
-    if (a > 2000)
+    // Verifica se o nome do arquivo foi passado como argumento
+    if (argc != 2)
     {
-        return 0;
+        fprintf(stderr, "Uso: %s <nome_do_arquivo>\n", argv[0]);
+        return 1;
     }
 
-    for (int i = 0; i < a; i++)
+    // Abre o arquivo para leitura
+    FILE *arquivo = fopen(argv[1], "r");
+    if (arquivo == NULL)
     {
-        scanf("%d", &v[i]);
+        perror("Erro ao abrir o arquivo");
+        return 1;
     }
 
-    int max = 0;
-    for (int fi = 1; fi <= a; fi++)
+    // Conta o número de letras 'a' no arquivo
+    int contador = 0;
+    char caractere;
+    while ((caractere = fgetc(arquivo)) != EOF)
     {
-        int numero = 0;
-
-        for (int i = 0; i < a; i++)
+        if (caractere == 'a')
         {
-            if (v[i] >= fi)
-            {
-                numero++;
-            }
-            if (numero == fi)
-            {
-                max = numero;
-                break;
-            }
+            contador++;
         }
     }
-    printf("%d\n", max);
 
+    // Exibe o resultado
+    printf("%d\n", contador);
+
+    // Fecha o arquivo
+    fclose(arquivo);
     return 0;
 }
