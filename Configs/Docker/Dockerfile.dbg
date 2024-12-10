@@ -2,7 +2,7 @@ FROM alpine:latest
 RUN apk update && apk add build-base gdb valgrind
 
 # Build the image
-# docker build -t "debugging:1.0" -f Configs/Docker/Dockerfile.dbg .
+# docker build -t "debugging:1.0" -f UFMG/Configs/Docker/Dockerfile.dbg .
 
 # Run the image
 # docker run --rm -it -v $PWD:/tmp -w /tmp debugging:1.0
