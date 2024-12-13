@@ -1,0 +1,61 @@
+LEIAME
+
+Sobre o Programa
+
+Este programa em linguagem C utiliza as bibliotecas padrão <stdio.h> e <stdlib.h> para realizar suas operações. Ele implementa funcionalidades com uso de recursão e, durante sua execução, gera três arquivos de saída: i.txt, ii.txt e iii.txt. Estes arquivos são apenas criados e preenchidos com dados, sem necessidade de serem lidos novamente pelo programa.
+
+Requisitos do Ambiente
+
+Compilador: GCC (GNU Compiler Collection), versão 4.8 ou superior.
+
+Sistema Operacional: O programa é multiplataforma e pode ser executado em sistemas Linux, Windows ou macOS.
+
+Bibliotecas Necessárias: Apenas as bibliotecas padrão <stdio.h> e <stdlib.h> são requeridas.
+
+Como Compilar
+
+Certifique-se de que o compilador GCC está instalado e configurado no seu sistema.
+
+Verifique a instalação com o comando:
+
+gcc --version
+
+Compile o arquivo-fonte com o seguinte comando:
+
+gcc -o programa nome_do_arquivo.c
+
+Substitua nome_do_arquivo.c pelo nome do arquivo-fonte.
+
+Como Executar
+
+Após a compilação, execute o programa com:
+
+./programa
+
+O programa aceitará entradas diretamente pela stdin (entrada padrão). Certifique-se de fornecer os dados corretamente, conforme as instruções que ele exibe.
+
+Durante a execução, três arquivos serão gerados no diretório atual:
+
+i.txt
+
+ii.txt
+
+iii.txt
+
+Esses arquivos conterão os dados processados pelo programa.
+
+Observações
+
+Cuidado ao sobrescrever os arquivos: Caso o programa seja executado mais de uma vez no mesmo diretório, os arquivos i.txt, ii.txt e iii.txt serão sobrescritos.
+
+Uso de Recursão: O programa faz uso de recursão. Para entradas muito grandes, é recomendado garantir que o sistema suporte o nível de profundidade necessário para evitar problemas como stack overflow.
+
+Dúvidas ou Problemas
+
+Caso encontre problemas durante a compilação ou execução, certifique-se de:
+
+Conferir se o GCC está corretamente instalado.
+
+Verificar as permissões de gravação no diretório onde o programa está sendo executado.
+
+Para suporte adicional, entre em contato com o desenvolvedor.
