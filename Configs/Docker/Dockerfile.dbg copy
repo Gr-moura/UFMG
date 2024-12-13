@@ -1,0 +1,15 @@
+FROM alpine:latest
+RUN apk update && apk add build-base gdb valgrind
+
+# Build the image
+# docker build -t "debugging:1.0" -f UFMG/Configs/Docker/Dockerfile.dbg .
+
+# Run the image
+# docker run --rm -it -v $PWD:/tmp -w /tmp debugging:1.0
+
+# docker run -rm -it — this will run your docker container interactively and remove it after you exit
+# -v $PWD:/tmp — this will mount your current directory to /tmp inside the container
+# -w /tmp — this will set the containers working directory to /tmp
+# debugging:1.0 — this is the name and tag of the docker image we created
+
+# valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose ./main < main_input0.txt

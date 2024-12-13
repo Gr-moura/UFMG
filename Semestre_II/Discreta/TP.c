@@ -1,23 +1,18 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define X 0
 #define Y 1
 
-const char koch[] = "F++FF--F+F";
-const char correto[] = "F-F++FF--F+F";
+const char koch[] = "F-F++FF--F+F";
+const char hilbert[][12] = {"-YF+XFX+FY-", "+XF-YFY-FX+"};
+const char sierpinski[][8] = {"YF+XF+Y", "XF-YF-X"};
 
-const char hilbert[2][12] = {"-YF+XFX+FY-", "+XF-YFY-FX+"};
-
-void Floco_de_Neve_Onda_Senoidal_1_de_Von_Koch(int ordem, int atual)
+void Floco_de_Neve_Onda_Senoidal_1_de_Von_Koch(int ordem, int atual, FILE *arquivo)
 {
-    // Axioma: F
-    // θ = π/3
-    //
-    // Regra: F → F-F+F+FF-F-F+F
-
-    if (ordem == 0)
+    if (ordem == 1)
     {
-        printf("%s", koch);
+        fprintf(arquivo, "%s", koch);
         return;
     }
 
@@ -25,33 +20,46 @@ void Floco_de_Neve_Onda_Senoidal_1_de_Von_Koch(int ordem, int atual)
     {
         if (koch[atual] == 'F')
         {
-            Floco_de_Neve_Onda_Senoidal_1_de_Von_Koch(ordem - 1, 0);
+            Floco_de_Neve_Onda_Senoidal_1_de_Von_Koch(ordem - 1, 0, arquivo);
             atual++;
             continue;
         }
 
-        printf("%c", koch[atual++]);
+        fprintf(arquivo, "%c", koch[atual++]);
     }
 }
 
-void Preenchimento_de_Espaco_de_Hilbert(int ordem, int atual, int pai)
+void Preenchimento_de_Espaco_de_Hilbert(int ordem, int atual, int pai, FILE *arquivo)
 {
-    // Axioma: X
-    // θ = π/2
-    //
-    // Regras :
-    // X → -YF+XFX+FY-
-    // Y → +XF-YFY-FX+
-
-    if (ordem == 0)
+    if (ordem == 1)
     {
         if (pai == X)
         {
-            printf("%s", hilbert[X]);
+            for (int i = 0; hilbert[X][i] != '\0'; i++)
+            {
+                if (hilbert[X][i] == 'X')
+                    continue;
+
+                if (hilbert[X][i] == 'Y')
+                    continue;
+
+                fprintf(arquivo, "%c", hilbert[X][i]);
+            }
+
             return;
         }
 
-        printf("%s", hilbert[Y]);
+        for (int i = 0; hilbert[Y][i] != '\0'; i++)
+        {
+            if (hilbert[Y][i] == 'X')
+                continue;
+
+            if (hilbert[Y][i] == 'Y')
+                continue;
+
+            fprintf(arquivo, "%c", hilbert[Y][i]);
+        }
+
         return;
     }
 
@@ -59,28 +67,89 @@ void Preenchimento_de_Espaco_de_Hilbert(int ordem, int atual, int pai)
     {
         if (hilbert[pai][atual] == 'X')
         {
-            Preenchimento_de_Espaco_de_Hilbert(ordem - 1, 0, X);
+            Preenchimento_de_Espaco_de_Hilbert(ordem - 1, 0, X, arquivo);
             atual++;
             continue;
         }
 
         if (hilbert[pai][atual] == 'Y')
         {
-            Preenchimento_de_Espaco_de_Hilbert(ordem - 1, 0, Y);
+            Preenchimento_de_Espaco_de_Hilbert(ordem - 1, 0, Y, arquivo);
             atual++;
             continue;
         }
 
-        printf("%c", hilbert[pai][atual++]);
+        fprintf(arquivo, "%c", hilbert[pai][atual++]);
+    }
+}
+
+void Ponta_de_Flecha_de_Sierpinski(int ordem, int atual, int pai, FILE *arquivo)
+{
+    if (ordem == 1)
+    {
+        if (pai == X)
+        {
+            for (int i = 0; sierpinski[X][i] != '\0'; i++)
+            {
+                if (sierpinski[X][i] == 'X')
+                    continue;
+
+                if (sierpinski[X][i] == 'Y')
+                    continue;
+
+                fprintf(arquivo, "%c", sierpinski[X][i]);
+            }
+
+            return;
+        }
+
+        for (int i = 0; sierpinski[Y][i] != '\0'; i++)
+        {
+            if (sierpinski[Y][i] == 'X')
+                continue;
+
+            if (sierpinski[Y][i] == 'Y')
+                continue;
+
+            fprintf(arquivo, "%c", sierpinski[Y][i]);
+        }
+
+        return;
+    }
+
+    while (sierpinski[pai][atual] != '\0')
+    {
+        if (sierpinski[pai][atual] == 'X')
+        {
+            Ponta_de_Flecha_de_Sierpinski(ordem - 1, 0, X, arquivo);
+            atual++;
+            continue;
+        }
+
+        if (sierpinski[pai][atual] == 'Y')
+        {
+            Ponta_de_Flecha_de_Sierpinski(ordem - 1, 0, Y, arquivo);
+            atual++;
+            continue;
+        }
+
+        fprintf(arquivo, "%c", sierpinski[pai][atual++]);
     }
 }
 
 int main()
 {
-    // t(n) = R^n * T + nR(R^n - 1) / (R - 1)
+    int estagio;
+    scanf("%d", &estagio);
 
-    // Floco_de_Neve_Onda_Senoidal_1_de_Von_Koch(1, 0);
-    Preenchimento_de_Espaco_de_Hilbert(3, 0, X);
+    FILE *i = fopen("i.txt", "w");
+    FILE *ii = fopen("ii.txt", "w");
+    FILE *iii = fopen("iii.txt", "w");
+
+    Floco_de_Neve_Onda_Senoidal_1_de_Von_Koch(estagio, 0, i);
+    Preenchimento_de_Espaco_de_Hilbert(estagio, 0, X, ii);
+    Ponta_de_Flecha_de_Sierpinski(estagio, 0, Y, iii);
+    fprintf(iii, "F");
 
     return 0;
 }

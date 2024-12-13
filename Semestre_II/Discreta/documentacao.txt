@@ -1,0 +1,49 @@
+### Descrição das implementações e estratégias escolhidas:
+
+1. **Floco de Neve (Von Koch):**
+   - **Descrição:** Esta função desenha o fractal conhecido como "Floco de Neve de Koch". Ele começa com uma sequência inicial e, a cada iteração, substitui os segmentos `F` pela regra de produção definida.
+   - **Estratégia:** Recursividade é usada para aplicar a substituição até que a ordem 0 seja atingida, momento em que a string base (`koch`) é impressa.
+
+2. **Preenchimento de Espaço de Hilbert:**
+   - **Descrição:** Gera o fractal de Hilbert, uma curva que preenche o espaço seguindo regras específicas para os segmentos `X` e `Y`.
+   - **Estratégia:** Recursividade é empregada para processar as substituições de `X` e `Y` com as respectivas produções. Cada chamada recursiva reduz a ordem até que o fractal da ordem 0 (base) seja formado.
+
+3. **Curva de Gosper:**
+   - **Descrição:** A curva de Gosper é um fractal mais complexo, gerando padrões quadráticos que preenchem o espaço com base em regras de substituição para os segmentos `X` e `Y`.
+   - **Estratégia:** Semelhante ao fractal de Hilbert, utiliza recursividade para substituir `X` e `Y`, seguindo regras mais longas e detalhadas.
+
+---
+
+### Complexidade dos algoritmos:
+
+1. **Floco de Neve (Von Koch):**
+   - **Complexidade temporal:** \( T(n) = R \cdot T(n-1) + O(R) \), onde \( R \) é o comprimento da string substituta. Expandindo a recursão, \( T(n) \in O(R^n) \).
+   - **Complexidade espacial:** \( O(n) \), devido à profundidade da pilha recursiva.
+
+2. **Preenchimento de Espaço de Hilbert:**
+   - **Complexidade temporal:** Semelhante ao anterior, \( T(n) = R \cdot T(n-1) + O(R) \), com \( T(n) \in O(R^n) \), onde \( R = 12 \) é o comprimento das produções.
+   - **Complexidade espacial:** \( O(n) \), pela pilha recursiva.
+
+3. **Curva de Gosper:**
+   - **Complexidade temporal:** Aqui, \( R \) é o comprimento das produções, muito maior (aproximadamente 68 caracteres). A complexidade temporal segue \( T(n) \in O(R^n) \).
+   - **Complexidade espacial:** \( O(n) \), devido à recursão.
+
+---
+
+### Equações de recorrência:
+
+1. **Floco de Neve (Von Koch):**
+   - **Segmentos \( F \):** \( S(n) = 4 \cdot S(n-1) \), com \( S(0) = 1 \). Solução: \( S(n) = 4^n \).
+   - **Símbolos totais:** \( C(n) = R \cdot C(n-1) + (R - 1) \), com \( C(0) = 4 \). Solução: \( C(n) \in O(4^n) \).
+
+2. **Preenchimento de Espaço de Hilbert:**
+   - **Segmentos \( F \):** \( S(n) = 2 \cdot S(n-1) + 1 \), com \( S(0) = 1 \). Solução: \( S(n) = 2^n - 1 \).
+   - **Símbolos totais:** \( C(n) = R \cdot C(n-1) + (R - 1) \), com \( C(0) = 12 \). Solução: \( C(n) \in O(12^n) \).
+
+3. **Curva de Gosper:**
+   - **Segmentos \( F \):** \( S(n) = 2 \cdot S(n-1) + R \), com \( S(0) = 1 \). Solução: \( S(n) \in O(2^n) \).
+   - **Símbolos totais:** \( C(n) = R \cdot C(n-1) + (R - 1) \), com \( C(0) = 68 \). Solução: \( C(n) \in O(R^n) \).
+
+---
+
+Se desejar, posso revisar e ajustar detalhes do código ou ajudar com mais explicações!
