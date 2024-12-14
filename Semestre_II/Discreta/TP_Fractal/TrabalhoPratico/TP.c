@@ -10,6 +10,9 @@ const char koch[] = "F-F++FF--F+F";
 const char hilbert[][12] = {"-YF+XFX+FY-", "+XF-YFY-FX+"};
 const char sierpinski[][8] = {"YF+XF+Y", "XF-YF-X"};
 
+int Signos = 0, Fs = 0;
+int somarSignos = 7, somarFs = 2;
+
 // Função recursiva para gerar o fractal Floco de Neve de Von Koch
 void Floco_de_Neve_Onda_Senoidal_1_de_Von_Koch(int ordem, int indice, FILE *arquivo)
 {
@@ -42,6 +45,8 @@ void Preenchimento_de_Espaco_de_Hilbert(int ordem, int indice, int pai, FILE *ar
     // Caso base: se a ordem é 1, imprime a sequência de Hilbert correspondente e retorna
     if (ordem == 1)
     {
+        Signos += somarSignos;
+        Fs += somarFs;
         // Se o pai é X, percorre a sequência de Hilbert para X
         if (pai == X)
         {
@@ -96,7 +101,12 @@ void Preenchimento_de_Espaco_de_Hilbert(int ordem, int indice, int pai, FILE *ar
         }
 
         // Imprime o caractere atual no arquivo
+        if (hilbert[pai][indice] == 'F')
+        {
+            Fs++;
+        }
         fprintf(arquivo, "%c", hilbert[pai][indice++]);
+        Signos++;
     }
 }
 
@@ -111,6 +121,7 @@ void Ponta_de_Flecha_de_Sierpinski(int ordem, int indice, int pai, FILE *arquivo
         {
             for (int i = 0; sierpinski[X][i] != '\0'; i++)
             {
+
                 if (sierpinski[X][i] == 'X')
                     continue;
 
