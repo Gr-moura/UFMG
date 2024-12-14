@@ -11,7 +11,7 @@ const char hilbert[][12] = {"-YF+XFX+FY-", "+XF-YFY-FX+"};
 const char sierpinski[][8] = {"YF+XF+Y", "XF-YF-X"};
 
 // Função recursiva para gerar o fractal Floco de Neve de Von Koch
-void Floco_de_Neve_Onda_Senoidal_1_de_Von_Koch(int ordem, int atual, FILE *arquivo)
+void Floco_de_Neve_Onda_Senoidal_1_de_Von_Koch(int ordem, int indice, FILE *arquivo)
 {
     // Caso base: se a ordem é 1, imprime a sequência de Koch e retorna
     if (ordem == 1)
@@ -21,23 +21,23 @@ void Floco_de_Neve_Onda_Senoidal_1_de_Von_Koch(int ordem, int atual, FILE *arqui
     }
 
     // Percorre a sequência de Koch
-    while (koch[atual] != '\0')
+    while (koch[indice] != '\0')
     {
         // Se o caractere atual é 'F', chama recursivamente para a próxima ordem
-        if (koch[atual] == 'F')
+        if (koch[indice] == 'F')
         {
             Floco_de_Neve_Onda_Senoidal_1_de_Von_Koch(ordem - 1, 0, arquivo);
-            atual++;
+            indice++;
             continue;
         }
 
         // Imprime o caractere atual no arquivo
-        fprintf(arquivo, "%c", koch[atual++]);
+        fprintf(arquivo, "%c", koch[indice++]);
     }
 }
 
 // Função recursiva para gerar o fractal de Preenchimento de Espaço de Hilbert
-void Preenchimento_de_Espaco_de_Hilbert(int ordem, int atual, int pai, FILE *arquivo)
+void Preenchimento_de_Espaco_de_Hilbert(int ordem, int indice, int pai, FILE *arquivo)
 {
     // Caso base: se a ordem é 1, imprime a sequência de Hilbert correspondente e retorna
     if (ordem == 1)
@@ -77,31 +77,31 @@ void Preenchimento_de_Espaco_de_Hilbert(int ordem, int atual, int pai, FILE *arq
     }
 
     // Percorre a sequência de Hilbert para o pai atual
-    while (hilbert[pai][atual] != '\0')
+    while (hilbert[pai][indice] != '\0')
     {
         // Se o caractere atual é 'X', chama recursivamente para a próxima ordem com pai X
-        if (hilbert[pai][atual] == 'X')
+        if (hilbert[pai][indice] == 'X')
         {
             Preenchimento_de_Espaco_de_Hilbert(ordem - 1, 0, X, arquivo);
-            atual++;
+            indice++;
             continue;
         }
 
         // Se o caractere atual é 'Y', chama recursivamente para a próxima ordem com pai Y
-        if (hilbert[pai][atual] == 'Y')
+        if (hilbert[pai][indice] == 'Y')
         {
             Preenchimento_de_Espaco_de_Hilbert(ordem - 1, 0, Y, arquivo);
-            atual++;
+            indice++;
             continue;
         }
 
         // Imprime o caractere atual no arquivo
-        fprintf(arquivo, "%c", hilbert[pai][atual++]);
+        fprintf(arquivo, "%c", hilbert[pai][indice++]);
     }
 }
 
 // Função recursiva para gerar o fractal Ponta de Flecha de Sierpinski
-void Ponta_de_Flecha_de_Sierpinski(int ordem, int atual, int pai, FILE *arquivo)
+void Ponta_de_Flecha_de_Sierpinski(int ordem, int indice, int pai, FILE *arquivo)
 {
     // Caso base: se a ordem é 1, imprime a sequência de Sierpinski correspondente e retorna
     if (ordem == 1)
@@ -141,26 +141,26 @@ void Ponta_de_Flecha_de_Sierpinski(int ordem, int atual, int pai, FILE *arquivo)
     }
 
     // Percorre a sequência de Sierpinski para o pai atual
-    while (sierpinski[pai][atual] != '\0')
+    while (sierpinski[pai][indice] != '\0')
     {
         // Se o caractere atual é 'X', chama recursivamente para a próxima ordem com pai X
-        if (sierpinski[pai][atual] == 'X')
+        if (sierpinski[pai][indice] == 'X')
         {
             Ponta_de_Flecha_de_Sierpinski(ordem - 1, 0, X, arquivo);
-            atual++;
+            indice++;
             continue;
         }
 
         // Se o caractere atual é 'Y', chama recursivamente para a próxima ordem com pai Y
-        if (sierpinski[pai][atual] == 'Y')
+        if (sierpinski[pai][indice] == 'Y')
         {
             Ponta_de_Flecha_de_Sierpinski(ordem - 1, 0, Y, arquivo);
-            atual++;
+            indice++;
             continue;
         }
 
         // Imprime o caractere atual no arquivo
-        fprintf(arquivo, "%c", sierpinski[pai][atual++]);
+        fprintf(arquivo, "%c", sierpinski[pai][indice++]);
     }
 }
 

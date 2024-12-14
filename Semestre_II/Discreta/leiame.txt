@@ -1,61 +1,1 @@
-LEIAME
-
-Sobre o Programa
-
-Este programa em linguagem C utiliza as bibliotecas padr√£o <stdio.h> e <stdlib.h> para realizar suas opera√ß√µes. Ele implementa funcionalidades com uso de recurs√£o e, durante sua execu√ß√£o, gera tr√™s arquivos de sa√≠da: i.txt, ii.txt e iii.txt. Estes arquivos s√£o apenas criados e preenchidos com dados, sem necessidade de serem lidos novamente pelo programa.
-
-Requisitos do Ambiente
-
-Compilador: GCC (GNU Compiler Collection), vers√£o 4.8 ou superior.
-
-Sistema Operacional: O programa √© multiplataforma e pode ser executado em sistemas Linux, Windows ou macOS.
-
-Bibliotecas Necess√°rias: Apenas as bibliotecas padr√£o <stdio.h> e <stdlib.h> s√£o requeridas.
-
-Como Compilar
-
-Certifique-se de que o compilador GCC est√° instalado e configurado no seu sistema.
-
-Verifique a instala√ß√£o com o comando:
-
-gcc --version
-
-Compile o arquivo-fonte com o seguinte comando:
-
-gcc -o programa nome_do_arquivo.c
-
-Substitua nome_do_arquivo.c pelo nome do arquivo-fonte.
-
-Como Executar
-
-Ap√≥s a compila√ß√£o, execute o programa com:
-
-./programa
-
-O programa aceitar√° entradas diretamente pela stdin (entrada padr√£o). Certifique-se de fornecer os dados corretamente, conforme as instru√ß√µes que ele exibe.
-
-Durante a execu√ß√£o, tr√™s arquivos ser√£o gerados no diret√≥rio atual:
-
-i.txt
-
-ii.txt
-
-iii.txt
-
-Esses arquivos conter√£o os dados processados pelo programa.
-
-Observa√ß√µes
-
-Cuidado ao sobrescrever os arquivos: Caso o programa seja executado mais de uma vez no mesmo diret√≥rio, os arquivos i.txt, ii.txt e iii.txt ser√£o sobrescritos.
-
-Uso de Recurs√£o: O programa faz uso de recurs√£o. Para entradas muito grandes, √© recomendado garantir que o sistema suporte o n√≠vel de profundidade necess√°rio para evitar problemas como stack overflow.
-
-D√∫vidas ou Problemas
-
-Caso encontre problemas durante a compila√ß√£o ou execu√ß√£o, certifique-se de:
-
-Conferir se o GCC est√° corretamente instalado.
-
-Verificar as permiss√µes de grava√ß√£o no diret√≥rio onde o programa est√° sendo executado.
-
-Para suporte adicional, entre em contato com o desenvolvedor.
+Sobre o ProgramaEste programa em linguagem C utiliza as bibliotecas padrão <stdio.h> e <stdlib.h> para realizar suas operações. Ele implementa funcionalidades com uso de recursão e, durante sua execução, gera três arquivos de saída: i.txt, ii.txt e iii.txt. Estes arquivos são apenas criados e preenchidos com as sequências dos fractais gerados.Requisitos do Ambiente	* Compilador: GCC (GNU Compiler Collection), versão 4.8 ou superior.  	* Sistema Operacional: O programa é multiplataforma e pode ser executado em sistemas Linux, Windows ou macOS.  	* Bibliotecas Necessárias: Apenas as bibliotecas padrão <stdio.h> e <stdlib.h> são requeridas.Como Compilar	1. Certifique-se de que o compilador GCC está instalado e configurado no seu sistema.		* gcc --version        	2. Compile o arquivo-fonte com o seguinte comando:		* gcc -o TP TP.cComo Executar	1. Após a compilação, execute o programa com:		* ./TP    	2. O programa aceitará entradas somente pela stdin (entrada padrão). Certifique-se de fornecer os dados corretamente, ou seja, digite apenas o estágio desejado para os fractais.    	3. Durante a execução, três arquivos serão gerados no diretório atual:		* i.txt 		* ii.txt 		* iii.txt	Esses arquivos conterão a sequência de caracteres de cada fractal, de acordo com o estágio requerido pela entrada.
