@@ -1,82 +1,60 @@
-#ifndef VETOR_HPP
-#define VETOR_HPP
+#ifndef VETOR_H
+#define VETOR_H
 
-template <typename T> class Node
-{
-  private:
-    T value;
-    Node<T> *next = nullptr;
-
-  public:
-    Node() : Node(0) {}
-    Node(T value) : value(value), next(nullptr) {}
-
-    const T getValue() const { return value; };
-    void setValue(T newValue) { this->value = newValue; };
-
-    const Node<T> *getNext const(return this;);
-    void setNext(Node<T> *newNext) { this -> next = newNext };
-};
-
-template <typename T> class Lista
-{
-  private:
-    Node<T> *head = nullptr;
-    Node<T> *tail = nullptr;
-
-  public:
-    void addBack(T value)
-    {
-        Node<T> *temp = new Node(value);
-
-        if (!temp)
-            return;
-
-        if (!head)
-        {
-            head = temp;
-            tail = temp;
-            return;
-        }
-
-        tail->setNext(temp);
-        tail = tail->getNext();
-    }
-
-    ~Lista()
-    {
-        Node<T> *temp = head;
-        Node<T> *next = nullptr;
-
-        while (temp)
-        {
-            next = temp->getNext();
-            delete temp;
-            temp = next;
-        }
-
-        head = nullptr;
-        tail = nullptr;
-    }
-};
+#include <iostream>
+using namespace std;
 
 template <typename T> class Vetor
 {
   private:
     int maxSize;
     int nElementos;
+    T *vetor;
 
   public:
-    Vetor(int n) : maxSize(n) {}
-    Vetor(const Vetor &copia) {}
+    Vetor(int n) : maxSize(n), nElementos(0) { this->vetor = new T[n]; }
+    Vetor(const Vetor &copia) : maxSize(copia.maxSize), nElementos(copia.nElementos)
+    {
+        this->vetor = new T[maxSize];
 
-    ~Vetor() {}
+        for (int i = 0; i < nElementos; ++i)
+            this->vetor[i] = copia.vetor[i];
+    }
 
-    SetElemento(int i, T x) {}
-    GetElemento(int i) {}
+    ~Vetor() { delete[] vetor; }
 
-    AdicionaElemento(T i) {}
-    Imprime() {}
+    void SetElemento(int i, T x)
+    {
+        if (i >= nElementos)
+            throw out_of_range("Index out of range");
+
+        this->vetor[i] = x;
+    }
+
+    const T &GetElemento(int i) const
+    {
+        if (i >= nElementos)
+            throw std::overflow_error("Max size reached");
+
+        return this->vetor[i];
+    }
+
+    void AdicionaElemento(T x)
+    {
+        if (nElementos < maxSize)
+            this->vetor[nElementos++] = x;
+
+        else
+            throw std::overflow_error("Max size reached");
+    }
+
+    void Imprime() const
+    {
+        for (int i = 0; i < nElementos; i++)
+            cout << this->vetor[i] << " ";
+
+        cout << endl;
+    }
 };
 
 #endif
