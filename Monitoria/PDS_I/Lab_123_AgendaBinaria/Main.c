@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-FILE *file;
-FILE *out;
+
 typedef struct
 {
     char nome[50];
@@ -13,47 +12,22 @@ typedef struct
 
 typedef contato_t agenda_t[100];
 
-int inserir(int *pessoa_inserida, contato_t *agenda)
-{
-    char dados[100];
-    fgets(dados, 100, file);
-
-    if (*pessoa_inserida >= 100)
-        return 0;
-
-    sscanf(dados, "%s %d %s", agenda[(*pessoa_inserida)].nome, &agenda[(*pessoa_inserida)].idade,
-           agenda[(*pessoa_inserida)].telefone);
-    fprintf(out, "Registro %s %d %s inserido\n", agenda[(*pessoa_inserida)].nome, agenda[(*pessoa_inserida)].idade,
-            agenda[(*pessoa_inserida)].telefone);
-
-    return 1;
-}
-
-int excluir(int *pessoa_inserida, contato_t *agenda)
-{
-    char dados[100];
-    fgets(dados, 100, file);
-
-    if (*pessoa_inserida >= 100)
-        return 0;
-
-    sscanf(dados, "%s %d %s", agenda[(*pessoa_inserida)].nome, &agenda[(*pessoa_inserida)].idade,
-           agenda[(*pessoa_inserida)].telefone);
-    fprintf(out, "Registro %s %d %s inserido\n", agenda[(*pessoa_inserida)].nome, agenda[(*pessoa_inserida)].idade,
-            agenda[(*pessoa_inserida)].telefone);
-
-    return 1;
-}
-
 int main(int argc, char **argv)
 {
     agenda_t agenda;
-    contato_t blank;
+    contato_t blank = {"", 0, ""};
 
-    char nome[100] = "dados.bin";
+    char nome[100];
+    scanf("%s", nome);
 
-    out = fopen("out.txt", "wb");
-    file = fopen("dados.bin", "rb");
+    FILE *file = fopen(nome, "rb");
+    FILE *out = fopen("out.txt", "w");
+
+    if (file == NULL)
+    {
+        perror("Error");
+        return EXIT_FAILURE;
+    }
 
     char c;
     int pessoa_inserida = 0;
@@ -63,31 +37,37 @@ int main(int argc, char **argv)
     char comando[100], dados[100];
     char mensagem[200];
 
-    int achou, espaco;
+    int achou;
 
     do
     {
-
-        fgets(comando, 100, file);
+        if (fgets(comando, 100, file) == NULL)
+            break;
         comando[strlen(comando) - 1] = '\0';
 
         if (!strcmp(comando, "Inserir"))
         {
+            if (fgets(dados, 100, file) == NULL)
+                break;
 
-            espaco = inserir(&pessoa_inserida, agenda);
-
-            if (!espaco)
+            if (pessoa_inserida >= 100)
             {
-                fprintf(out, "Espaco insuficiente\n");
+                printf("Espaco insuficiente\n");
                 continue;
             }
+
+            sscanf(dados, "%s %d %s", agenda[pessoa_inserida].nome, &agenda[pessoa_inserida].idade,
+                   agenda[pessoa_inserida].telefone);
+            printf("Registro %s %d %s inserido\n", agenda[pessoa_inserida].nome, agenda[pessoa_inserida].idade,
+                   agenda[pessoa_inserida].telefone);
 
             pessoa_inserida++;
         }
 
         else if (!strcmp(comando, "Excluir"))
         {
-            fgets(dados, 100, file);
+            if (fgets(dados, 100, file) == NULL)
+                break;
             sscanf(dados, "%s", temp_nome);
 
             achou = 0;
@@ -103,21 +83,22 @@ int main(int argc, char **argv)
 
             if (achou == 0)
             {
-                fprintf(out, "Registro %s invalido\n", temp_nome);
+                printf("Registro %s invalido\n", temp_nome);
                 continue;
             }
 
-            fprintf(out, "Registro %s %d %s excluido\n", agenda[pessoa_atual].nome, agenda[pessoa_atual].idade,
-                    agenda[pessoa_atual].telefone);
+            printf("Registro %s %d %s excluido\n", agenda[pessoa_atual].nome, agenda[pessoa_atual].idade,
+                   agenda[pessoa_atual].telefone);
 
-            agenda[pessoa_atual] = agenda[pessoa_inserida];
-            agenda[pessoa_inserida] = blank;
+            agenda[pessoa_atual] = agenda[pessoa_inserida - 1];
+            agenda[pessoa_inserida - 1] = blank;
             pessoa_inserida--;
         }
 
         else if (!strcmp(comando, "Alterar"))
         {
-            fgets(dados, 100, file);
+            if (fgets(dados, 100, file) == NULL)
+                break;
             sscanf(dados, "%s", temp_nome);
 
             achou = 0;
@@ -133,12 +114,12 @@ int main(int argc, char **argv)
 
             if (achou == 0)
             {
-                fprintf(out, "Registro %s invalido\n", temp_nome);
+                printf("Registro %s invalido\n", temp_nome);
                 continue;
             }
 
-            fprintf(out, "Registro %s %d %s alterado\n", agenda[pessoa_atual].nome, agenda[pessoa_atual].idade,
-                    agenda[pessoa_atual].telefone);
+            printf("Registro %s %d %s alterado\n", agenda[pessoa_atual].nome, agenda[pessoa_atual].idade,
+                   agenda[pessoa_atual].telefone);
             sscanf(dados, "%s %d %s", agenda[pessoa_atual].nome, &agenda[pessoa_atual].idade,
                    agenda[pessoa_atual].telefone);
         }
@@ -161,12 +142,12 @@ int main(int argc, char **argv)
 
             if (achou == 0)
             {
-                fprintf(out, "Registro %s invalido\n", temp_nome);
+                printf("Registro %s invalido\n", temp_nome);
                 continue;
             }
 
-            fprintf(out, "Registro %s %d %s exibido\n", agenda[pessoa_atual].nome, agenda[pessoa_atual].idade,
-                    agenda[pessoa_atual].telefone);
+            printf("Registro %s %d %s exibido\n", agenda[pessoa_atual].nome, agenda[pessoa_atual].idade,
+                   agenda[pessoa_atual].telefone);
         }
     } while (strlen(comando) > 0);
 
