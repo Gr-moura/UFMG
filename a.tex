@@ -1,0 +1,813 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Author: Sibi <sibi@psibi.in>
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tabularx}
+\usepackage{mathtools}
+\setlength\parskip{\baselineskip}
+\begin{document}
+\title{Chapter 4 (Section 4.6)}
+\author{Sibi}
+\date{\today}
+\maketitle
+
+% See here: http://tex.stackexchange.com/a/43009/69223
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}%
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}%
+
+% Swap the definition of \abs* and \norm*, so that \abs
+% and \norm resizes the size of the brackets, and the 
+% starred version does not.
+\makeatletter
+\let\oldabs\abs
+\def\abs{\@ifstar{\oldabs}{\oldabs*}}
+%
+\let\oldnorm\norm
+\def\norm{\@ifstar{\oldnorm}{\oldnorm*}}
+\makeatother
+\newpage
+
+\section{Problem 1}
+
+\begin{align*}
+  \{\{1\},\{2\},\{3\}\}
+  \{\{1,2\},\{3\}\}
+  \{\{1,3\},\{2\}\}
+  \{\{2,3\},\{1\}\}
+  \{\{1,2,3\}\}
+\end{align*}
+
+\section{Problem 2}
+
+Identity relation and $A \times A$
+
+\section{Problem 3}
+
+\subsection{Solution (a)}
+$R = \{(x,y) \in W \times W \mid \text{the words x and y start with the same
+letter} \}$
+
+\begin{itemize}
+\item Reflexive: Let $x$ be an arbitrary element in $W$. Then $(x,x)
+  \in R$ since both start from the same letter as they are same.
+\item Symmetric: Let $x,y$ be an arbitrary element in $W$ such that
+  $xRy$. Now we know that $x$ and $y$ start with the same. So, $yRx$.
+\item Transitive: Let $x,y$ and $z$ be arbitrary element in $W$ such
+
+  that $xRy$ and $yRz$. Both $x$ and $y$ start with the same letter.
+  Similarly, $y$ and $z$ start with the same letter. So, $xRz$.
+\end{itemize}
+
+\subsection{Solution (b)}
+Counterexample for transitive:
+\begin{align*}
+  ("hello","hask") \in S, ("hask", "kitten") \in S \\
+  ("hello", kitten) \notin S
+\end{align*}
+
+\subsection{Solution (c)}
+$T = \{(x,y) \in W \times W \mid \text{the words x and y have the same
+  number of letters}\}$
+
+\begin{itemize}
+\item Reflexive: Let $x$ be an arbitrary element in $W$. It follows
+  that $xTx$ since it has the same number of letters.
+\item Symmetric: Let $x$ and $y$ be arbitrary element in $W$ such that
+  $xTy$. Now from $xTy$, we get to know that $x$ and $y$ have the same
+  number of letters. So, $yTx$.
+\item Transitive: Let $x,y$ and $z$ be arbitrary element in $T$ such
+  that $xTy$ and $yTz$. Now we know $x$ and $y$ have same number of
+  letters. Similarly from $yTz$, we know that $y$ and $z$ have the
+  same number of letters. So, $x$ and $z$ has the same number of
+  letters. So, $xRz$.
+\end{itemize}
+
+\section{Problem 4}
+\subsection{Solution (a)}
+Counterexample for Symmetric property:
+
+\begin{align*}
+  (10,5) \in R \\
+  (5,10) \notin R \text{ since} -5 \notin \mathbb{N}
+\end{align*}
+
+\subsection{Solution (b)}
+\begin{itemize}
+\item Reflexive. Let $x$ be an arbitrary element in $\mathbb{R}$. Since
+  $x - x = 0$ and $0 \in \mathbb{Q}$, it follows that $(x,x) \in S$.
+\item Symmetric. Let $x, y$ be an arbitrary element in $\mathbb{R}$
+  such that $xSy$. It follows that $x - y \in \mathbb{Q}$. Now since
+  $y - x \in \mathbb{Q}$, it follows that $ySx$.
+\item Transitive. Let $x,y$ and $z$ be arbitrary element in
+  $\mathbb{R}$ such that $xSy$ and $ySz$. It follows that $x - y$ and
+  $y - z$ are in $\mathbb{Q}$. Adding two rational numbers gives us a
+  rational number, so $xSz$.
+\end{itemize}
+
+Equivalence classes is the partition of real numbers whose difference
+is a rational number
+
+\subsection{Solution (c)}
+It is an equivalence relation.
+
+\section{Problem 5}
+$P = $ Set of all people \\
+$B = \{(p,q) \in P \times P \mid \text{p and q have same birthday}\}$ \\
+$P_d = { p \in P \mid  \text{p has birthday on day d}}$ \\
+
+From the definition of $P$ modulo $B$, we get $P/R = \{X \subseteq P
+\mid \exists x \in P(X = [x]_R)\}$. Now $P_d$ would be an equivalent
+class if there exists at least one person who was born on day $d$. So,
+$P/R = \{P_d \mid d \in D\}$.
+
+\section{Problem 6}
+$S = \{(s,t) \in T \times T \mid \text{the triangles s and t are similar}$
+
+\begin{itemize}
+\item Reflexive. Let $x$ be an arbitrary element in $T$. Since a
+  triangle is similar with itself, $S$ is reflexive.
+\item Symmetric. Let $x,y$ be an arbitrary element in $T$ such that
+  $xSy$. We know that $x$ and $y$ are similar. So, $ySx$.
+\item Transitive. Let $x,y$ and $z$ be arbitrary element in $T$ such
+  that $xSy$ and $ySz$. We know that $x$ and $y$ are similar to each
+  other. Similarly $y$ and $z$ are similar to each other. So. $x$ and
+  $z$ are similar to each other. So, $xSz$. Since $x,y$ and $z$ are
+  arbitrary we can conclude that $S$ is transitive.
+\end{itemize}
+
+\section{Problem 7}
+\begin{itemize}
+\item Symmetric. Let $x,y$ be arbitrary elements in $A$ such that
+  $xRy$. So $(x,y) \in R$. Since $R = \cup_{X \in F}(X \times X)$, it
+  follows that for some $X \in F$, $(x,y) \in X \times X$. So, $x \in
+  X$ and $y \in X$. But then $(y,x) \in X \times X$. So, $(y,x) \in
+  \cup_{X \in F}(X \times X)$. Since $x$ and $y$ are arbitrary, it
+  follows that $R$ is symmetric.
+\item Transitive. Let $x,y$ and $z$ be arbitrary elements in $A$ such
+  that $xRy$ and $yRz$. Since $R = \cup_{X \in F}(X \times X)$, it
+  follows that for some $X \in F$, $(x,y) \in X \times X$. Similarly
+  for some $Y \in F$, $(y,z) \in Y \times Y$. So, $y \in X$ and $y \in
+  Y$. But from the definition of partition, we know that $F$ is
+  pairwise disjoint. So, $X=Y$ which leads us to $(x,z) \in \cup_{X
+    \in F}(X \times X)$. Since $x,y$ and $z$ are arbitrary, it follows
+  that $R$ is transitive.
+\end{itemize}
+
+\section{Problem 8}
+\begin{itemize}
+\item $(\Rightarrow)$ Let $(x,y)$ be an arbitrary element in $R$ such
+  that $x \in A$ and $y \in A$. From $xRy$, it follows that they are
+  part of the same equivalence class, so $x \in [x]_R$ and
+  $y \in [y]_R$. From $A/R = A/S$, it follows that $[x]_R \in A/R$ and
+  $[y]_R \in A/S$. Since they are from the same equivalence class,
+  $(x,y) \in S$. Since $x$ and $y$ are arbitrary, it follows that
+  $R \subseteq S$.
+\item $(\Leftarrow)$. Follows the same reasoning in other direction.
+\end{itemize}
+
+\section{Problem 9}
+\begin{itemize}
+\item $(\Rightarrow)$ Let $(x,y)$ be an arbitrary element in $S$ such
+  that $x \in A$ and $y \in B$. From $S=\cup_{X \in F}(X \times X)$,
+  it follows that there is some element $X in F$ such that $x \in X$
+  and $y \in X$. Now $F = A/R$, so $X$ is an equivalence class of $R$
+  on $A$. So, $X = [x]_R = [y]_R$. Hence $(x,y) \in R$, so $S
+  \subseteq R$.
+\item $(\Leftarrow)$. Follow the same reasoning in other direction
+\end{itemize}
+
+\section{Problem 10} 
+$C_m = \{(x,y) \in \mathbb{Z} \times \mathbb{Z} \mid x \equiv y (\text{ mod m})\}$
+\subsection{Solution (a)}
+Reflexive \\ \\
+Let $x$ be an arbitrary element in $Z$. $(x,x) \in C_m$ for $k = 0$.
+Since $x$ was arbitrary, it follows that $C_m$ is reflexive.
+
+\noindent
+Symmetric \\ \\
+Let $x,y$ be an arbitrary element in $Z$ such that $(x,y) \in C_m$. It
+follows that $x \equiv y (\text{ mod m })$ or $\exists k \in Z (x - y
+= km)$. Since $-k \in Z$, it follows that $y - x = (-k)m$. From the
+definition of $C_m$, it follows that $(y,x) \in C_m$. Since $x$ and
+$y$ was arbitrary, it follows that $C_m$ is symmetric.
+
+\subsection{Solution (b)}
+$C_2 = \{(x,y) \in \mathbb{Z} \times \mathbb{Z} \mid \abs{x-y} \text{ is even}\}$
+$C_3 = \{(x,y) \in \mathbb{Z} \times \mathbb{Z} \mid \abs{x-y} \text{
+  is divisible by 3}\}$
+
+$C_2$ has two equivalence class and $C_2$ has three equivalence
+classes. $C_m$ is likely to have $m$ equivalence classes.
+
+\section{Problem 11}
+Let $n$ be an arbitrary integer. We know that every integer is either
+even or odd.
+\\
+Case 1. $n$ is even. Suppose $k = \frac{n^2}{4}$. $k$ is an integer
+since $n$ is even and the smallest non-zero even number squared by
+itself is divisible by 4. It follows that $n^2 = k4$. So, $n^2 \equiv
+0 (\text{ mod 4})$.
+\\
+Case 2. $n$ is odd. Suppose $k = \frac{n^2 - 1}{4}$. $k$ is an integer
+since $n^2 - 1$ is an even number having a factor of $4$. It follows
+that $n^2 - 1 = 4k$. So, $n^2 = 1 (\text{ mod 4})$
+
+\section{Problem 12}
+Suppose $a \equiv c (\text{ mod m})$ and $b \equiv d (\text{ mod m})$. Then it follows
+that $a - c = k_1m$ and $b - d = k_2m$ for some integer $k_1$ and
+$k_2$. Summing them up we get, $(a + b) - (c + d) = m(k_1 + k_2)$.
+Since $k_1 + k_2$ is an integer, from the definition of congruent it
+follows that $(a + b) \equiv c + d (\text{ mod m})$. \\ \\
+Proof of $ab \equiv cd (\text{ mod m})$ \\
+We know that $ a = c + mk_1$. It follows that $ab = bc + bmk_1$.
+Similarly we know that $b = d + mk_2$. Then it follows that $cd = cb -
+cmk_2$. Subtracting them we get, $ab - cd = m(bk_1 + ck_2)$. Since
+$bk_1 + ck_2$ is an integer, from the definition of congruent it
+follows that $ab \equiv cd (\text{ mod m})$
+
+\section{Problem 13}
+\subsection{Solution (a)}
+Proof of Reflexive \\ 
+Let $b$ be an arbitrary element on $B$. Since $B \subseteq A$, it
+follows that $b \in A$. Since $R$ is reflexive on $A$, it follows that
+$(b,b) \in R$. From the definition of cartesian product, it follows
+that $(b,b) \in B \times B$. So, $(b,b) \in R \cap (B \times B)$.
+Since $b$ was an arbitrary element of $B$, it follows that
+$R \cap (B \times B)$ is reflexive. \\ \\
+Proof of Symmetric \\ 
+Let $a,b$ be arbitrary element on $B$ such that
+$(a,b) \in R \cap (B \times B)$. Since $R$ is symmetric, it follows
+that $(b,a) \in R$. From the definition of cartesian product, it
+follows that $(b,a) \in B \times B$. So,
+$(b,a) \in R \cap (B \times B)$. Since $a$ and $b$ are an arbitrary
+element of $B$, it follows that $R \cap (B \times B)$ is symmetric. \\\\
+Proof of Transitive \\ 
+Let $a,b$ and $c$ be arbitrary element in $B$ such that $(a,b) \in R
+\cap (B \times B)$ and $(b,c) \in R \cap (B \times B)$. Since $R$ is
+transitive it follows that $(a,c) \in R$. From the definition of
+cartesian product, it follows that $(a,c) \in B \times B$. So, $(a,c)
+\in R \cap (B \times B)$. Since $a,b$ and $c$ are arbitrary we can
+conclude that $R \cap (B \times B)$ is transitive.
+
+\subsection{Solution (b)}
+Let x be an arbitrary element in $B$. \\
+($\Rightarrow$) Suppose $y \in [x]_S$. From the definition of
+equivalence class, it follows that $ySx$. We know that $S = R \cap (B
+\times B)$, so $(y,x) \in R \cap (B \times B)$. From $(y,x) \in B
+\times B$, it follows that $y \in B$. Similarly from $yRx$ and from
+the definition of equivalence class, it follows that $y \in [x]_R$.
+So, $y \in [x]_R \cap B$. \\
+
+\noindent
+($\Leftarrow$) Suppose $y \in [x]_R \cap B$. From the definition of
+equivalence class, it follows that $yRx$. Also, we know that $y \in B$
+and $x \in B$. So, $(y,x) \in B \times B$. From this we can conclude
+that $(y,x) \in R \cap (B \times B)$ or $(y,x) \in S$. Using the
+definition of equivalence class, we get $y \in [x]_S$.
+\\
+Since $y$ was arbitrary it follows that $[x]_S = [x]_R \cap B$.
+
+\section{Problem 14}
+\subsection{Solution (a)}
+Proof for reflexive
+
+Let $X$ be an arbitrary element on $\mathbb{P}(A)$. We know that $X
+\Delta X = \emptyset$. And since null set is part of all set, $X \Delta
+X \subseteq B$. From the definition of $R$, it follows that $(X,X) \in
+R$. Since $X$ is arbitrary it follows that $R$ is reflexive.
+
+Proof for reflexive
+
+Let $X,Y$ be an arbitrary element on $\mathbb{P}(A)$ such that $(X,Y)
+\in R$. Since $(X,Y) \in R$, it follows that $X \Delta Y \subseteq B$.
+So, $(X \setminus Y) \cup (Y \setminus X) \subseteq B$. This can be
+also written as $(Y \setminus X) \subseteq B \cup (X \setminus Y)$.
+So, $Y \Delta X \subseteq B$. From the definition of $R$, it follows
+that $(Y,X) \in R$. Since $X$ and $Y$ are arbitrary it follows that
+$R$ is symmetric.
+
+Proof for transitive
+
+Let $X,Y$ and $Z$ be arbitrary element of $\mathbb{P}(A)$ such that
+$(X,Y) \in R$ and $(Y,Z) \in R$. From $(X,Y) \in R$, it follows that
+$(X \setminus Y) \cup (Y \setminus X) \subseteq B$. Similarly, $(Y
+\setminus Z) \cup (Z \setminus Y) \subseteq B$. Let $a$ be an
+arbitrary element in $(X \setminus Z) \cup (Z \setminus X)$.
+Case 1. $a \in X \setminus Z$
+It follows that $a \in X$ and $a \notin Z$.Combining union, we get $(X
+\setminus Y) \cup (Y \setminus X) \cup (Y \setminus Z) \cup (Z
+\setminus Y) \subseteq B$. Now we know $a \in X$, so $a \notin (Y
+\setminus X)$. Similarly from $a \notin Z$, it follows that $a \notin
+(Z \setminus Y)$. Simplifying it we get, $(X \setminus Y) \cup (Y
+\setminus Z) \subseteq B$. From the law of excluded middle, $a \in Y$
+or $a \notin Y$. If $a \in Y$, then $a \in Y \setminus Z$ so $a \in
+B$. If $a \notin Y$, then $a \in X \setminus Y$, so $a \in R$.
+Case 2. $a \in Z \setminus X$
+It follows that $a \in Z$ and $a \notin X$. Combining union, we get $(X
+\setminus Y) \cup (Y \setminus X) \cup (Y \setminus Z) \cup (Z
+\setminus Y) \subseteq B$. Now we know $a \in Z$, so $a \notin Y
+\setminus Z$. Also from $a \notin X$, we know that $a \notin X
+\setminus Y$. Simplifying it, we get $(Y \setminus X) \cup (Z
+\setminus Y) \subseteq R$. From the law of excluded middle, $a \in Y$
+or $a \notin Y$. If $a \in Y$, then $a \in Y /setminus X$ so $a \in
+B$. If $a \notin Y$, then $a \in Z / setminus Y$, so $a \in R$.
+
+\section{Solution 15}
+Suppose $F$ is a partition of $A$ and $G$ is a partition of $B$ and $A$
+and $B$ are disjoint.
+\subsection{Proof of $\cup(F \cup G) = A \cup B$}
+We know that $\cup F = A$ and $\cup G = B$. Taking union of both,
+$(\cup F) \cup (\cup G) = A \cup B$. From chapter 3, exercise 15 we
+know that $(\cup F) \cup (\cup G) = \cup(F \cup G)$. Hence we can
+conclude that $\cup(F \cup G) = A \cup B$.
+
+\subsection{Proof of $F \cup G$ is pairwise disjoint}
+Let $X$ and $Y$ be an arbitrary element in $F \cup G$. Suppose $x \neq
+Y$.
+\\ Case 1: $X \in F \land Y \in F$. Since $F$ is a partition of $A$, we
+know that $F$ is pairwise disjoint. So, $X \cap Y = \emptyset$.
+\\ Case 2: $X \in F \land Y \in G$. Since $\cup F = A$, it follows that
+$X \subseteq A$. Similarly, $Y \subseteq B$. Since $A \cap B =
+\emptyset$, we can conclude that $X \cap Y = \emptyset$. (Prove that
+lemma if you are not yet convinced. (Hint: Use contradiction in that proof)).
+\\ Case 3: $X \in G \land Y \in G$ Similar to case 1.
+\\ Case 4: $X \in G \land Y \in F$ Similar to case 2.
+
+\subsection{$\forall X \in (F \cup G)(X \neq \emptyset)$}
+Let $X$ be an arbitrary element in $F \cup G$. Let us consider the
+cases:
+\\ Case 1: $X \in F$. Since $F$ is partition of $A$, it follows that $x
+\neq \emptyset$.
+\\ Case 2: $X \in G$. Similar as case 1.
+
+\section{Solution 16}
+Suppose $R$ is an equivalence relation on $A$. $S$ is an equivalence
+relation on $B$ and $A \cap B = \emptyset$.
+\subsection{Solution (a)}
+
+Proof for Reflexive
+
+Let $x$ be an arbitrary element on $A \cup B$. Let us consider the
+cases:
+\\ Case 1. $x \in A$. Since $R$ is an equivalence relation on $A$, it
+follows that $(x,x) \in R$. So, $(x,x) \in R \cup S$.
+\\ Case 2. $x \in B$. Since $S$ is an equivalence relation on $B$, it
+follows that $(x,x) \in S$. So, $(x,x) \in R \cup S$.
+
+\noindent
+Proof of Symmetric
+
+Let $x,y$ be an arbitrary element in $A \cup B$ such that $(x,y) \in R
+\cup S$. Let us consider the cases:
+\\ Case 1. $(x,y) \in R$. Since $R$ is symmetric it follows that
+$(y,x) \in R$. So, $(y,x) \in R \cup S$.
+\\ Case 2. $(x,y) \in S$. Similar to case 1.
+
+\noindent
+Proof of Transitive
+
+Let $x,y$ and $z$ be an arbitrary element in $A \cup B$ such that
+$(x,y) \in R \cup S$ and $(y,z) \in R \cup S$. Let us consider the
+cases:
+\\ Case 1. $(x,y) \in R \land (y,z) \in R$. Since $R$ is transitive,
+it follows that $(x,z) \in R$. So, $(x,z) \in R \cup S$.
+\\ Case 2. $(x,y) \in R \land (y,z) \in S$. Now we know that $R$ is an
+equivalence relation on $A$. So, $x \in A$ and $y \in A$. Similarly $y
+\in B$ and $z \in B$. So, $y \in A \cap B$. But we know that $A \cap
+B$ is disjoint. So this case is not possible.
+\\ Case 3. $(x,y) \in S \land (y,z) \in S$ Similar to Case 1.
+\\ Case 4. $(x,y) \in S \land (y,z) \in R$ Similar to Case 2.
+
+\subsection{Solution (b)}
+Proof of $\forall x \in A ([x]_{R \cup S} = [x]_R)$
+
+Let $x$ be an arbitrary element in $A$
+\\ $(Rightarrow)$ Suppose $y \in [x]_{R \cup S}$. From the definition
+of equivalence class it follows that $(y,x) \in R \cup S$. Let us
+consider the case:
+\\ Case 1. $(y,x) \in R$ Since $(y,x) \in R$, then from the definition of
+equivalence classes it follows that $y \in [x]_R$.
+\\ Case 2. $(y,x) \in S$. We know that $x \in A$. Since $S$ is an
+equivalence relation on $B$, it follows that $y \in B$ and $x \in B$.
+So, $x \in A \cap B$. But we know that $A$ and $B$ are disjoint. So
+this case is not possible.
+
+$(Leftarrow)$ Suppose $y \in [x]_R$. From the definition of
+equivalence classes it follows that $(y,x) \in R$. So, $(y,x) \in R
+\cup S$. Now, we know that $R \cup S$ is an equivalence relation on $A
+\cup B$. So, $y \in [x]_{R \cup S}$.
+
+\subsection{Solution (c)}
+$(\Rightarrow)$ Let $x$ be an arbitrary element on $(A \cup B)
+/ (R \cup S)$. It follows that $x \in A \cup B$ and $x \notin R \cup
+S$. Let us consider the cases:
+\\ Case 1. $x \in A \land x \notin R$. Then it follows that $x \in
+A \setminus R$. So, $x \in (A \setminus R) \cup (B \setminus S)$.
+\\ Case 2. $x \in A \land x \notin S$. $R$ is a relation on $A$. We
+know that $x \in A$. From the definition of relation, it follows that
+$x \notin R$ since $x$ is not an ordered pair. So, $x \in (A \setminus
+R) \cup (B \setminus S)$.
+\\ Case 3. $x \in B \land x \notin R$. Same as case 2.
+\\ Case 4. $x \in B \land x \notin S$. Same as case 1.
+
+$(\Leftarrow)$ Let $x$ be an arbitrary element in $(A \setminus R)
+\cup (B \setminus S)$. Let us consider the cases:
+\\ Case 1. $x \in A \setminus R$. It follows that $x \in A$ and $x
+\notin R$. Since $x \in A$, it follows that $x \in A \cup B$. Since $x
+\notin R$, it follows that $x \notin (R \cup S)$. So $x \in (A \cup B)
+\setminus (R \cup S)$.
+\\ Case 2. $x \in B \setminus S$. It follows that $x \in B$ and $x
+\notin S$. Since $x \in B$, it follows that $x \in A \cup B$. Since $x
+\notin S$, it follows that $x \notin (R \cup S)$. So, $x \in (A \cup
+B) \setminus (R \cup S)$.
+
+\section{Solution 17}
+\subsection{Proof of $\cup (F.G) = A$}
+$(\Rightarrow)$ Let $x$ be an arbitrary element of $\cup (F.G)$. Then
+it follows that there is some $Z \in P(A)$ such that $Z \neq
+\emptyset$, $\exists X \in F \exists Y \in G(Z = X \cap Y)$ and $x
+\in Z$. Since $Z \in P(A)$, it follows that $Z \subseteq A$. Since $x
+\in Z$, it follows that $x \in A$.
+
+$(\Leftarrow)$ Let $x$ be an arbitrary element of $A$. Since $F$ is a
+partition of $A$ it follows that that $x \in [x]$. Similarly for $G$,
+$x \in [x]$. So there is some $X \in F$ and $Y \in G$ such that
+$x \in (X \cap Y)$. From the definition of $F.G$ it follows that there
+is some $Z \in F.G$ such that $Z = X \cap Y$ and $Z = \emptyset$ since
+$x \in Z$. So $x \in \cup(F.G)$.
+
+\subsection{Proof of F.G is pairwise disjoint}
+Let $A,B$ be an arbitrary element of $F.G$ such that $A \neq B$. Let
+us prove by contradiction. Suppose $a \in A \cap B$. It follows that
+$a \in A$ and $a \in B$. From $A \in F.G$, it follows that there is
+some $X_1 \in F$ and $Y_1 \in G$ such that $A = X_1 \cap Y_1$. From $a
+\in A$, it follows that $a \in X_1$ and $a \in Y_1$. Now from $B \in
+F.G$, it follows that there is some $X_2 \in F$ and $Y_2 \in G$ such
+that $B = X_2 \cap Y_2$. We know that $a \in X_1$ and $a \in X_2$, so
+$[a] = X_1$ and $[a] = X_2$. So, $X_1 = X_2$. Similarly, $Y_1 = Y_2$.
+So $A = B$. But this contradicts the fact that $A \neq B$. So, $a
+\notin A \cap B$. Since a was an arbitrary element, it follows that $A
+\cap B = \emptyset$.
+
+\subsection{Proof of $\forall X \in F.G(X \neq \emptyset)$}
+Suppose $X \in F.G$. Then from the definition of $F.G$, it follows
+that $X \neq \emptyset$.
+
+\section{Solution 18}
+Let us compare each elements:
+\begin{align*}
+  \mathbb{R}^{-} \cap \mathbb{Z} = \mathbb{Z}^{-1} \\
+  \mathbb{R}^{-} \cap \mathbb{R} \setminus \mathbb{Z} = \mathbb{R}^{-1} \setminus \mathbb{Z} \\
+  \mathbb{R}^{+} \cap \mathbb{Z} = \mathbb{Z}^{+} \\
+  \mathbb{R}^{+} \cap \mathbb{R} \setminus \mathbb{Z} = \mathbb{R}^{+} \setminus \mathbb{Z} \\
+  \{0\} \cap \mathbb{Z} = \{0\} \\
+  \{0\} \cap \mathbb{R} \setminus \mathbb{Z} = \emptyset 
+\end{align*}
+
+The elements are: $\{\mathbb{Z}^{-1}, \mathbb{R}^{-1} \setminus
+\mathbb{Z}, \mathbb{Z}^{+}, \mathbb{R}^{+}
+\setminus \mathbb{Z}, \{0\}\}$
+
+\section{Solution 19}
+\subsection{Solution (a)}
+Proof of Reflexive
+
+Let $x$ be an arbitrary elements in $A$. Since $R$ is equivalence
+relation on $A$, it follows that $(x,x) \in R$. Similarly, $(x,x) \in
+R \cap S$. Since $x$ is an arbitrary elements, we can conclude that
+$T$ is reflexive.
+
+Proof of Symmetric
+
+Let $x,y$ be an arbitrary element on $A$ such that $(x,y) \in T$. It
+follows that $(x,y) \in R$ and $(x,y) \in S$. Since $R$ is symmetric,
+it follows that $(y,x) \in R$. Similarly $(y,x) \in S$. So, $(y,x)\in
+R \cap S$. Since $x$ and $y$ are arbitrary , we can conclude that $T$
+is symmetric.
+
+Proof of Transitive
+
+Let $x,y$ and $z$ be arbitrary element on $A$ such that $(x,y)\in T$
+and $(y,z) \in T$. It follows that $(x,y) \in R$ and $(y,z) \in R$.
+Since $R$ is transitive, it follows that $(x,z) \in R$. For similar
+reasons, $(x,z) \in S$. So, $(x,z) \in R \cap S$. Since $x$ and $z$
+are arbitrary, it follows that $T$ is transitive.
+
+\subsection{Solution (b)}
+Suppose $x \in A$
+$(\Rightarrow)$ Suppose $y \in [x]_T$. Then it follows that $yTx$. We
+know that $T = R \cap S$. So, $(y,x) \in R \land (y,x) \in S$. From
+the definition of equivalence classes, it follows that $y \in [x]_R
+\land y \in [x]_S$.
+
+$(\Leftarrow)$ Suppose $y \in [x]_R \cap [x]_S$. Then it follows that
+$y \in [x]_R \cap y \in [x]_S$. So, $(y,x) \in R \land (y,x) \in S$.
+Combining them, $(x,y) \in R \cap S$. So, $y \in [x]_{R \cap S}$.
+
+\subsection{Solution (c)}
+$(\Rightarrow)$ Suppose $X \in A/T$. Since $A/T$ is a partition it
+follows that $X \neq \emptyset$. Now for some $x \in A$, it follows
+that $X = [x]_T = [x]_R \cap [x]_S$. Since $[x]_R \in A \setminus R$
+and $[x]_S \in A \setminus S$, $X \in (A/R).(A/S)$.
+
+\section{Solution 20}
+\subsection{Proof of $\cup(F \otimes G) = A \times B$}
+
+($\Rightarrow$) Let $(x,y)$ be arbitrary element of
+$\cup(F \otimes G)$. Then it follows that there is some
+$Z \in F \otimes G$ such that $(x,y) \in Z$,
+$\exists Y \in F \exists Y \in G (Z = X \times Y)$. So
+$(x,y) \in X \times Y$. Since $x \in X$ and $X \in F$, $x \in \cup F$.
+Therefore $x \in A$. Similarly, $y \in B$. So, $(x,y) \in A \times B$.
+
+$(\Leftarrow)$ Let $(x,y)$ be an arbitrary of $A \times B$. Since $F$
+is a partition of $A$ and $x \in A$, it follows that there is some $X
+\in F$ such that $x \in X$. Similarly there is some $Y \in G$ such
+that $y \in Y$. So, $(x,y) \in X \times Y$. It follows that there is
+some $Z \in F \otimes G$ such that $(x,y) \in Z$. Hence, $(x,y) \in
+\cup(F \otimes G)$.
+
+\subsection{Proof of $F \otimes G$ is pairwise disjoint}
+Let $X,Y$ be arbitrary element in $F \otimes G$ such that $X \neq Y$.
+Let us prove by contradiction. Suppose there exists some element $x,y$
+such that $(x,y) \in X \cap Y$. Since $X \in F \otimes G$, it follows
+that there is some $X_1 \in F$ and $Y_1 \in G$ such that $X = X_1
+\times Y_1$. Similarly for some $X_2 \in F$ and $Y_2 \in G$ it follows
+that $Y = X_1 \times Y_2$. Now, $(x,y) \in (X_1 \times Y_1) \cap (X_2
+\times Y_2)$. Since $F$ is a partition on $A$, $x \in A$, $x \in X_1$
+and $x \in X_2$, it follows that $X_1 = X_2$ from the definition of
+equivalence class. Similarly $Y_1 = Y_2$. Since $X = X_1 \times Y_1$
+and $Y = X_2 \times Y_2$, it follows that $X = Y$. But this
+contradicts the fact that $X \neq Y$. So, $X \cap Y = \emptyset$.
+
+\subsection{Proof of $\forall X \in F \otimes G(X \neq \emptyset)$}
+Suppose $X \in F \otimes G$. Then there exists some $X_1 \in F$ and
+$Y_1 \in G$ such that $X = X_1 \times Y_1$. Since $F$ is a partition
+on $A$, $X_1 \neq \emptyset$. Similarly $Y_1 \neq \emptyset$.
+Therefore $X_1 \times Y_1 \neq \emptyset$. $So X \neq \emptyset$.
+
+\section{Solution 21}
+\begin{align*}
+  F \otimes F = \{Z \in \mathbb(R \times R) \mid \exists X \in F
+  \exists Y \in F(Z = X \times Y)\} \\
+  F \otimes F = \{\mathbb{R}^- \times \mathbb{R}^+, \mathbb{R}^+
+  \times \mathbb{R}^-, \mathbb{R}^- \times \{0\}, \mathbb{R}^{+}
+  \times \{0\}, \{0\} \times \mathbb{R}^-, \{0\} \times \mathbb{R}^+,
+  \mathbb{R}^+ \times \mathbb{R}^+, \mathbb{R}^- \times \mathbb{R}^-,
+  \{0\} \times \{0\} \}
+\end{align*}
+
+For the next part of the answer, just try to visualize the graph in a
+plane and you will figure that out!
+
+\section{Solution 22}
+\subsection{Solution (a)}
+Proof of $T$ is reflexive
+
+Suppose $(a,b) \in A \times B$ for arbitrary $a \in A$ and $b \in B$.
+It follows that $((a,b), (a,b)) \in (A \times B) \times (A \times B)$.
+Since $a$ and $b$ are arbitrary it follows that $T$ is reflexive.
+
+\noindent
+Proof of $T$ is symmetric
+
+Suppose $((a,b), (a',b')) \in T$. We know that $(a',b') \in A \times
+B$ and $(a,b) \in A \times B$. Also, $aRa'$ and $bRb'$. Since $R$ is
+symmetric it follows that $a'Ra$. Similarly $b'Rb$. So,
+$((a',b'),(a,b)) \in T$. Since $a,b,a'$ and $b'$ are arbitrary it
+follows that $T$is symmetric.
+
+\noindent
+Proof of $T$ is transitive Suppose $((a,b),(a',b')) \in T$ and
+$((a',b'),(c,d)) \in T$. It follows that $(a,a') \in R$,
+$(b,b') \in S$, $(a',c) \in R$ and $(b',d) \in S$. From $(a,a') \in R$
+and $(a',c) \in R$, it follows that $(a,c) \in R$. Similarly,
+$(b,d) \in S$. So, $((a,b),(c,d)) \in T$. Since $a,a',b',c$ and $d$
+are arbitrary it follows that $T$ is transitive.
+
+\subsection{Solution (b)}
+Suppose $a \in A$ and $b \in B$. Suppose $a' \in A$ and $b' \in B$.
+$(\Rightarrow)$ Suppose $(a',b') \in [(a,b)]_T$. It follows that
+$((a',b'),(a,b)) \in T$. So, $(a',a) \in R$ and $(b',b) \in S$. It
+follows that $a' \in [a]_R$ and $b' \in [b]_S$. Therefore $(a',b') \in
+[a]_R \times [b]_R$. Since $a'$ and $b'$ are arbitrary it follows that
+$[(a,b)]_T \subseteq [a]_R \times [b]_S$.
+
+$(\Leftarrow)$ Suppose $(a',b') \in [a]_R \times [b]_R$. Then it
+follows that $a' \in [a]_R$ and $b' \in [b]_S$. So, $(a',a) \in R$ and
+$(b',b) \in S$. From the definition of $T$, it follows that
+$((a',b'),(a,b)) \in T$. So, $(a',b') \in [(a,b)]_T$. Since $a'$ and
+$b'$ are arbitrary it follows that
+$[a]_R \times [b]_R \subseteq [(a,b)]$.
+
+\subsection{Solution (c)}
+$(\Rightarrow)$ Suppose $X \in (A \times B)/T$. Since $(A \times B)/T$
+is a partition it follows that $X \neq \emptyset$. There is some
+$(a,b) \in X$. Since $X \in (A \times B)/T$ and $\cup (A \times B)/T =
+A \times B$, it follows that $(a,b) \in A \times B$. So, $a \in A$ and
+$b \in B$. Since $R$ is a equivalence relation on $A$, $a \in [a]_R$.
+Similarly, $b \in [b]_S$. So, $(a,b) \in [a]_R \times [b]_R$. From the
+definition of $\otimes$, it follows that $[a]_R \times [b]_S \in (A/R)
+\otimes (B/S)$. From (b), it follows that $[(a,b)]_T \in (A/R) \otimes
+(B/S)$. So, $X \in (A/R) \otimes (B/R)$.
+
+$(\Leftarrow)$ Suppose $X \in (A/R) \otimes (B/S)$. It follows that
+there is some $X_1 \in (A/R)$ and $Y_1 \in (B/S)$ such that $X=X_1
+\times Y_1$. Both $X_1$ and $Y_1$ cannot be $\emptyset$. So, suppose
+$x \in X_1$ and $y \in Y_1$. Since $X_1 \in F$ and $\cup F = A$, it
+follows that $x \in A$. Similarly $y \in B$. So, $(x,y) \in A \times
+B$. It follows that $[(x,y)]_T \in (A \times B)/T$. From (b), $[x]_R
+\times [y]_S \subseteq (A \times B)/T$. So, $X_1 \times Y_1 \in (A
+\times B)/T$. So, $X_1 \times Y_1 \in (A \times B)/T$. Hence $X \in (A
+\times B)/T$.
+
+\section{Solution 23}
+\subsection{Solution (a)}
+Let $T = \{(X,Y) \in A/S \times A/S \mid \forall x \in X \forall y \in Y(xRy)\}$
+\begin{align*}
+  [x]_ST[y]_s \\
+  \iff \forall a \in [x]_S \forall b \in [y]_S (aRb) \\
+  \iff \forall a \in A \forall b \in A (a \in [x]_S \land b \in [y]_S \land aRb) \\
+  \iff \forall a \in A \forall b \in A (aSx \land bSy \land aRb) \\
+  \iff xRy          \text{(Since R is compatible with S)}
+\end{align*}
+
+\subsection{Solution (b)}
+Let us formulate the set $T$:
+
+$T = \{([x]_s, [y]_s) \in A/S \times A/S \mid \forall x \in A \forall
+y \in A(xRy)\}$ \\
+$T = \{(X,Y) \in A/S \times A/S \mid \forall x \in A \forall y \in
+A(xRy \land x \in X \land y \in Y)\}$.
+
+Suppose $x,y,x'$ and $y' \in A$. Suppose $xSx'$ and $ySy'$. It follows
+that $[x]_S = [x']_S$ and $[y]_S = [y']_S$. So, $xRy$ iff
+$[x]_ST[y]_S$ iff $[x']_ST[y']_S$ iff $x'Ry'$.
+
+\section{Chapter 24}
+\subsection{Solution (a)}
+Proof of Reflexive \\
+
+Let $a$ be an arbitrary element in $A$. Since $R$ and $R^{-1}$ are
+reflexive on $A$, it follows that $(a,a) \in R \cap R^{-1}$. Since $a$
+is arbitrary, we can conclude that $S$ is reflexive.
+
+Proof of Symmetric \\
+
+Let $a,b$ be an arbitrary element in $A$ such that $(a,b) \in S$. It
+follows that $(a,b) \in R \land (a,b) \in R^{-1}$. Since $(a,b) \in
+R^{-1}$, it follows that $(b,a) \in R$. Similarly, $(b,a) \in R^{-1}$.
+So, $(b,a) \in R \cap R^{-1}$. Since $a$ and $b$ are arbitrary, we can
+conclude that $S$ is symmetric.
+
+Proof of Transitive \\
+
+Let $a,b$ and $c$ be an arbitrary element on $A$ such that $(a,b) \in
+S$ and $(b,c) \in S$. From $(a,b) \in S$, it follows that $(a,b) \in R
+\land (a,b) \in R^{-1}$. Similarly, $(b,c) \in S$ and $(b,c) \in
+R^{-1}$. Since $R$ and $R^{-1}$ are transitive, it follows that $(a,c)
+\in R \cap R^{-1}$. Since $a,b$ and $c$ are arbitrary, $S$ is
+transitive.
+
+\subsection{Solution (b)}
+From 23 (a), it follows that if $R$ is compatible with $S$, then we
+can prove that there is a unique relation $T$. Suppose $x,y,x'$ and
+$y'$ in A. Suppose $xSx'$ and $ySy'$.
+
+$(\Rightarrow)$ Suppose $xRy$. From $xSx'$, it follows that $xRx'
+\land xR^{-1}x'$. Similarly, $yRy' \land yR^{-1}y'$. From $xR^{-1}x'$,
+it follows that $x'Rx$. From $xRy$ and $yRy'$, it follows that $xRy'$.
+From $x'Rx$ and $xRy'$, it follows that $x'Ry'$.
+
+$(\Leftarrow)$ Suppose $x'Ry'$. We know that $yR^{-1}y'$. So, $y'Ry$.
+From transitive property, it follows that $x'Ry$. We also know,
+$xRx'$. Again from the transitive property it follows that $xRy$.
+
+\subsection{Solution (c)}
+
+$T = \{(X,Y) \in A/S \times A/S \mid \exists x \in X \exists y \in Y (xRy)\}$
+
+Reflexive \\
+Let $X$ be an arbitrary element on $A/S$. Then it follows that $X \neq
+\emptyset$. Since $A/S$ is a partition. So there is some $x$ such that
+$x \in X$. Now since $X \subseteq A$, it follows that $x \in A$. Since
+$R$is reflexive on $A$, it follows that $xRx$. From the definition of
+$T$, it follows that $(X,X) \in T$. Since $X$ is arbitrary, $T$ is
+reflexive.
+
+Transitive \\
+Let $x,y,z$ be an arbitrary element on $A$ such that $[x]_ST[y]_S$ and
+$[y]_ST[z]_S$. It follows that $xRy$ and $yRz$. Since $R$ is
+transitive, it follows that $xRz$. So, $[x]_ST[y]_S$. Since $x,y$ and
+$z$ are arbitrary it follows that $T$ is transitive.
+
+Anti symmetric \\
+Let $x$ and $y$ be arbitrary element on $A$ such that $[x]_ST[y]_S$
+and $[y]_ST[x]_S$. So $xRy$ and $yRx$. Then $xRy$ and $xR^{-1}y$. So
+$xSy$. So, $[x]_S = [y]_S$. Hence $T$ is anti symmetric.
+
+\section{Solution 25}
+\subsection{Solution (a)}
+Reflexive \\
+Let $X$ be an arbitrary element in $A$. It follows that $(X,Y) \in A
+\times A$ since both $X$ and $Y$ has same number of elements. Since
+$X$ is arbitrary, we can conclude that $R$ is reflexive.
+
+Transitive \\
+Let $X,Y$ and $Z$ be an arbitrary elements in $A$ such that $(X,Y) \in
+R$ and $(Y,Z) \in R$. It follows that $Y$ has at least as many
+elements as $X$. Similarly, $Z$ has at least as many elements as $Y$.
+So, $(X,Z) \in R$ since $Z$ has at least as many elements as $X$.
+Hence $R$ is transitive.
+
+\subsection{Solution (b)}
+$S = R \cap R^{-1} = \{(X,Y) \in A \times A \mid \text{ X and Y has same
+  number of elements}\}$ \\
+$A/S = \{\{\emptyset\}, \{set with single elements\}, ... \}$ \\
+Number of elements is 101.
+
+\section{Solution 26}
+\subsection{Solution (a)}
+Reflexive \\
+
+Lemma. A partition on $A$ refines itself.
+Suppose $F$ be a partition on $A$. Let $X$ be an arbitrary elements in
+$F$. Suppose $Y \in F$ such that $Y = X$ then it follows that $X
+\subseteq Y$. So, $F$ refines itself.
+
+Let $X$ be an arbitrary element in $P$. Now we know that $X$ refines
+$X$. So, $(X,X) \in R$. Since $X$ is arbitrary, it follows that $R$ is
+reflexive.
+
+Transitive \\
+Let $F,G,H$ be arbitrary element in $P$ such that $(F,G) \in R$ and
+$(G,H) \in R$. Since $F$ refines $G$, it follows that $\forall X \in F
+\exists Y \in G(X \subseteq Y)$. Similarly, $\forall A \in G \exists B
+\in H(A \subseteq B)$. Let $X$ be an arbitrary element in $F$ and $Y$
+be an arbitrary element in $G$, it follows that $X \subseteq Y$.
+Universal instantiation gives us $Y \subseteq B$ for some $B \in H$.
+From $X \subseteq Y$ and $Y \subseteq B$, it follows that $X \subseteq
+B$. So, $F$ refines $H$. Since $F,G$ and $H$ are arbitrary, we can
+conclude that $R$ is transitive.
+
+Anti-symmetric \\
+Let $F,G$ be an arbitrary element on $P$. Suppose $X \in F$. From
+$FRG$, it follows that $Y \subseteq X'$ for some $X' \in F$. From $X
+\subseteq Y$ and $Y \subseteq X'$, it follows that $X \subseteq X'$.
+Since both $X$ and $X'$ are members of the partition $F$ and $X
+\subseteq X'$, it follows that $X = X'$. From $X \subseteq Y$ and $Y
+\subseteq X'$, it follows that $X = Y$. We know from $FRG$ that $X \in
+F$ and $Y \in G$, it follows that $F \subseteq G$. Similarly from
+$GRF$, we know that $Y \in G$ and $X' \in F$. It follows that $G
+\subseteq F$. So, $G = F$. Hence proved.
+
+\subsection{Solution (b)}
+Suppose $S$ and $T$ are equivalence relations. Let $F=A/S$ and
+$G=A/T$.
+
+$(\Rightarrow)$ Suppose $S \subseteq T$. Let $X$ be an arbitrary
+element in $F$. Let $x$ be an arbitrary element in $X$. Since $x \in
+X$ and $X \in A/S$, it follows that $(x,x) \in S$. From $S \subseteq
+T$, it follows that $(x,x) \in T$. So, there exists some element $Y
+\in A/T$ such that $x \in Y$. Since $x$ is arbitrary it follows that
+$X \subseteq Y$. Hence $F$ refines $G$.
+
+$(\Leftarrow)$ Suppose $\forall X \in F \exists Y \in G(X \subseteq
+Y)$. Let $a,b$ be arbitrary element in $A$ such that $(a,b) \in S$. It
+follows that $[a]_S = [b]_S \in X_1$ for some $X_1 \in F$. Using
+existential instantiation, it follows that there is some $Y_1 \in G$
+such that $X_1 \subseteq Y$. Since $a \in X_1$, it follows that $a \in
+X_1$. Similarly, $b \in Y_1$. From $Y_1 \in A/T$, it follows that
+$(a,b) \in T$. Since $a$ and $b$ are arbitrary, it follows that $S
+\subseteq T$.
+
+\subsection{Solution (c)}
+Proof of lower bound
+
+Existence of lower bound
+
+It follows that $\{F,G\} \subseteq P$. We have to prove that $F.G R F$
+and $F.GRG$. Let $Z$ be an arbitrary element in $F.G$. Then it follows
+that there is some element $X \in F$ and $Y \in G$ such that $Z = X
+\cap Y$. Since $Y \in G$ and $Z = X \cap Y$, it follows that $Z
+\subseteq Y$. Since $Z$ is arbitrary in $F.G$ and $Y$ is some element
+in $G$, it follows that $F.G R F$. Similarly prove for $F.G R G$.
+Hence $F.G$ is present in the lower bound of the set.
+
+Greatest lower bound
+
+Let $L$ be the set of lower bound of $\{F,G\} \in R$. Let$A$ be an
+arbitrary element in $L$. To prove that $F.G$ is the greatest lower
+bound we have to prove that $A R F.G$. Simplifying this, we need to
+prove that $X \subseteq F_1 \cap G_1$ for an arbitrary $X \in A$ and
+some $F_1 \in F$ and $G_1 \in G$. Since $A \in L$, it follows that
+$ARF$ and $ARG$.Let $X$ be an arbitrary element in $A$. From $ARF$, it
+follows that $X \subseteq F_1$. Similarly, we get $X \subseteq G_1$.
+So, $X \subseteq F_1 \cap G_1$. Hence proved.
+
+\end{document}
