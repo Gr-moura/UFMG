@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 void a(int b = 10, int c = 2)
@@ -8,7 +9,7 @@ void a(int b = 10, int c = 2)
 
 int main()
 {
-    a(1);
-    a(15, 1);
+    vector<int> a(1);
+
     return 0;
 }
