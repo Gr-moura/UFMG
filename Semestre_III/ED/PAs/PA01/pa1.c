@@ -151,31 +151,34 @@ void swap(int *xp, int *yp, sortperf_t *s)
 void shellSort(int *A, int n, sortperf_t *s)
 {
     inccalls(s, 1);
-    printVector(A, n);
     for (int h = n / 2; h > 0; h /= 2)
     {
-        for (int i = h; i < n; i += 1)
+        // i = pontos de inicio
+        for (int i = 0; i < h; i++)
         {
-            incmove(s, 1);
-            int temp = A[i];
-            int j;
-
-            inccmp(s, 1);
-            printf("\033[1;31mDentro\033[0m\n");
-            for (j = i; j >= h && A[j - h] > temp; j -= h)
+            for (int j = i + h; j < n; j += h)
             {
-                inccmp(s, 1);
                 incmove(s, 1);
-                A[j] = A[j - h];
-                printVector(A, n);
+                int aux = A[j];
+
+                int anterior = j - h;
+
+                inccmp(s, 1);
+                while (anterior >= 0 && aux < A[anterior])
+                {
+                    incmove(s, 1);
+                    A[anterior + h] = A[anterior];
+
+                    anterior -= h;
+
+                    inccmp(s, 1);
+                }
+
+                incmove(s, 1);
+                A[anterior + h] = aux;
             }
-            printf("\033[1;31mFora\033[0m\n");
-            incmove(s, 1);
-            A[j] = temp;
-            printVector(A, n);
         }
     }
-    printVector(A, n);
 }
 
 // recursive selection sort
@@ -233,8 +236,6 @@ void selectionSort(int arr[], int l, int r, sortperf_t *s)
 // insertion sort
 void insertionSort(int v[], int l, int r, sortperf_t *s)
 {
-    printVector(v, r + 1);
-
     inccalls(s, 1);
     for (int i = 1; i <= r; i++)
     {
@@ -259,7 +260,7 @@ void insertionSort(int v[], int l, int r, sortperf_t *s)
         incmove(s, 1);
         v[j + 1] = aux;
     }
-    printVector(v, r + 1);
+
     return;
 }
 
