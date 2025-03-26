@@ -1,0 +1,204 @@
+Test 1: -z 9 -s 27 -a s
+Incorrect program output
+--- Input ---
+
+--- Program output ---
+alg s seed 27 size 9 time 0.000000160 cmp 0 move 0 calls 0
+
+--- Expected output (regular expression)---
+alg s seed 27 size 9 time ([0-9]*|[0-9]*\.[0-9]+) cmp 36 move 18 calls 1\s*
+
+Test 2: -z 9 -s 27 -a i
+Incorrect program output
+--- Input ---
+
+--- Program output ---
+alg i seed 27 size 9 time 0.000000150 cmp 0 move 0 calls 0
+
+--- Expected output (regular expression)---
+alg i seed 27 size 9 time ([0-9]*|[0-9]*\.[0-9]+) cmp 30 move 38 calls 1\s*
+
+Test 3: -z 9 -s 27 -a q
+Incorrect program output
+--- Input ---
+
+--- Program output ---
+alg q seed 27 size 9 time 0.000000080 cmp 0 move 0 calls 0
+
+--- Expected output (regular expression)---
+alg q seed 27 size 9 time ([0-9]*|[0-9]*\.[0-9]+) cmp 29 move 30 calls 12\s*
+
+Test 4: -z 9 -s 27 -a q3
+Incorrect program output
+--- Input ---
+
+--- Program output ---
+alg q3 seed 27 size 9 time 0.000000081 cmp 0 move 0 calls 0
+
+--- Expected output (regular expression)---
+alg q3 seed 27 size 9 time ([0-9]*|[0-9]*\.[0-9]+) cmp 33 move 33 calls 16\s*
+
+Test 5: -z 9 -s 27 -a qi
+Incorrect program output
+--- Input ---
+
+--- Program output ---
+alg qi seed 27 size 9 time 0.000000080 cmp 0 move 0 calls 0
+
+--- Expected output (regular expression)---
+alg qi seed 27 size 9 time ([0-9]*|[0-9]*\.[0-9]+) cmp 21 move 28 calls 4\s*
+
+Test 6: -z 9 -s 27 -a q3i
+Incorrect program output
+--- Input ---
+
+--- Program output ---
+alg q3i seed 27 size 9 time 0.000000100 cmp 0 move 0 calls 0
+
+--- Expected output (regular expression)---
+alg q3i seed 27 size 9 time ([0-9]*|[0-9]*\.[0-9]+) cmp 26 move 33 calls 4\s*
+
+Test 7: -z 9 -s 27 -a h
+Incorrect program output
+--- Input ---
+
+--- Program output ---
+alg h seed 27 size 9 time 0.000000080 cmp 0 move 0 calls 0
+
+--- Expected output (regular expression)---
+alg h seed 27 size 9 time ([0-9]*|[0-9]*\.[0-9]+) cmp 33 move 53 calls 1\s*
+
+Test 8: -z 9 -s 27 -a rs
+Incorrect program output
+--- Input ---
+
+--- Program output ---
+alg rs seed 27 size 9 time 0.000000090 cmp 0 move 0 calls 0
+
+--- Expected output (regular expression)---
+alg rs seed 27 size 9 time ([0-9]*|[0-9]*\.[0-9]+) cmp 36 move 18 calls 8\s*
+
+Test 9: -z 81 -s 17 -a s
+Incorrect program output
+--- Input ---
+
+--- Program output ---
+alg s seed 17 size 81 time 0.000000090 cmp 0 move 0 calls 0
+
+--- Expected output (regular expression)---
+alg s seed 17 size 81 time ([0-9]*|[0-9]*\.[0-9]+) cmp 3240 move 222 calls 1\s*
+
+Test 10: -z 81 -s 17 -a i
+Incorrect program output
+--- Input ---
+
+--- Program output ---
+alg i seed 17 size 81 time 0.000000090 cmp 0 move 0 calls 0
+
+--- Expected output (regular expression)---
+alg i seed 17 size 81 time ([0-9]*|[0-9]*\.[0-9]+) cmp 1817 move 1897 calls 1\s*
+
+Test 11: -z 81 -s 17 -a q
+Incorrect program output
+--- Input ---
+
+--- Program output ---
+alg q seed 17 size 81 time 0.000000100 cmp 0 move 0 calls 0
+
+--- Expected output (regular expression)---
+alg q seed 17 size 81 time ([0-9]*|[0-9]*\.[0-9]+) cmp 679 move 441 calls 136\s*
+
+Test 12: -z 81 -s 17 -a q3
+Incorrect program output
+--- Input ---
+
+--- Program output ---
+alg q3 seed 17 size 81 time 0.000000080 cmp 0 move 0 calls 0
+
+--- Expected output (regular expression)---
+alg q3 seed 17 size 81 time ([0-9]*|[0-9]*\.[0-9]+) cmp 629 move 459 calls 136\s*
+
+Test 13: -z 81 -s 17 -a qi
+Incorrect program output
+--- Input ---
+
+--- Program output ---
+alg qi seed 17 size 81 time 0.000000090 cmp 0 move 0 calls 0
+
+--- Expected output (regular expression)---
+alg qi seed 17 size 81 time ([0-9]*|[0-9]*\.[0-9]+) cmp 721 move 690 calls 10\s*
+
+Test 14: -z 81 -s 17 -a q3i
+Incorrect program output
+--- Input ---
+
+--- Program output ---
+alg q3i seed 17 size 81 time 0.000000090 cmp 0 move 0 calls 0
+
+--- Expected output (regular expression)---
+alg q3i seed 17 size 81 time ([0-9]*|[0-9]*\.[0-9]+) cmp 852 move 812 calls 10\s*
+
+Test 15: -z 81 -s 17 -a h
+Incorrect program output
+--- Input ---
+
+--- Program output ---
+alg h seed 17 size 81 time 0.000000080 cmp 0 move 0 calls 0
+
+--- Expected output (regular expression)---
+alg h seed 17 size 81 time ([0-9]*|[0-9]*\.[0-9]+) cmp 755 move 1163 calls 1\s*
+
+Test 16: -z 81 -s 17 -a rs
+Incorrect program output
+--- Input ---
+
+--- Program output ---
+alg rs seed 17 size 81 time 0.000000091 cmp 0 move 0 calls 0
+
+--- Expected output (regular expression)---
+alg rs seed 17 size 81 time ([0-9]*|[0-9]*\.[0-9]+) cmp 3240 move 222 calls 80\s*
+
+Test 17: -z 448 -s 15 -a s
+Incorrect program output
+--- Input ---
+
+--- Program output ---
+alg s seed 15 size 448 time 0.000000080 cmp 0 move 0 calls 0
+
+--- Expected output (regular expression)---
+alg s seed 15 size 448 time ([0-9]*|[0-9]*\.[0-9]+) cmp 100128 move 1314 calls 1\s*
+
+Test 18: -z 448 -s 15 -a i
+Incorrect program output
+--- Input ---
+
+--- Program output ---
+alg i seed 15 size 448 time 0.000000080 cmp 0 move 0 calls 0
+
+--- Expected output (regular expression)---
+alg i seed 15 size 448 time ([0-9]*|[0-9]*\.[0-9]+) cmp 49526 move 49973 calls 1\s*
+
+Test 19: -z 448 -s 15 -a q
+Incorrect program output
+--- Input ---
+
+--- Program output ---
+alg q seed 15 size 448 time 0.000000091 cmp 0 move 0 calls 0
+
+--- Expected output (regular expression)---
+alg q seed 15 size 448 time ([0-9]*|[0-9]*\.[0-9]+) cmp 5451 move 3189 calls 780\s*
+
+Test 20: -z 448 -s 15 -a q3
+Incorrect program output
+--- Input ---
+
+--- Program output ---
+alg q3 seed 15 size 448 time 0.000000090 cmp 0 move 0 calls 0
+
+--- Expected output (regular expression)---
+alg q3 seed 15 size 448 time ([0-9]*|[0-9]*\.[0-9]+) cmp 5020 move 3288 calls 790\s*
+
+Summary of tests
++------------------------------+
+| 40 tests run/ 0 tests passed |
++------------------------------+

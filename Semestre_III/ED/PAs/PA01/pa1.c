@@ -286,44 +286,51 @@ void partition3(int *A, int l, int r, int *i, int *j, sortperf_t *s) {}
 // standard quicksort partition
 void partition(int *A, int l, int r, int *i, int *j, sortperf_t *s)
 {
+    inccalls(s, 1);
+
     *i = l, *j = r;
-    incmove(s, 1);
+
     int x = A[(l + r) / 2];
 
     do
     {
-        inccmp(s, 1);
-        while (x > A[*i])
+        while (A[*i] < x)
         {
-            inccmp(s, 1);
             (*i)++;
+            inccmp(s, 1);
         }
 
-        inccmp(s, 1);
-        while (x < A[*j])
+        while (A[*j] > x)
         {
+            (*j)--;
             inccmp(s, 1);
-            (*j)++;
         }
 
         inccmp(s, 1);
         if (*i <= *j)
+        {
             swap(&A[*i], &A[*j], s);
+            (*i)++, (*j)--;
+        }
 
+        inccmp(s, 1);
     } while (*i <= *j);
 }
 
 // standard quicksort
 void quickSort(int *A, int l, int r, sortperf_t *s)
 {
+    inccalls(s, 1);
+
     int i, j;
     partition(A, l, r, &i, &j, s);
 
-    inccmp(s, 1);
+    // Se houver mais de um elemento nessa parte, então a condição if (Esq < j) será verdadeira. Isso significa que,
+    // mesmo após a partição, o início do vetor (Esq) está "distante" do final dessa parte (j), indicando que há pelo
+    // menos dois elementos e, portanto, ainda há trabalho a ser feito para ordená-la.
     if (l < j)
         quickSort(A, l, j, s);
 
-    inccmp(s, 1);
     if (i < r)
         quickSort(A, i, r, s);
 }
