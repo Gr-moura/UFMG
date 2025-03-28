@@ -1,0 +1,88 @@
+Registro Wagner invalido
+Registro Henrique invalido
+Registro Fernando invalido
+Registro Quiteria 9 85850494 inserido
+
+Quiteria
+Registro Antonio invalido
+Registro Ulisses invalido
+Registro Thiago invalido
+Registro Henrique invalido
+Registro Quiteria 9 85850494 alterado
+
+Quiteria
+Registro Henrique 41 77256863 inserido
+
+QuiteriaHenrique
+Registro Ulisses invalido
+Registro Thiago 9 11008027 inserido
+
+QuiteriaHenriqueThiago
+Registro Quiteria 7 56512558 excluido
+
+ThiagoHenrique
+Registro Zeca invalido
+Registro Quiteria invalido
+Registro Nelson invalido
+Registro Joao 86 32957627 inserido
+Joao
+
+
+
+ThiagoHenriqueJoao
+Registro Quiteria invalido
+Registro Thiago 29 71986938 inserido
+
+ThiagoHenriqueJoaoThiago
+Registro Wagner invalido
+Registro Zeca invalido
+Registro Igor 70 30933968 inserido
+
+ThiagoHenriqueJoaoThiagoIgor
+Registro Fernando invalido
+Registro Marcelo 69 53931324 inserido
+
+ThiagoHenriqueJoaoThiagoIgorMarcelo
+Registro Kleber invalido
+Registro Antonio invalido
+Registro Eduardo invalido
+Registro Yuri invalido
+Registro Daniel invalido
+Registro Marcelo 12 29937832 inserido
+
+ThiagoHenriqueJoaoThiagoIgorMarceloMarcelo
+Registro Yuri invalido
+Registro Yuri invalido
+Registro Oscar 43 19520756 inserido
+
+ThiagoHenriqueJoaoThiagoIgorMarceloMarceloOscar
+Registro Quiteria invalido
+Registro Henrique 41 77256863 excluido
+
+ThiagoOscarJoaoThiagoIgorMarceloMarcelo
+Registro Paulo 38 71305531 inserido
+
+ThiagoOscarJoaoThiagoIgorMarceloMarceloPaulo
+Registro Xavier invalido
+Registro Zeca invalido
+Registro Leonardo 66 92292186 inserido
+
+ThiagoOscarJoaoThiagoIgorMarceloMarceloPauloLeonardo
+Registro Zeca 36 72494370 inserido
+
+ThiagoOscarJoaoThiagoIgorMarceloMarceloPauloLeonardoZeca
+Registro Wagner invalido
+Registro Paulo 38 71305531 exibido
+
+ThiagoOscarJoaoThiagoIgorMarceloMarceloPauloLeonardoZeca
+Registro Nelson 10 66493230 inserido
+
+ThiagoOscarJoaoThiagoIgorMarceloMarceloPauloLeonardoZecaNelson
+Registro Daniel invalido
+Registro Joao 86 32957627 exibido
+
+ThiagoOscarJoaoThiagoIgorMarceloMarceloPauloLeonardoZecaNelson
+Registro Marcelo 69 53931324 excluido
+
+ThiagoOscarJoaoThiagoIgorNelsonMarceloPauloLeonardoZeca
+Registro Daniel invalido

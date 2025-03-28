@@ -1,17 +1,15 @@
 #include <iostream>
+#include <vector>
 using namespace std;
-int *B;
 
-void passar(const int &A)
+void a(int b = 10, int c = 2)
 {
-    cout << A;
+    cout << b;
 }
 
 int main()
 {
-    int A = 5;
-    passar(A);
-    cout << A;
+    vector<int> a(1);
 
     return 0;
 }

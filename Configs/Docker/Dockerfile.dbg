@@ -5,7 +5,12 @@ RUN apk update && apk add build-base gdb valgrind
 # docker build -t "debugging:1.0" -f UFMG/Configs/Docker/Dockerfile.dbg .
 
 # Run the image
-# docker run --rm -it -v $PWD:/tmp -w /tmp debugging:1.0
+# open -a Docker && while ! docker system info >/dev/null 2>&1; do sleep 1; done; docker run --rm -it -v $PWD:/tmp -w /tmp debugging:1.0
+
+# Como funciona:
+# open -a Docker → Abre o aplicativo Docker no Mac, caso ele não esteja rodando.
+# while ! docker system info >/dev/null 2>&1; do sleep 1; done; → Aguarda o Docker iniciar antes de prosseguir.
+# docker run ... → Executa o container após garantir que o Docker está pronto.
 
 # docker run -rm -it — this will run your docker container interactively and remove it after you exit
 # -v $PWD:/tmp — this will mount your current directory to /tmp inside the container

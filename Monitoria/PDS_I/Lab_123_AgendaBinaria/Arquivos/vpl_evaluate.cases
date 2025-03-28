@@ -48,7 +48,6 @@ Registro Oscar invalido
 Registro Yuri invalido
 Registro Thiago invalido
 Registro Fernando 66 31844985 inserido
-Registro Ricardo 61 35945670 inserido
 Registro Igor invalido
 Registro Nelson invalido
 Registro Leonardo 46 69015617 inserido
@@ -73,10 +72,10 @@ Registro Daniel 89 12702293 exibido
 Registro Gustavo 92 54591466 inserido
 Registro Leonardo 46 69015617 alterado
 Registro Xavier 73 28055735 excluido
-Registro Ricardo 61 35945670 alterado
-Registro Bernardo 60 95084497 inserido
+Registro Ricardo invalido
 Registro Zeca invalido
 Registro Yuri invalido
+
 
 case=Entrada Teste4
 
@@ -87,7 +86,6 @@ Registro Fernando invalido
 Registro Quiteria 9 85850494 inserido
 Registro Antonio invalido
 Registro Ulisses invalido
-Registro Quiteria 3 58899611 inserido
 Registro Thiago invalido
 Registro Henrique invalido
 Registro Quiteria 9 85850494 alterado
@@ -96,18 +94,17 @@ Registro Ulisses invalido
 Registro Thiago 9 11008027 inserido
 Registro Quiteria 7 56512558 excluido
 Registro Zeca invalido
-Registro Quiteria 3 58899611 exibido
+Registro Quiteria invalido
 Registro Nelson invalido
 Registro Joao 86 32957627 inserido
-Registro Quiteria 3 58899611 excluido
-Registro Thiago 29 71986938 inserido
+Registro Quiteria invalido
 Registro Wagner invalido
 Registro Zeca invalido
 Registro Igor 70 30933968 inserido
 Registro Fernando invalido
 Registro Marcelo 69 53931324 inserido
 Registro Kleber invalido
-Registro Antonio invalido
+Registro Marcelo 69 53931324 excluido
 Registro Eduardo invalido
 Registro Yuri invalido
 Registro Daniel invalido
@@ -126,8 +123,8 @@ Registro Wagner invalido
 Registro Paulo 38 71305531 exibido
 Registro Nelson 10 66493230 inserido
 Registro Daniel invalido
-Registro Joao invalido
-Registro Marcelo 69 53931324 excluido
+Registro Joao 86 32957627 exibido
+Registro Marcelo 12 29937832 excluido
 Registro Daniel invalido
 
 case=Entrada Teste5
@@ -156,7 +153,7 @@ Registro Joao 92 72931081 inserido
 Registro Thiago 15 10825557 alterado
 Registro Daniel invalido
 Registro Kleber invalido
-Registro Bernardo invalido
+Registro Thiago 36 12490389 excluido
 Registro Kleber invalido
 Registro Thiago 90 83459592 inserido
 Registro Carlos invalido
@@ -174,7 +171,7 @@ Registro Wagner invalido
 Registro Sergio 85 16636179 inserido
 Registro Leonardo invalido
 Registro Quiteria invalido
-Registro Thiago 36 12490389 exibido
+Registro Thiago 90 83459592 exibido
 Registro Henrique invalido
 Registro Nelson 50 40557168 inserido
 Registro Wagner invalido
@@ -187,7 +184,7 @@ Registro Igor invalido
 Registro Paulo invalido
 Registro Henrique invalido
 Registro Xavier invalido
-Registro Fernando invalido
+Registro Fernando 88 49734242 alterado
 Registro Zeca 95 45394023 exibido
 Registro Yuri invalido
 Registro Carlos 73 73515393 inserido
@@ -197,7 +194,6 @@ Registro Igor invalido
 Registro Henrique invalido
 Registro Ricardo 54 62256535 inserido
 Registro Antonio 7 54798656 inserido
-Registro Thiago 49 79384362 inserido
 Registro Henrique invalido
 Registro Nelson 99 99290633 excluido
 Registro Daniel invalido
@@ -205,7 +201,6 @@ Registro Eduardo invalido
 Registro Joao 92 72931081 alterado
 Registro Ulisses 89 93223409 inserido
 Registro Ulisses 89 93223409 exibido
-Registro Ulisses 90 13947539 inserido
 Registro Eduardo invalido
 Registro Paulo invalido
 Registro Zeca 95 45394023 exibido
@@ -231,7 +226,7 @@ Registro Thiago invalido
 Registro Yuri invalido
 Registro Quiteria invalido
 Registro Eduardo 24 83279023 inserido
-Registro Kleber invalido
+Registro Eduardo 24 83279023 excluido
 Registro Oscar invalido
 Registro Joao 64 59001387 alterado
 Registro Eduardo 95 21832852 inserido
@@ -241,7 +236,6 @@ Registro Daniel invalido
 Registro Wagner 27 27632150 inserido
 Registro Nelson 50 22185132 inserido
 Registro Wagner 27 27632150 alterado
-Registro Eduardo 8 91901627 inserido
 Registro Ulisses invalido
 Registro Marcelo invalido
 Registro Wagner 23 23696502 excluido
@@ -252,12 +246,11 @@ Registro Daniel 61 80644957 inserido
 Registro Vitor 17 97637109 exibido
 Registro Bernardo 74 81316492 inserido
 Registro Bernardo 74 81316492 exibido
-Registro Bernardo 74 81316492 excluido
+Registro Paulo 4 42821619 excluido
 Registro Thiago invalido
 Registro Paulo 2 76048856 inserido
 Registro Sergio invalido
 Registro Marcelo invalido
-Registro Joao 52 11480563 inserido
 Registro Fernando 29 10447726 excluido
 Registro Antonio invalido
 Registro Nelson 50 22185132 excluido
@@ -269,32 +262,27 @@ Registro Quiteria invalido
 Registro Nelson invalido
 Registro Fernando invalido
 Registro Leonardo invalido
-Registro Bernardo invalido
+Registro Bernardo 74 81316492 excluido
 Registro Igor invalido
-Registro Paulo 4 42821619 exibido
+Registro Paulo 2 76048856 exibido
 Registro Igor invalido
 Registro Xavier 97 68777067 inserido
-Registro Eduardo 24 83279023 excluido
+Registro Eduardo 95 21832852 excluido
 Registro Carlos 33 18420858 exibido
 Registro Ulisses invalido
-Registro Paulo 75 71548672 inserido
 Registro Zeca invalido
 Registro Bernardo invalido
-Registro Xavier 60 20123155 inserido
 Registro Gustavo 3 61292258 inserido
 Registro Sergio invalido
-Registro Xavier 60 20123155 alterado
-Registro Carlos 28 51891888 inserido
+Registro Xavier 97 68777067 alterado
 Registro Vitor 8 33817326 inserido
-Registro Yuri 33 57840222 inserido
 Registro Thiago 78 19624425 inserido
-Registro Daniel 20 60334546 inserido
 Registro Oscar 67 24627841 exibido
 Registro Henrique invalido
 Registro Marcelo 14 41271685 inserido
 Registro Ricardo 97 21956101 inserido
 Registro Yuri 56 99186912 excluido
-Registro Eduardo 95 21832852 alterado
+Registro Eduardo invalido
 Registro Marcelo 14 41271685 excluido
 Registro Xavier 7 95807465 exibido
 Registro Sergio invalido
@@ -302,7 +290,6 @@ Registro Sergio invalido
 Registro Leonardo invalido
 Registro Thiago 78 19624425 excluido
 Registro Sergio invalido
-Registro Xavier 77 80390018 inserido
 Registro Antonio invalido
 Registro Vitor 17 97637109 excluido
 Registro Marcelo invalido
@@ -310,4 +297,166 @@ Registro Ricardo 97 21956101 exibido
 Registro Zeca invalido
 Registro Gustavo 3 61292258 alterado
 
+case=Entrada Teste7
 
+input=12-3-7.bin
+output=Registro 0 43 94378001 inserido
+Registro 1 11 31155488 inserido
+Registro 2 31 85909241 inserido
+Registro 3 11 67712546 inserido
+Registro 4 27 29069781 inserido
+Registro 5 30 42613738 inserido
+Registro 6 56 68494010 inserido
+Registro 7 35 99562234 inserido
+Registro 8 42 48937379 inserido
+Registro 9 3 82096254 inserido
+Registro 10 2 20562870 inserido
+Registro 11 58 46701873 inserido
+Registro 12 6 32458492 inserido
+Registro 13 3 99690858 inserido
+Registro 14 55 36040858 inserido
+Registro 15 25 84124297 inserido
+Registro 16 72 53135804 inserido
+Registro 17 84 63461664 inserido
+Registro 18 32 64626541 inserido
+Registro 19 73 53059351 inserido
+Registro 20 88 20479792 inserido
+Registro 21 51 75465752 inserido
+Registro 22 39 88217962 inserido
+Registro 23 67 82307832 inserido
+Registro 24 44 36305755 inserido
+Registro 25 4 17298525 inserido
+Registro 26 86 68088475 inserido
+Registro 27 20 39914411 inserido
+Registro 28 25 47141896 inserido
+Registro 29 26 85881333 inserido
+Registro 30 2 54515787 inserido
+Registro 31 99 62037042 inserido
+Registro 32 21 19223391 inserido
+Registro 33 19 94830634 inserido
+Registro 34 67 21733901 inserido
+Registro 35 67 89472916 inserido
+Registro 36 36 36899046 inserido
+Registro 37 86 68146969 inserido
+Registro 38 47 90034556 inserido
+Registro 39 85 27710302 inserido
+Registro 40 11 48878416 inserido
+Registro 41 37 16738241 inserido
+Registro 42 1 93903581 inserido
+Registro 43 79 54602443 inserido
+Registro 44 97 62158379 inserido
+Registro 45 54 83275492 inserido
+Registro 46 91 66759822 inserido
+Registro 47 82 20731728 inserido
+Registro 48 65 41469214 inserido
+Registro 49 77 35246452 inserido
+Registro 50 65 84868717 inserido
+Registro 51 87 98490396 inserido
+Registro 52 6 18945140 inserido
+Registro 53 31 32073466 inserido
+Registro 54 93 95760031 inserido
+Registro 55 20 32168076 inserido
+Registro 56 52 83153723 inserido
+Registro 57 62 98989670 inserido
+Registro 58 33 50657522 inserido
+Registro 59 42 91905607 inserido
+Registro 60 42 62961087 inserido
+Registro 61 17 56259916 inserido
+Registro 62 76 95008860 inserido
+Registro 63 60 69610131 inserido
+Registro 64 18 52282392 inserido
+Registro 65 100 84493061 inserido
+Registro 66 83 14038580 inserido
+Registro 67 38 43171021 inserido
+Registro 68 12 48832431 inserido
+Registro 69 99 32407651 inserido
+Registro 70 34 87199972 inserido
+Registro 71 48 30964053 inserido
+Registro 72 23 83998309 inserido
+Registro 73 80 96792018 inserido
+Registro 74 98 50488753 inserido
+Registro 75 66 78773803 inserido
+Registro 76 59 30807572 inserido
+Registro 77 63 62004207 inserido
+Registro 78 42 76283033 inserido
+Registro 79 67 78982462 inserido
+Registro 80 57 77377760 inserido
+Registro 81 45 75931809 inserido
+Registro 82 91 71891198 inserido
+Registro 83 29 89839836 inserido
+Registro 84 14 98256552 inserido
+Registro 85 35 15179655 inserido
+Registro 86 2 91909807 inserido
+Registro 87 64 79726974 inserido
+Registro 88 27 42335627 inserido
+Registro 89 97 81970176 inserido
+Registro 90 74 28646274 inserido
+Registro 91 76 62549417 inserido
+Registro 92 88 42282425 inserido
+Registro 93 20 84846675 inserido
+Registro 94 63 95215873 inserido
+Registro 95 31 41197308 inserido
+Registro 96 31 56557847 inserido
+Registro 97 35 98887671 inserido
+Registro 98 43 50241762 inserido
+Registro 99 71 75425879 inserido
+Espaco insuficiente
+Espaco insuficiente
+Registro Zeca invalido
+Registro Marcelo invalido
+Registro Vitor invalido
+Registro Leonardo invalido
+Registro Ulisses invalido
+Registro Oscar invalido
+Espaco insuficiente
+Registro Fernando invalido
+Registro Joao invalido
+Espaco insuficiente
+Registro Sergio invalido
+Espaco insuficiente
+Registro Ulisses invalido
+Registro Wagner invalido
+Registro Vitor invalido
+Registro Xavier invalido
+Registro Yuri invalido
+Espaco insuficiente
+Registro Leonardo invalido
+Registro Sergio invalido
+Registro Eduardo invalido
+Espaco insuficiente
+Registro Sergio invalido
+Registro Nelson invalido
+Registro Antonio invalido
+Registro Ricardo invalido
+Registro Carlos invalido
+Registro Antonio invalido
+Espaco insuficiente
+Registro Bernardo invalido
+Registro Carlos invalido
+Registro Marcelo invalido
+Registro Yuri invalido
+Registro Henrique invalido
+Registro Joao invalido
+Espaco insuficiente
+Registro Vitor invalido
+Registro Paulo invalido
+Registro Thiago invalido
+Registro Oscar invalido
+Espaco insuficiente
+Espaco insuficiente
+Registro Xavier invalido
+Espaco insuficiente
+Registro Paulo invalido
+Registro Gustavo invalido
+Registro Yuri invalido
+Espaco insuficiente
+Registro Nelson invalido
+Registro Xavier invalido
+Registro Igor invalido
+Espaco insuficiente
+Registro Zeca invalido
+Espaco insuficiente
+Registro Ulisses invalido
+Registro Wagner invalido
+Espaco insuficiente
+Espaco insuficiente
