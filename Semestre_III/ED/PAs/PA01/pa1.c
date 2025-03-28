@@ -248,12 +248,12 @@ void insertionSort(int v[], int l, int r, sortperf_t *s)
         inccmp(s, 1);
         while (j >= 0 && aux < v[j])
         {
-            inccmp(s, 1);
-
             // Movemos tudo um para a frente
             incmove(s, 1);
             v[j + 1] = v[j];
             j--;
+
+            inccmp(s, 1);
         }
 
         // Achou seu lugar
@@ -286,7 +286,6 @@ void partition3(int *A, int l, int r, int *i, int *j, sortperf_t *s)
     inccalls(s, 1);
 
     *i = l, *j = r;
-
     int meio = A[(l + r) / 2];
 
     int x = median(A[l], A[r], meio);
@@ -327,26 +326,26 @@ void partition(int *A, int l, int r, int *i, int *j, sortperf_t *s)
 
     do
     {
+        inccmp(s, 1);
         while (A[*i] < x)
         {
             (*i)++;
             inccmp(s, 1);
         }
 
+        inccmp(s, 1);
         while (A[*j] > x)
         {
             (*j)--;
             inccmp(s, 1);
         }
 
-        inccmp(s, 1);
         if (*i <= *j)
         {
             swap(&A[*i], &A[*j], s);
             (*i)++, (*j)--;
         }
 
-        inccmp(s, 1);
     } while (*i <= *j);
 }
 
@@ -384,10 +383,62 @@ void quickSort3(int *A, int l, int r, sortperf_t *s)
 }
 
 // quicksort with insertion for small partitions
-void quickSortIns(int *A, int l, int r, sortperf_t *s) {}
+void quickSortIns(int *A, int l, int r, sortperf_t *s)
+{
+    inccalls(s, 1);
+
+    int i, j;
+    if (r - l < 5)
+    {
+        insertionSort(A, l, r, s);
+        return;
+    }
+
+    partition(A, l, r, &i, &j, s);
+
+    if (l < j && j - l < 5)
+    {
+        insertionSort(A, l, j, s);
+    }
+    else if (l < j)
+        quickSortIns(A, l, j, s);
+
+    if (i < r && r - i < 5)
+    {
+        insertionSort(A, i, r, s);
+    }
+    else if (i < r)
+        quickSortIns(A, i, r, s);
+}
 
 // quicksort with insertion for small partitions and median of 3
-void quickSort3Ins(int *A, int l, int r, sortperf_t *s) {}
+void quickSort3Ins(int *A, int l, int r, sortperf_t *s)
+{
+    inccalls(s, 1);
+
+    int i, j;
+    if (r - l < 50)
+    {
+        insertionSort(A, l, r, s);
+        return;
+    }
+
+    partition3(A, l, r, &i, &j, s);
+
+    if (l < j && j - l < 50)
+    {
+        insertionSort(A, l, j, s);
+    }
+    else if (l < j)
+        quickSort3Ins(A, l, j, s);
+
+    if (i < r && r - i < 50)
+    {
+        insertionSort(A, i, r, s);
+    }
+    else if (i < r)
+        quickSort3Ins(A, i, r, s);
+}
 
 void uso()
 // Descricao: imprime as opcoes de uso
