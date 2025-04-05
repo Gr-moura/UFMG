@@ -292,26 +292,26 @@ void partition3(int *A, int l, int r, int *i, int *j, sortperf_t *s)
 
     do
     {
+        inccmp(s, 1);
         while (A[*i] < x)
         {
             (*i)++;
             inccmp(s, 1);
         }
 
+        inccmp(s, 1);
         while (A[*j] > x)
         {
             (*j)--;
             inccmp(s, 1);
         }
 
-        inccmp(s, 1);
         if (*i <= *j)
         {
             swap(&A[*i], &A[*j], s);
             (*i)++, (*j)--;
         }
 
-        inccmp(s, 1);
     } while (*i <= *j);
 }
 
