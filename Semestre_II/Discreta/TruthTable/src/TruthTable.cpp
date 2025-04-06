@@ -34,15 +34,74 @@ void TruthTable::printPossibleValues()
     }
 }
 
+void TruthTable::printTruthTable()
+{
+    cout << "Truth Table:" << endl;
+    for (int i = 0; i < numPropositions; i++)
+    {
+        cout << (char)(i + 'A') << " ";
+    }
+    cout << "Y " << endl;
+
+    for (vector<bool> values : possibleValues)
+    {
+        for (bool value : values)
+        {
+            cout << value << " ";
+        }
+        pair<bool, bool> a = evaluateFunctions(values);
+        cout << a.first << " ";
+        cout << a.second << " ";
+        cout << endl;
+    }
+}
+void giveValues(bool &A, bool &B, bool &C, bool &D, bool &E, bool &F, bool &G, bool &H, bool &I, bool &J, bool &K,
+                bool &L, bool &M, bool &N, bool &O, bool &P, bool &Q, bool &R, bool &S, bool &T, bool &U, bool &V,
+                bool &W, bool &X, bool &Y, bool &Z, const vector<bool> values)
+{
+    for (int i = 0; i < values.size(); i++)
+    {
+        switch (i)
+        {
+            case 0: A = values[i]; break;
+            case 1: B = values[i]; break;
+            case 2: C = values[i]; break;
+            case 3: D = values[i]; break;
+            case 4: E = values[i]; break;
+            case 5: F = values[i]; break;
+            case 6: G = values[i]; break;
+            case 7: H = values[i]; break;
+            case 8: I = values[i]; break;
+            case 9: J = values[i]; break;
+            case 10: K = values[i]; break;
+            case 11: L = values[i]; break;
+            case 12: M = values[i]; break;
+            case 13: N = values[i]; break;
+            case 14: O = values[i]; break;
+            case 15: P = values[i]; break;
+            case 16: Q = values[i]; break;
+            case 17: R = values[i]; break;
+            case 18: S = values[i]; break;
+            case 19: T = values[i]; break;
+            case 20: U = values[i]; break;
+            case 21: V = values[i]; break;
+            case 22: W = values[i]; break;
+            case 23: X = values[i]; break;
+            case 24: Y = values[i]; break;
+            case 25: Z = values[i]; break;
+
+            default: break;
+        }
+    }
+}
 const pair<bool, bool> TruthTable::evaluateFunctions(const vector<bool> &values)
 {
-    int A = values[0], B = values[1], C = values[2], D = values[3], E = values[4], F = values[5], G = values[6],
-        H = values[7], I = values[8], J = values[9], K = values[10], L = values[11], M = values[12], N = values[13],
-        O = values[14], P = values[15], Q = values[16], R = values[17], S = values[18], T = values[19], U = values[20],
-        V = values[21], W = values[22], X = values[23], Y = values[24], Z = values[25];
+    bool A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z;
 
-    bool f1 = IMP(AND(A, NOT(B)), OR(NOT(C), C));
-    bool f2 = IMP(AND(A, NOT(B)), OR(NOT(C), C));
+    giveValues(A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, values);
+
+    bool f1 = AND(AND(A, B), C);
+    bool f2 = AND(NAND(A, B), C);
 
     return {f1, f2};
 }
@@ -61,18 +120,24 @@ bool TruthTable::compareFunctions()
         resultsF1[i] = results.first;
         resultsF2[i] = results.second;
 
-        cout << results.first << " " << results.second << endl;
-
         if (results.first != results.second)
         {
-            cout << "Functions are not equivalent" << endl;
-
-            for (bool value : possibleValues[i])
+            if (different == false)
             {
-                cout << value << " ";
+                cout << "Functions are not equivalent" << endl;
             }
 
-            cout << endl << resultsF1[i] << " " << resultsF2[i] << "\n\n";
+
+            int character = 0;
+            for (bool value : possibleValues[i])
+            {
+                cout << (char)(character + 'A') << ": ";
+                cout << value << " ";
+
+                character++;
+            }
+
+            cout << endl << "Resultado F1: " << resultsF1[i] << " Resultado F2: " << resultsF2[i] << "\n\n";
             different = true;
         }
     }

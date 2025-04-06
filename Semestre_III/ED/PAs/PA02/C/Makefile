@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -O3
+CFLAGS = -O3 -Wnounused-variable
 
 SRC_DIR = src
 INCLUDE_DIR = include

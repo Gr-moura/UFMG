@@ -1,11 +1,11 @@
 #include "TruthTable.hpp"
 
-using namespace std;
-
 int main()
 {
+    // Initialize the truth table with 3 propositions
+    // The number of propositions can be changed as needed
     TruthTable t(3);
 
-    t.compareFunctions();
+    t.printTruthTable();
     return 0;
 }

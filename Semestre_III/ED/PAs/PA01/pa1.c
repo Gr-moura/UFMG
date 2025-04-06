@@ -323,6 +323,7 @@ void partition(int *A, int l, int r, int *i, int *j, sortperf_t *s)
     *i = l, *j = r;
 
     int x = A[(l + r) / 2];
+    printf("l: %d, r: %d, x: %d\n", l, r, x);
 
     do
     {
@@ -353,9 +354,13 @@ void partition(int *A, int l, int r, int *i, int *j, sortperf_t *s)
 void quickSort(int *A, int l, int r, sortperf_t *s)
 {
     inccalls(s, 1);
+    printVector(A, 5);
 
     int i, j;
+
     partition(A, l, r, &i, &j, s);
+
+    printVector(A, 5);
 
     // Se houver mais de um elemento nessa parte, então a condição if (Esq < j) será verdadeira. Isso significa que,
     // mesmo após a partição, o início do vetor (Esq) está "distante" do final dessa parte (j), indicando que há pelo
@@ -543,6 +548,7 @@ int main(int argc, char **argv)
     // if (opt.size < 100) printVector(vet, opt.size);
 
     retp = clock_gettime(CLOCK_MONOTONIC, &inittp);
+    int b[] = {5, 7, 5, 6, 7};
 
     // execute algorithm
     switch (opt.alg)
@@ -554,7 +560,7 @@ int main(int argc, char **argv)
         selectionSort(vet, 0, opt.size - 1, &s);
         break;
     case ALGQSORT:
-        quickSort(vet, 0, opt.size - 1, &s);
+        quickSort(b, 0, 5 - 1, &s);
         break;
     case ALGQSORT3:
         quickSort3(vet, 0, opt.size - 1, &s);

@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -std=c++20 -Wall -Wextra -O2
+CFLAGS = -std=c++20 -Wall -Wextra -O2 -Wno-unused-variable -Wno-return-type
 SRC_DIR = src
 INCLUDE_DIR = include
 OBJ_DIR = build

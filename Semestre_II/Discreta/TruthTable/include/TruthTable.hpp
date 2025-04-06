@@ -9,25 +9,15 @@
 
 using namespace std;
 
-bool IMP(bool a, bool b)
-{
-    return ((!a) || b);
-}
-
-bool AND(bool a, bool b)
-{
-    return ((a) && (b));
-}
-
-bool OR(bool a, bool b)
-{
-    return ((a) || (b));
-}
-
-bool NOT(bool a)
-{
-    return (!(a));
-}
+#define IMP(a, b) ((a) ? (b) : (!(b)))
+#define IFF(a, b) ((a) ? (b) : (!(a)))
+#define XOR(a, b) ((a) ? (!(b)) : (b))
+#define NAND(a, b) (!(a && b))
+#define NOR(a, b) (!(a || b))
+#define XNOR(a, b) (!(a) ? (b) : (!(b)))
+#define AND(a, b) ((a) && (b))
+#define OR(a, b) ((a) || (b))
+#define NOT(a) (!(a))
 class TruthTable
 {
   private:
@@ -40,6 +30,7 @@ class TruthTable
     TruthTable(int numPropositions);
 
     void printPossibleValues();
+    void printTruthTable();
 
     bool compareFunctions();
 
