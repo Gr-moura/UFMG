@@ -7,7 +7,7 @@ OBJ_DIR = obj
 INCLUDE_DIR = include
 
 # List all object files needed
-OBJS = $(OBJ_DIR)/pa2.o $(OBJ_DIR)/graph.o $(OBJ_DIR)/listaAdjacencia.o
+OBJS = $(OBJ_DIR)/pa2.o $(OBJ_DIR)/graph.o $(OBJ_DIR)/listaAdjacencia.o $(OBJ_DIR)/listaEncadeada.o
 
 .PHONY: all clean run
 
@@ -26,7 +26,11 @@ $(OBJ_DIR)/graph.o: $(SRC_DIR)/graph.cpp $(INCLUDE_DIR)/graph.hpp
 	@$(CXX) $(CXXFLAGS) -c $< -I$(INCLUDE_DIR) -o $@
 
 # Compile listaAdjacencia.cpp
-$(OBJ_DIR)/listaAdjacencia.o: $(SRC_DIR)/listaAdjacencia.cpp $(INCLUDE_DIR)/listaAdjacencia.hpp
+$(OBJ_DIR)/listaAdjacencia.o: $(SRC_DIR)/listaAdjacencia.cpp $(INCLUDE_DIR)/listaAdjacencia.hpp $(INCLUDE_DIR)/listaEncadeada.hpp
+	@$(CXX) $(CXXFLAGS) -c $< -I$(INCLUDE_DIR) -o $@
+
+# Compile listaEncadeada.cpp
+$(OBJ_DIR)/listaEncadeada.o: $(SRC_DIR)/listaEncadeada.cpp $(INCLUDE_DIR)/listaEncadeada.hpp
 	@$(CXX) $(CXXFLAGS) -c $< -I$(INCLUDE_DIR) -o $@
 
 clean:
