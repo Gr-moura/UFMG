@@ -3,6 +3,14 @@
 		"myenv/lib/python3.13/site-packages"
 	],
 	"files.associations": {
-		"iostream": "cpp"
+		"iostream": "cpp",
+		"map": "cpp",
+		"set": "cpp",
+		"unordered_map": "cpp",
+		"unordered_set": "cpp",
+		"vector": "cpp",
+		"deque": "cpp",
+		"forward_list": "cpp",
+		"list": "cpp"
 	}
 }

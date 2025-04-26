@@ -49,15 +49,78 @@ void TruthTable::printTruthTable()
         {
             cout << value << " ";
         }
-        pair<bool, bool> a = evaluateFunctions(values);
-        cout << a.first << " ";
-        cout << a.second << " ";
+        bool a = evaluateFunction(values);
+        cout << a << " ";
         cout << endl;
     }
 }
-void giveValues(bool &A, bool &B, bool &C, bool &D, bool &E, bool &F, bool &G, bool &H, bool &I, bool &J, bool &K,
-                bool &L, bool &M, bool &N, bool &O, bool &P, bool &Q, bool &R, bool &S, bool &T, bool &U, bool &V,
-                bool &W, bool &X, bool &Y, bool &Z, const vector<bool> values)
+
+void TruthTable::printSumOfProducts()
+{
+    cout << "Sum of Products = ";
+    int first = 1;
+
+    for (int i = 0; i < possibleValues.size(); i++)
+    {
+        vector<bool> values = possibleValues[i];
+        bool res = evaluateFunction(values);
+
+        if (res)
+        {
+            if (!first)
+            {
+                cout << " + ";
+            }
+
+            for (int j = 0; j < numPropositions; j++)
+            {
+                char character = (char)(j + 'A');
+
+                if (!values[j]) cout << "\u0305" << character;
+                else cout << character;
+            }
+
+            first = false;
+        }
+    }
+
+    cout << endl;
+}
+
+void TruthTable::printProductOfSums()
+{
+    cout << "Product of Sums = ";
+    int first = 1;
+
+    for (int i = 0; i < possibleValues.size(); i++)
+    {
+        vector<bool> values = possibleValues[i];
+        bool res = evaluateFunction(values);
+
+        if (!res)
+        {
+            cout << "(";
+
+            for (int j = 0; j < numPropositions; j++)
+            {
+                char character = (char)(j + 'A');
+
+                if (!values[j]) cout << character;
+                else cout << "\u0305" << character;
+
+                if (j != numPropositions - 1) cout << " + ";
+            }
+
+            cout << ")";
+        }
+    }
+
+    cout << endl;
+}
+
+void TruthTable::giveValues(bool &A, bool &B, bool &C, bool &D, bool &E, bool &F, bool &G, bool &H, bool &I, bool &J,
+                            bool &K, bool &L, bool &M, bool &N, bool &O, bool &P, bool &Q, bool &R, bool &S, bool &T,
+                            bool &U, bool &V, bool &W, bool &X, bool &Y, bool &Z, const vector<bool> &values)
 {
     for (int i = 0; i < values.size(); i++)
     {
@@ -94,6 +157,17 @@ void giveValues(bool &A, bool &B, bool &C, bool &D, bool &E, bool &F, bool &G, b
         }
     }
 }
+
+const bool TruthTable::evaluateFunction(const vector<bool> &values)
+{
+    bool A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z;
+
+    giveValues(A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z, values);
+
+    bool f = OR(AND(A, B), C);
+    return f;
+}
+
 const pair<bool, bool> TruthTable::evaluateFunctions(const vector<bool> &values)
 {
     bool A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z;
@@ -126,7 +200,6 @@ bool TruthTable::compareFunctions()
             {
                 cout << "Functions are not equivalent" << endl;
             }
-
 
             int character = 0;
             for (bool value : possibleValues[i])
