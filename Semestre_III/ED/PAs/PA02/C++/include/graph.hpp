@@ -11,7 +11,7 @@ class Grafo
 {
   public:
     Grafo();
-    ~Grafo();
+    // ~Grafo();
 
     void InsereVertice();
     void InsereAresta(int v, int w);

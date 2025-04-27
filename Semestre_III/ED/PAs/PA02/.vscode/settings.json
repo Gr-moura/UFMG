@@ -4,8 +4,5 @@
 		"plaintext": true,
 		"markdown": true,
 		"scminput": true
-	},
-	"files.associations": {
-		"iostream": "cpp"
 	}
 }

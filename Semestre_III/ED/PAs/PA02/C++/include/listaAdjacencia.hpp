@@ -1,68 +1,45 @@
 #ifndef LISTAADJACENCIA_HPP
 #define LISTAADJACENCIA_HPP
 
-class TipoCelula
+#include "listaEncadeada.hpp"
+class Vertice
 {
   public:
-    TipoCelula();
-    TipoCelula(int item);
-    TipoCelula(int item, TipoCelula *proximo);
+    Vertice();
+    // ~Vertice();
 
-    int GetItem();
-    TipoCelula *GetProximo();
-
-    void SetItem(int item);
-    void SetProximo(TipoCelula *proximo);
+    void NovaAresta(int w);
+    void ImprimeVizinhos();
+    int getGrau();
 
   private:
-    int item;
-    TipoCelula *proximo;
-
-    friend class ListaEncadeada;
+    int grau;
+    // Lista encadeada de vizinhos
+    ListaEncadeada<int> listaVizinhos;
 };
-
-class ListaEncadeada
-{
-  public:
-    ListaEncadeada();
-    ~ListaEncadeada();
-
-    int GetItem(int pos);
-    void SetItem(int item, int pos);
-    void InsereInicio(int item);
-    void InsereFinal(int item);
-    void InserePosicao(int item, int pos);
-    int RemoveInicio();
-    int RemoveFinal();
-    int RemovePosicao(int pos);
-    int Pesquisa(int c);
-    void Imprime();
-    void Limpa();
-
-  private:
-    int tamanho;
-    TipoCelula *primeiro;
-    TipoCelula *ultimo;
-    TipoCelula *Posiciona(int pos);
-};
-
 class ListaAdjacencia
 {
   public:
     ListaAdjacencia();
-    ~ListaAdjacencia();
+    // ~ListaAdjacencia();
 
     void InsereVertice();
     void InsereAresta(int v, int w);
-    int QuantidadeVertices();
-    int QuantidadeArestas();
-    int GrauMinimo();
-    int GrauMaximo();
+    int getQuantidadeVertices();
+    int getQuantidadeArestas();
+
+    int getGrauMinimo();
+    int getGrauMaximo();
+
     void ImprimeVizinhos(int v);
+    void Imprime();
 
   private:
-    ListaEncadeada *vertices;
     int quantidadeVertices;
+    int quantidadeArestas;
+
+    // Lista encadeada de vertices
+    ListaEncadeada<Vertice> listaVertices;
 };
 
 #endif

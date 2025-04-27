@@ -1,179 +1,120 @@
 #include "listaAdjacencia.hpp"
 #include <iostream>
+using namespace std;
 
-TipoCelula::TipoCelula() : item(-1), proximo(nullptr) {}
-TipoCelula::TipoCelula(int item) : item(item), proximo(nullptr) {}
-TipoCelula::TipoCelula(int item, TipoCelula *proximo) : item(item), proximo(proximo) {}
-
-int TipoCelula::GetItem()
+Vertice::Vertice() : listaVizinhos()
 {
-    return item;
+    // Inicializa o grau do vertice
+    this->grau = 0;
 }
 
-TipoCelula *TipoCelula::GetProximo()
+// Vertice::~Vertice()
+// {
+//     // Destrutor vazio
+//     listaVizinhos.Limpa();
+// }
+
+void Vertice::NovaAresta(int w)
 {
-    return proximo;
+    // Adiciona um vizinho
+    listaVizinhos.InsereFim(w);
+    grau++;
 }
 
-void TipoCelula::SetItem(int item)
+void Vertice::ImprimeVizinhos()
 {
-    this->item = item;
-}
-
-void TipoCelula::SetProximo(TipoCelula *proximo)
-{
-    this->proximo = proximo;
-}
-
-ListaEncadeada::ListaEncadeada() : primeiro(nullptr), ultimo(nullptr), tamanho(0) {}
-
-ListaEncadeada::~ListaEncadeada()
-{
-    Limpa();
-}
-
-int ListaEncadeada::GetItem(int pos)
-{
-    TipoCelula *p = Posiciona(pos);
-    if (p != nullptr) return p->GetItem();
-    else throw "Não existe elemento na posição informada";
-}
-
-void ListaEncadeada::SetItem(int item, int pos)
-{
-    TipoCelula *p = Posiciona(pos);
-    if (p != nullptr) p->SetItem(item);
-    else throw "Não existe elemento na posição informada";
-}
-
-void ListaEncadeada::InsereInicio(int item)
-{
-    TipoCelula *nova = new TipoCelula(item, primeiro);
-    primeiro = nova;
-    if (ultimo == nullptr) ultimo = nova;
-    tamanho++;
-}
-
-void ListaEncadeada::InsereFinal(int item)
-{
-    TipoCelula *nova = new TipoCelula(item);
-    if (ultimo != nullptr) ultimo->SetProximo(nova);
-    else primeiro = nova;
-    ultimo = nova;
-    tamanho++;
-}
-
-void ListaEncadeada::InserePosicao(int item, int pos)
-{
-    if (pos == 0) InsereInicio(item);
-    else
+    // Imprime os vizinhos do vertice
+    cout << grau << " ";
+    for (int i = 0; i < grau; i++)
     {
-        TipoCelula *p = Posiciona(pos - 1);
-        if (p != nullptr)
-        {
-            TipoCelula *nova = new TipoCelula(item, p->GetProximo());
-            p->SetProximo(nova);
-            if (nova->GetProximo() == nullptr) ultimo = nova;
-        }
+        cout << listaVizinhos[i] << " ";
     }
-    tamanho++;
+    cout << endl;
 }
 
-int ListaEncadeada::RemoveInicio()
+int Vertice::getGrau()
 {
-    if (primeiro != nullptr)
+    // Retorna o grau do vertice
+    return grau;
+}
+
+ListaAdjacencia::ListaAdjacencia() : listaVertices()
+{
+    // Inicializa o grafo
+    quantidadeArestas = 0;
+    quantidadeVertices = 0;
+}
+
+// ListaAdjacencia::~ListaAdjacencia()
+// {
+//     // Destrutor vazio
+//     listaVertices.Limpa();
+// }
+
+void ListaAdjacencia::InsereVertice()
+{
+    // Adiciona um vertice
+    Vertice v;
+    listaVertices.InsereFim(v);
+    quantidadeVertices++;
+}
+
+void ListaAdjacencia::InsereAresta(int v, int w)
+{
+    // Adiciona uma aresta entre os vertices v e w
+    listaVertices[v].NovaAresta(w);
+    listaVertices[w].NovaAresta(v);
+    quantidadeArestas += 2;
+}
+
+int ListaAdjacencia::getQuantidadeVertices()
+{
+    // Retorna a quantidade de vertices
+    return quantidadeVertices;
+}
+
+int ListaAdjacencia::getQuantidadeArestas()
+{
+    // Retorna a quantidade de arestas
+    return quantidadeArestas;
+}
+
+int ListaAdjacencia::getGrauMinimo()
+{
+    // Retorna o grau minimo do grafo
+    int grauMinimo = listaVertices[0].getGrau();
+    for (int i = 1; i < quantidadeVertices; i++)
     {
-        tamanho--;
-
-        TipoCelula *p = primeiro;
-        int item = p->GetItem();
-        primeiro = primeiro->GetProximo();
-
-        delete p;
-        if (primeiro == nullptr) ultimo = nullptr;
-        return item;
+        if (listaVertices[i].getGrau() < grauMinimo) grauMinimo = listaVertices[i].getGrau();
     }
-    else throw "Lista vazia";
+
+    return grauMinimo;
 }
 
-int ListaEncadeada::RemoveFinal()
+int ListaAdjacencia::getGrauMaximo()
 {
-    if (ultimo != nullptr)
+    // Retorna o grau maximo do grafo
+    int grauMaximo = listaVertices[0].getGrau();
+    for (int i = 1; i < quantidadeVertices; i++)
     {
-        tamanho--;
-
-        TipoCelula *p = Posiciona(tamanho - 2);
-        if (p != nullptr) p->SetProximo(nullptr);
-        else primeiro = nullptr;
-
-        int item = ultimo->GetItem();
-        delete ultimo;
-        ultimo = p;
-        if (ultimo == nullptr) primeiro = nullptr;
-        else ultimo->SetProximo(nullptr);
-        return item;
+        if (listaVertices[i].getGrau() > grauMaximo) grauMaximo = listaVertices[i].getGrau();
     }
-    else throw "Lista vazia";
+
+    return grauMaximo;
 }
 
-int ListaEncadeada::RemovePosicao(int pos)
+void ListaAdjacencia::ImprimeVizinhos(int v)
 {
-    if (pos == 0) return RemoveInicio();
+    // Imprime os vizinhos do vertice v
+    listaVertices[v].ImprimeVizinhos();
+}
 
-    TipoCelula *p = Posiciona(pos - 1);
-
-    if (p != nullptr)
+void ListaAdjacencia::Imprime()
+{
+    // Imprime o grafo
+    for (int i = 0; i < quantidadeVertices; i++)
     {
-        TipoCelula *q = p->GetProximo();
-        if (q != nullptr)
-        {
-            int item = q->GetItem();
-            p->SetProximo(q->GetProximo());
-            delete q;
-            tamanho--;
-            return item;
-        }
-        else throw "Não existe elemento na posição informada";
+        cout << i << ": ";
+        ImprimeVizinhos(i);
     }
-    else throw "Não existe elemento na posição informada";
 }
-
-int ListaEncadeada::Pesquisa(int c)
-{
-    TipoCelula *p = primeiro;
-    int pos = 0;
-    while (p != nullptr)
-    {
-        if (p->GetItem() == c) return pos;
-        p = p->GetProximo();
-        pos++;
-    }
-    return -1;
-}
-
-void ListaEncadeada::Imprime()
-{
-    TipoCelula *p = primeiro;
-    while (p != nullptr)
-    {
-        std::cout << p->GetItem() << " ";
-        p = p->GetProximo();
-    }
-    std::cout << std::endl;
-}
-
-void ListaEncadeada::Limpa()
-{
-    while (primeiro != nullptr)
-        RemoveInicio();
-}
-
-TipoCelula *ListaEncadeada::Posiciona(int pos)
-{
-    TipoCelula *p = primeiro;
-    for (int i = 0; i < pos && p != nullptr; i++)
-        p = p->GetProximo();
-    return p;
-}
-
-ListaAdjacencia::ListaAdjacencia() : vertices(),
