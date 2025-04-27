@@ -1,15 +1,11 @@
-#include <iostream>
-#include <vector>
-using namespace std;
-
-void a(int b = 10, int c = 2)
-{
-    cout << b;
-}
+#include <stdio.h>
 
 int main()
 {
-    vector<int> a(1);
+
+    printf("A\u0305\n"); // A̅
+    printf("\u0305B\n"); // B̅
+    printf("Z\u0305\n"); // Z̅
 
     return 0;
 }

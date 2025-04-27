@@ -36,8 +36,7 @@ int name2num(char *name)
     int i = 0;
     while (algvet[i].num)
     {
-        if (!strcmp(algvet[i].name, name))
-            return algvet[i].num;
+        if (!strcmp(algvet[i].name, name)) return algvet[i].num;
         i++;
     }
     return 0;
@@ -48,8 +47,7 @@ char *num2name(int num)
     int i = 0;
     while (algvet[i].num)
     {
-        if (algvet[i].num == num)
-            return algvet[i].name;
+        if (algvet[i].num == num) return algvet[i].name;
         i++;
     }
     return 0;
@@ -199,8 +197,7 @@ void recursiveSelectionSort(int arr[], int l, int r, sortperf_t *s)
     }
 
     // swap the minimum element in subarray `arr[i…n-1]` with `arr[i]`
-    if (min != l)
-        swap(&arr[min], &arr[l], s);
+    if (min != l) swap(&arr[min], &arr[l], s);
 
     if (l + 1 < r)
     {
@@ -226,8 +223,7 @@ void selectionSort(int arr[], int l, int r, sortperf_t *s)
             }
         }
 
-        if (menorIndex != i)
-            swap(&arr[i], &arr[menorIndex], s);
+        if (menorIndex != i) swap(&arr[i], &arr[menorIndex], s);
     }
 
     return;
@@ -237,7 +233,7 @@ void selectionSort(int arr[], int l, int r, sortperf_t *s)
 void insertionSort(int v[], int l, int r, sortperf_t *s)
 {
     inccalls(s, 1);
-    for (int i = 1; i <= r; i++)
+    for (int i = l + 1; i <= r; i++)
     {
         incmove(s, 1);
         int aux = v[i];
@@ -267,17 +263,12 @@ void insertionSort(int v[], int l, int r, sortperf_t *s)
 // median of 3 integers
 int median(int a, int b, int c)
 {
-    if ((a <= b) && (b <= c))
-        return b; // a b c
-    if ((a <= c) && (c <= b))
-        return c; // a c b
-    if ((b <= a) && (a <= c))
-        return a; // b a c
-    if ((b <= c) && (c <= a))
-        return c; // b c a
-    if ((c <= a) && (a <= b))
-        return a; // c a b
-    return b;     // c b a
+    if ((a <= b) && (b <= c)) return b; // a b c
+    if ((a <= c) && (c <= b)) return c; // a c b
+    if ((b <= a) && (a <= c)) return a; // b a c
+    if ((b <= c) && (c <= a)) return c; // b c a
+    if ((c <= a) && (a <= b)) return a; // c a b
+    return b;                           // c b a
 }
 
 // quicksort partition using median of 3
@@ -292,26 +283,26 @@ void partition3(int *A, int l, int r, int *i, int *j, sortperf_t *s)
 
     do
     {
+        inccmp(s, 1);
         while (A[*i] < x)
         {
             (*i)++;
             inccmp(s, 1);
         }
 
+        inccmp(s, 1);
         while (A[*j] > x)
         {
             (*j)--;
             inccmp(s, 1);
         }
 
-        inccmp(s, 1);
         if (*i <= *j)
         {
             swap(&A[*i], &A[*j], s);
             (*i)++, (*j)--;
         }
 
-        inccmp(s, 1);
     } while (*i <= *j);
 }
 
@@ -323,9 +314,11 @@ void partition(int *A, int l, int r, int *i, int *j, sortperf_t *s)
     *i = l, *j = r;
 
     int x = A[(l + r) / 2];
+    printf("l: %d, r: %d, x: %d\n", l, r, x);
 
     do
     {
+
         inccmp(s, 1);
         while (A[*i] < x)
         {
@@ -353,18 +346,20 @@ void partition(int *A, int l, int r, int *i, int *j, sortperf_t *s)
 void quickSort(int *A, int l, int r, sortperf_t *s)
 {
     inccalls(s, 1);
+    printVector(A, 5);
 
     int i, j;
+
     partition(A, l, r, &i, &j, s);
+
+    printVector(A, 5);
 
     // Se houver mais de um elemento nessa parte, então a condição if (Esq < j) será verdadeira. Isso significa que,
     // mesmo após a partição, o início do vetor (Esq) está "distante" do final dessa parte (j), indicando que há pelo
     // menos dois elementos e, portanto, ainda há trabalho a ser feito para ordená-la.
-    if (l < j)
-        quickSort(A, l, j, s);
+    if (l < j) quickSort(A, l, j, s);
 
-    if (i < r)
-        quickSort(A, i, r, s);
+    if (i < r) quickSort(A, i, r, s);
 }
 
 // quicksort with median of 3
@@ -375,11 +370,9 @@ void quickSort3(int *A, int l, int r, sortperf_t *s)
     int i, j;
     partition3(A, l, r, &i, &j, s);
 
-    if (l < j)
-        quickSort3(A, l, j, s);
+    if (l < j) quickSort3(A, l, j, s);
 
-    if (i < r)
-        quickSort3(A, i, r, s);
+    if (i < r) quickSort3(A, i, r, s);
 }
 
 // quicksort with insertion for small partitions
@@ -388,27 +381,21 @@ void quickSortIns(int *A, int l, int r, sortperf_t *s)
     inccalls(s, 1);
 
     int i, j;
-    if (r - l < 5)
-    {
-        insertionSort(A, l, r, s);
-        return;
-    }
-
     partition(A, l, r, &i, &j, s);
 
-    if (l < j && j - l < 5)
+    if (l < j)
     {
-        insertionSort(A, l, j, s);
-    }
-    else if (l < j)
-        quickSortIns(A, l, j, s);
+        if (j - l <= 50) insertionSort(A, l, j, s);
 
-    if (i < r && r - i < 5)
-    {
-        insertionSort(A, i, r, s);
+        else quickSortIns(A, l, j, s);
     }
-    else if (i < r)
-        quickSortIns(A, i, r, s);
+
+    if (i < r)
+    {
+        if (r - i <= 50) insertionSort(A, i, r, s);
+
+        else quickSortIns(A, i, r, s);
+    }
 }
 
 // quicksort with insertion for small partitions and median of 3
@@ -417,27 +404,21 @@ void quickSort3Ins(int *A, int l, int r, sortperf_t *s)
     inccalls(s, 1);
 
     int i, j;
-    if (r - l < 50)
-    {
-        insertionSort(A, l, r, s);
-        return;
-    }
-
     partition3(A, l, r, &i, &j, s);
 
-    if (l < j && j - l < 50)
+    if (l < j)
     {
-        insertionSort(A, l, j, s);
-    }
-    else if (l < j)
-        quickSort3Ins(A, l, j, s);
+        if (j - l <= 50) insertionSort(A, l, j, s);
 
-    if (i < r && r - i < 50)
-    {
-        insertionSort(A, i, r, s);
+        else quickSort3Ins(A, l, j, s);
     }
-    else if (i < r)
-        quickSort3Ins(A, i, r, s);
+
+    if (i < r)
+    {
+        if (r - i <= 50) insertionSort(A, i, r, s);
+
+        else quickSort3Ins(A, i, r, s);
+    }
 }
 
 void uso()
@@ -482,19 +463,11 @@ void parse_args(int argc, char **argv, opt_t *opt)
     {
         switch (c)
         {
-        case 'z':
-            opt->size = atoi(optarg);
-            break;
-        case 's':
-            opt->seed = atoi(optarg);
-            break;
-        case 'a':
-            opt->alg = name2num(optarg);
-            break;
-        case 'h':
-        default:
-            uso();
-            exit(1);
+            case 'z': opt->size = atoi(optarg); break;
+            case 's': opt->seed = atoi(optarg); break;
+            case 'a': opt->alg = name2num(optarg); break;
+            case 'h':
+            default: uso(); exit(1);
         }
     }
     if (!opt->alg)
@@ -547,34 +520,19 @@ int main(int argc, char **argv)
     // if (opt.size < 100) printVector(vet, opt.size);
 
     retp = clock_gettime(CLOCK_MONOTONIC, &inittp);
+    int b[] = {5, 7, 5, 6, 7};
 
     // execute algorithm
     switch (opt.alg)
     {
-    case ALGINSERTION:
-        insertionSort(vet, 0, opt.size - 1, &s);
-        break;
-    case ALGSELECTION:
-        selectionSort(vet, 0, opt.size - 1, &s);
-        break;
-    case ALGQSORT:
-        quickSort(vet, 0, opt.size - 1, &s);
-        break;
-    case ALGQSORT3:
-        quickSort3(vet, 0, opt.size - 1, &s);
-        break;
-    case ALGQSORTINS:
-        quickSortIns(vet, 0, opt.size - 1, &s);
-        break;
-    case ALGQSORT3INS:
-        quickSort3Ins(vet, 0, opt.size - 1, &s);
-        break;
-    case ALGSHELLSORT:
-        shellSort(vet, opt.size, &s);
-        break;
-    case ALGRECSEL:
-        recursiveSelectionSort(vet, 0, opt.size - 1, &s);
-        break;
+        case ALGINSERTION: insertionSort(vet, 0, opt.size - 1, &s); break;
+        case ALGSELECTION: selectionSort(vet, 0, opt.size - 1, &s); break;
+        case ALGQSORT: quickSort(b, 0, 5 - 1, &s); break;
+        case ALGQSORT3: quickSort3(vet, 0, opt.size - 1, &s); break;
+        case ALGQSORTINS: quickSortIns(vet, 0, opt.size - 1, &s); break;
+        case ALGQSORT3INS: quickSort3Ins(vet, 0, opt.size - 1, &s); break;
+        case ALGSHELLSORT: shellSort(vet, opt.size, &s); break;
+        case ALGRECSEL: recursiveSelectionSort(vet, 0, opt.size - 1, &s); break;
     }
     retp = clock_gettime(CLOCK_MONOTONIC, &endtp);
     clkDiff(inittp, endtp, &restp);
