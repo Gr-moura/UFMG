@@ -2,11 +2,7 @@
 
 Grafo::Grafo() : vertices(ListaAdjacencia()) {}
 
-Grafo::~Grafo()
-{
-    // Destrói a lista de adjacência
-    vertices.~ListaAdjacencia();
-}
+Grafo::~Grafo() {}
 
 void Grafo::InsereVertice()
 {
