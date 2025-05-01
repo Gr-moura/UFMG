@@ -46,16 +46,16 @@ Grafo lerGrafo()
     cin >> nVertices;
 
     for (int i = 0; i < nVertices; i++)
-    {
-        int nArestas;
-        cin >> nArestas;
-
         g.InsereVertice();
-        for (int j = 0; j < nArestas; j++)
+
+    for (int i = 0; i < nVertices; i++)
+    {
+        int nVizinhos;
+        cin >> nVizinhos;
+        for (int j = 0; j < nVizinhos; j++)
         {
             int vizinho;
             cin >> vizinho;
-
             g.InsereAresta(i, vizinho);
         }
     }
@@ -66,7 +66,7 @@ Grafo lerGrafo()
 void dadosBasicos(Grafo &g)
 {
     cout << g.QuantidadeVertices() << endl;
-    cout << g.QuantidadeArestas() << endl;
+    cout << g.QuantidadeArestas() / 2 << endl;
     cout << g.GrauMinimo() << endl;
     cout << g.GrauMaximo() << endl;
 }

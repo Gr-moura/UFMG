@@ -6,7 +6,7 @@ class Vertice
 {
   public:
     Vertice();
-    // ~Vertice();
+    ~Vertice();
 
     void NovaAresta(int w);
     void ImprimeVizinhos();
@@ -16,12 +16,14 @@ class Vertice
     int grau;
     // Lista encadeada de vizinhos
     ListaEncadeada<int> listaVizinhos;
+
+    friend class ListaAdjacencia;
 };
 class ListaAdjacencia
 {
   public:
     ListaAdjacencia();
-    // ~ListaAdjacencia();
+    ~ListaAdjacencia();
 
     void InsereVertice();
     void InsereAresta(int v, int w);

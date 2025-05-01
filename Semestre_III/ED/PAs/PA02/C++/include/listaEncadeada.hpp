@@ -8,7 +8,7 @@ template <typename T> class Celula
 {
   public:
     Celula(T valor) : valor(valor), proximaCelula(nullptr) {}
-    // ~Celula() {}
+    ~Celula() {}
 
     T valor;
     Celula *proximaCelula;
@@ -18,11 +18,11 @@ template <typename T> class ListaEncadeada
 {
   public:
     ListaEncadeada() : primeiraCelula(nullptr), ultimaCelula(nullptr), quantidadeCelulas(0) {}
-    // ~ListaEncadeada() { Limpa(); }
+    ~ListaEncadeada() { Limpa(); }
 
     void InsereFim(T valor);
     void Imprime();
-    // void Limpa();
+    void Limpa();
 
     // --- Acesso por Índice (Operator[]) ---
     // Retorna referência para modificar/ler. Lança std::out_of_range se índice inválido.
@@ -69,19 +69,19 @@ template <typename T> void ListaEncadeada<T>::Imprime()
     cout << endl;
 }
 
-// template <typename T> void ListaEncadeada<T>::Limpa()
-// {
-//     Celula<T> *atual = primeiraCelula;
-//     while (atual != nullptr)
-//     {
-//         Celula<T> *proxima = atual->proximaCelula;
-//         delete atual;
-//         atual = proxima;
-//     }
-//     primeiraCelula = nullptr;
-//     ultimaCelula = nullptr;
-//     quantidadeCelulas = 0;
-// }
+template <typename T> void ListaEncadeada<T>::Limpa()
+{
+    Celula<T> *atual = primeiraCelula;
+    while (atual != nullptr)
+    {
+        Celula<T> *proxima = atual->proximaCelula;
+        delete atual;
+        atual = proxima;
+    }
+    primeiraCelula = nullptr;
+    ultimaCelula = nullptr;
+    quantidadeCelulas = 0;
+}
 
 template <typename T> int ListaEncadeada<T>::getQuantidade()
 {
@@ -92,7 +92,11 @@ template <typename T> int ListaEncadeada<T>::getQuantidade()
 // Versão não-const: retorna T&
 template <typename T> T &ListaEncadeada<T>::operator[](int index)
 {
-    if (index < 0 or index >= quantidadeCelulas) throw "Índice fora dos limites da lista encadeada.";
+    if (index < 0 or index >= quantidadeCelulas)
+    {
+        cout << "index: " << index << endl;
+        throw "Índice fora dos limites da lista encadeada.";
+    }
 
     Celula<T> *atual = primeiraCelula;
     for (int i = 0; i < index; ++i)
@@ -104,8 +108,11 @@ template <typename T> T &ListaEncadeada<T>::operator[](int index)
 // Versão const: retorna const T&
 template <typename T> const T &ListaEncadeada<T>::operator[](int index) const
 {
-    if (index < 0 or index >= quantidadeCelulas) throw "Índice fora dos limites da lista encadeada (const access).";
-
+    if (index < 0 or index >= quantidadeCelulas)
+    {
+        cout << "index: " << index << endl;
+        throw "Índice fora dos limites da lista encadeada (const access).";
+    }
     Celula<T> *atual = primeiraCelula;
     for (std::size_t i = 0; i < index; ++i)
         atual = atual->proximaCelula;

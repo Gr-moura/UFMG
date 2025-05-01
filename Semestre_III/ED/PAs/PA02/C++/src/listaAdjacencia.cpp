@@ -8,11 +8,12 @@ Vertice::Vertice() : listaVizinhos()
     this->grau = 0;
 }
 
-// Vertice::~Vertice()
-// {
-//     // Destrutor vazio
-//     listaVizinhos.Limpa();
-// }
+Vertice::~Vertice()
+{
+    // Destrutor vazio
+    this->grau = 0;
+    listaVizinhos.Limpa();
+}
 
 void Vertice::NovaAresta(int w)
 {
@@ -24,7 +25,6 @@ void Vertice::NovaAresta(int w)
 void Vertice::ImprimeVizinhos()
 {
     // Imprime os vizinhos do vertice
-    cout << grau << " ";
     for (int i = 0; i < grau; i++)
     {
         cout << listaVizinhos[i] << " ";
@@ -45,11 +45,10 @@ ListaAdjacencia::ListaAdjacencia() : listaVertices()
     quantidadeVertices = 0;
 }
 
-// ListaAdjacencia::~ListaAdjacencia()
-// {
-//     // Destrutor vazio
-//     listaVertices.Limpa();
-// }
+ListaAdjacencia::~ListaAdjacencia()
+{
+    listaVertices.Limpa();
+}
 
 void ListaAdjacencia::InsereVertice()
 {
@@ -63,8 +62,7 @@ void ListaAdjacencia::InsereAresta(int v, int w)
 {
     // Adiciona uma aresta entre os vertices v e w
     listaVertices[v].NovaAresta(w);
-    listaVertices[w].NovaAresta(v);
-    quantidadeArestas += 2;
+    quantidadeArestas++;
 }
 
 int ListaAdjacencia::getQuantidadeVertices()
@@ -82,9 +80,11 @@ int ListaAdjacencia::getQuantidadeArestas()
 int ListaAdjacencia::getGrauMinimo()
 {
     // Retorna o grau minimo do grafo
+    if (quantidadeVertices == 0) return 0;
     int grauMinimo = listaVertices[0].getGrau();
     for (int i = 1; i < quantidadeVertices; i++)
     {
+        grauMinimo = listaVertices[i].getGrau();
         if (listaVertices[i].getGrau() < grauMinimo) grauMinimo = listaVertices[i].getGrau();
     }
 
@@ -94,8 +94,8 @@ int ListaAdjacencia::getGrauMinimo()
 int ListaAdjacencia::getGrauMaximo()
 {
     // Retorna o grau maximo do grafo
-    int grauMaximo = listaVertices[0].getGrau();
-    for (int i = 1; i < quantidadeVertices; i++)
+    int grauMaximo = 0;
+    for (int i = 0; i < quantidadeVertices; i++)
     {
         if (listaVertices[i].getGrau() > grauMaximo) grauMaximo = listaVertices[i].getGrau();
     }
