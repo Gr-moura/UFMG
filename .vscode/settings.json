@@ -12,5 +12,11 @@
 		"deque": "cpp",
 		"forward_list": "cpp",
 		"list": "cpp"
+	},
+	"github.copilot.enable": {
+		"*": true,
+		"plaintext": true,
+		"markdown": true,
+		"scminput": true
 	}
 }
