@@ -1,8 +1,21 @@
 FROM alpine:latest
 RUN apk update && apk add build-base gdb valgrind
 
+# Using ARG can make it easier to manage if the alias changes
+ARG VALGRIND_ALIAS='alias valgrind="valgrind --tool=memcheck --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose"'
+
+# Add the alias to a shell configuration file that gets sourced.
+# /etc/profile.d/ is a good place for system-wide additions that
+# work for most login shells (like bash, zsh).
+# For non-login interactive shells (common with `docker run -it`),
+# adding to /etc/bash.bashrc (if using bash) might also be necessary,
+# or modifying the user's ~/.bashrc. Let's start with profile.d.
+RUN echo "${VALGRIND_ALIAS}" >> /etc/profile.d/custom_aliases.sh && \
+    echo "echo 'Sourced custom aliases from /etc/profile.d/custom_aliases.sh'" >> /etc/profile.d/custom_aliases.sh # Optional: Add a message to confirm sourcing
+
+
 # Build the image
-# docker build -t "debugging:1.0" -f UFMG/Configs/Docker/Dockerfile.dbg .
+# docker build -t "debugging:1.0" -f ~/Desktop/UFMG/Configs/Docker/Dockerfile.dbg .
 
 # Run the image
 # open -a Docker && while ! docker system info >/dev/null 2>&1; do sleep 1; done; docker run --rm -it -v $PWD:/tmp -w /tmp debugging:1.0
